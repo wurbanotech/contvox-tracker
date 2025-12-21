@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-21T15:37:01.782489",
+  "generated_at": "2025-12-21T18:35:45.923055",
   "habits": [
     {
       "id": "study",
@@ -7,9 +7,9 @@
       "icon": "📚",
       "color": "#2196F3",
       "frequency": "daily",
-      "score": 3.3,
-      "streak": 1,
-      "best_streak": 1
+      "score": 66.7,
+      "streak": 5,
+      "best_streak": 17
     },
     {
       "id": "exercise",
@@ -17,9 +17,9 @@
       "icon": "🏋️",
       "color": "#4CAF50",
       "frequency": "weekdays",
-      "score": 0.0,
-      "streak": 0,
-      "best_streak": 0
+      "score": 50.0,
+      "streak": 1,
+      "best_streak": 7
     },
     {
       "id": "meditation",
@@ -27,9 +27,9 @@
       "icon": "🧘",
       "color": "#9C27B0",
       "frequency": "daily",
-      "score": 3.3,
+      "score": 60.0,
       "streak": 1,
-      "best_streak": 1
+      "best_streak": 15
     },
     {
       "id": "reading",
@@ -37,9 +37,9 @@
       "icon": "📖",
       "color": "#FF9800",
       "frequency": "daily",
-      "score": 0.0,
-      "streak": 0,
-      "best_streak": 0
+      "score": 66.7,
+      "streak": 1,
+      "best_streak": 6
     },
     {
       "id": "sleep_early",
@@ -47,9 +47,9 @@
       "icon": "🌙",
       "color": "#673AB7",
       "frequency": "daily",
-      "score": 0.0,
+      "score": 53.3,
       "streak": 0,
-      "best_streak": 0
+      "best_streak": 8
     },
     {
       "id": "water",
@@ -57,247 +57,279 @@
       "icon": "💧",
       "color": "#00BCD4",
       "frequency": "daily",
-      "score": 0.0,
+      "score": 93.3,
+      "streak": 1,
+      "best_streak": 30
+    },
+    {
+      "id": "english",
+      "name": "Inglês 30min",
+      "icon": "🇬🇧",
+      "color": "#E91E63",
+      "frequency": "daily",
+      "score": 50.0,
       "streak": 0,
-      "best_streak": 0
+      "best_streak": 6
     }
   ],
   "today": {
     "date": "2025-12-21",
-    "rate": 40.0,
+    "rate": 0.0,
     "habits": {
-      "study": true,
-      "meditation": true,
+      "study": false,
+      "meditation": false,
       "reading": false,
       "sleep_early": false,
-      "water": false
+      "water": false,
+      "english": false
     }
   },
   "calendar": {
     "days": {
       "1": {
-        "rate": 0.0,
+        "rate": 85.71428571428571,
         "habits": {
-          "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
+          "study": true,
+          "exercise": true,
+          "meditation": true,
+          "reading": true,
+          "sleep_early": true,
+          "water": true,
+          "english": false
         }
       },
       "2": {
-        "rate": 0.0,
+        "rate": 71.42857142857143,
         "habits": {
           "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
+          "exercise": true,
+          "meditation": true,
+          "reading": true,
+          "sleep_early": true,
+          "water": true,
+          "english": false
         }
       },
       "3": {
-        "rate": 0.0,
+        "rate": 85.71428571428571,
         "habits": {
-          "study": false,
-          "exercise": false,
-          "meditation": false,
+          "study": true,
+          "exercise": true,
+          "meditation": true,
           "reading": false,
-          "sleep_early": false,
-          "water": false
+          "sleep_early": true,
+          "water": true,
+          "english": true
         }
       },
       "4": {
-        "rate": 0.0,
+        "rate": 71.42857142857143,
         "habits": {
           "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
+          "exercise": true,
+          "meditation": true,
+          "reading": true,
+          "sleep_early": true,
+          "water": true,
+          "english": false
         }
       },
       "5": {
-        "rate": 0.0,
+        "rate": 57.14285714285714,
         "habits": {
           "study": false,
           "exercise": false,
-          "meditation": false,
+          "meditation": true,
           "reading": false,
-          "sleep_early": false,
-          "water": false
+          "sleep_early": true,
+          "water": true,
+          "english": true
         }
       },
       "6": {
-        "rate": 0.0,
+        "rate": 83.33333333333334,
         "habits": {
-          "study": false,
-          "meditation": false,
-          "reading": false,
+          "study": true,
+          "meditation": true,
+          "reading": true,
           "sleep_early": false,
-          "water": false
+          "water": true,
+          "english": true
         }
       },
       "7": {
-        "rate": 0.0,
+        "rate": 66.66666666666666,
         "habits": {
           "study": false,
           "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
+          "reading": true,
+          "sleep_early": true,
+          "water": true,
+          "english": true
         }
       },
       "8": {
-        "rate": 0.0,
+        "rate": 42.857142857142854,
         "habits": {
           "study": false,
-          "exercise": false,
+          "exercise": true,
           "meditation": false,
-          "reading": false,
+          "reading": true,
           "sleep_early": false,
-          "water": false
+          "water": true,
+          "english": false
         }
       },
       "9": {
-        "rate": 0.0,
+        "rate": 28.57142857142857,
         "habits": {
           "study": false,
           "exercise": false,
           "meditation": false,
           "reading": false,
-          "sleep_early": false,
-          "water": false
+          "sleep_early": true,
+          "water": true,
+          "english": false
         }
       },
       "10": {
-        "rate": 0.0,
+        "rate": 42.857142857142854,
         "habits": {
           "study": false,
           "exercise": false,
-          "meditation": false,
+          "meditation": true,
           "reading": false,
-          "sleep_early": false,
-          "water": false
+          "sleep_early": true,
+          "water": true,
+          "english": false
         }
       },
       "11": {
-        "rate": 0.0,
+        "rate": 42.857142857142854,
         "habits": {
-          "study": false,
+          "study": true,
           "exercise": false,
           "meditation": false,
-          "reading": false,
+          "reading": true,
           "sleep_early": false,
-          "water": false
+          "water": true,
+          "english": false
         }
       },
       "12": {
-        "rate": 0.0,
+        "rate": 42.857142857142854,
         "habits": {
-          "study": false,
+          "study": true,
           "exercise": false,
           "meditation": false,
-          "reading": false,
+          "reading": true,
           "sleep_early": false,
-          "water": false
+          "water": true,
+          "english": false
         }
       },
       "13": {
-        "rate": 0.0,
+        "rate": 66.66666666666666,
         "habits": {
-          "study": false,
-          "meditation": false,
-          "reading": false,
+          "study": true,
+          "meditation": true,
+          "reading": true,
           "sleep_early": false,
-          "water": false
+          "water": true,
+          "english": false
         }
       },
       "14": {
-        "rate": 0.0,
-        "habits": {
-          "study": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
-        }
-      },
-      "15": {
-        "rate": 0.0,
-        "habits": {
-          "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
-        }
-      },
-      "16": {
-        "rate": 0.0,
-        "habits": {
-          "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
-        }
-      },
-      "17": {
-        "rate": 0.0,
-        "habits": {
-          "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
-        }
-      },
-      "18": {
-        "rate": 0.0,
-        "habits": {
-          "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
-        }
-      },
-      "19": {
-        "rate": 0.0,
-        "habits": {
-          "study": false,
-          "exercise": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
-        }
-      },
-      "20": {
-        "rate": 0.0,
-        "habits": {
-          "study": false,
-          "meditation": false,
-          "reading": false,
-          "sleep_early": false,
-          "water": false
-        }
-      },
-      "21": {
-        "rate": 40.0,
+        "rate": 66.66666666666666,
         "habits": {
           "study": true,
           "meditation": true,
           "reading": false,
           "sleep_early": false,
-          "water": false
+          "water": true,
+          "english": true
+        }
+      },
+      "15": {
+        "rate": 71.42857142857143,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": true,
+          "reading": true,
+          "sleep_early": true,
+          "water": true,
+          "english": true
+        }
+      },
+      "16": {
+        "rate": 57.14285714285714,
+        "habits": {
+          "study": true,
+          "exercise": false,
+          "meditation": true,
+          "reading": false,
+          "sleep_early": false,
+          "water": true,
+          "english": true
+        }
+      },
+      "17": {
+        "rate": 71.42857142857143,
+        "habits": {
+          "study": true,
+          "exercise": true,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": true,
+          "water": true,
+          "english": true
+        }
+      },
+      "18": {
+        "rate": 71.42857142857143,
+        "habits": {
+          "study": true,
+          "exercise": false,
+          "meditation": false,
+          "reading": true,
+          "sleep_early": true,
+          "water": true,
+          "english": true
+        }
+      },
+      "19": {
+        "rate": 42.857142857142854,
+        "habits": {
+          "study": true,
+          "exercise": true,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": true,
+          "water": false,
+          "english": false
+        }
+      },
+      "20": {
+        "rate": 66.66666666666666,
+        "habits": {
+          "study": true,
+          "meditation": true,
+          "reading": true,
+          "sleep_early": false,
+          "water": true,
+          "english": false
+        }
+      },
+      "21": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false,
+          "english": false
         }
       }
     }
@@ -321,264 +353,146 @@
         "dez 21"
       ],
       "values": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        40.0
+        42.9,
+        28.6,
+        42.9,
+        42.9,
+        42.9,
+        66.7,
+        66.7,
+        71.4,
+        57.1,
+        71.4,
+        71.4,
+        42.9,
+        66.7,
+        0.0
       ]
     },
     "weekly": {
       "weeks": [
         {
-          "week": "2025-W22",
-          "rate": 0.0,
-          "start": "2025-06-02",
-          "end": "2025-06-08"
-        },
-        {
-          "week": "2025-W23",
-          "rate": 0.0,
-          "start": "2025-06-09",
-          "end": "2025-06-15"
-        },
-        {
-          "week": "2025-W24",
-          "rate": 0.0,
-          "start": "2025-06-16",
-          "end": "2025-06-22"
-        },
-        {
-          "week": "2025-W25",
-          "rate": 0.0,
-          "start": "2025-06-23",
-          "end": "2025-06-29"
-        },
-        {
-          "week": "2025-W26",
-          "rate": 0.0,
-          "start": "2025-06-30",
-          "end": "2025-07-06"
-        },
-        {
-          "week": "2025-W27",
-          "rate": 0.0,
-          "start": "2025-07-07",
-          "end": "2025-07-13"
-        },
-        {
-          "week": "2025-W28",
-          "rate": 0.0,
-          "start": "2025-07-14",
-          "end": "2025-07-20"
-        },
-        {
-          "week": "2025-W29",
-          "rate": 0.0,
-          "start": "2025-07-21",
-          "end": "2025-07-27"
-        },
-        {
-          "week": "2025-W30",
-          "rate": 0.0,
-          "start": "2025-07-28",
-          "end": "2025-08-03"
-        },
-        {
-          "week": "2025-W31",
-          "rate": 0.0,
-          "start": "2025-08-04",
-          "end": "2025-08-10"
-        },
-        {
-          "week": "2025-W32",
-          "rate": 0.0,
-          "start": "2025-08-11",
-          "end": "2025-08-17"
-        },
-        {
-          "week": "2025-W33",
-          "rate": 0.0,
-          "start": "2025-08-18",
-          "end": "2025-08-24"
-        },
-        {
-          "week": "2025-W34",
-          "rate": 0.0,
-          "start": "2025-08-25",
-          "end": "2025-08-31"
-        },
-        {
-          "week": "2025-W35",
-          "rate": 0.0,
-          "start": "2025-09-01",
-          "end": "2025-09-07"
-        },
-        {
-          "week": "2025-W36",
-          "rate": 0.0,
-          "start": "2025-09-08",
-          "end": "2025-09-14"
-        },
-        {
-          "week": "2025-W37",
-          "rate": 0.0,
-          "start": "2025-09-15",
-          "end": "2025-09-21"
-        },
-        {
-          "week": "2025-W38",
-          "rate": 0.0,
-          "start": "2025-09-22",
-          "end": "2025-09-28"
-        },
-        {
-          "week": "2025-W39",
-          "rate": 0.0,
-          "start": "2025-09-29",
-          "end": "2025-10-05"
-        },
-        {
-          "week": "2025-W40",
-          "rate": 0.0,
-          "start": "2025-10-06",
-          "end": "2025-10-12"
-        },
-        {
-          "week": "2025-W41",
-          "rate": 0.0,
-          "start": "2025-10-13",
-          "end": "2025-10-19"
-        },
-        {
-          "week": "2025-W42",
-          "rate": 0.0,
-          "start": "2025-10-20",
-          "end": "2025-10-26"
-        },
-        {
-          "week": "2025-W43",
-          "rate": 0.0,
-          "start": "2025-10-27",
-          "end": "2025-11-02"
-        },
-        {
-          "week": "2025-W44",
-          "rate": 0.0,
-          "start": "2025-11-03",
-          "end": "2025-11-09"
-        },
-        {
-          "week": "2025-W45",
-          "rate": 0.0,
-          "start": "2025-11-10",
-          "end": "2025-11-16"
-        },
-        {
           "week": "2025-W46",
-          "rate": 0.0,
+          "rate": 57.1,
           "start": "2025-11-17",
           "end": "2025-11-23"
         },
         {
           "week": "2025-W47",
-          "rate": 0.0,
+          "rate": 68.0,
           "start": "2025-11-24",
           "end": "2025-11-30"
         },
         {
           "week": "2025-W48",
-          "rate": 0.0,
+          "rate": 74.5,
           "start": "2025-12-01",
           "end": "2025-12-07"
         },
         {
           "week": "2025-W49",
-          "rate": 0.0,
+          "rate": 47.6,
           "start": "2025-12-08",
           "end": "2025-12-14"
         },
         {
           "week": "2025-W50",
-          "rate": 5.7,
+          "rate": 54.4,
           "start": "2025-12-15",
           "end": "2025-12-21"
         }
       ],
-      "trend": "stable"
+      "trend": "down"
     },
     "comparison": {
       "habits": [
         {
+          "id": "water",
+          "name": "Água 2L",
+          "icon": "💧",
+          "score": 93.3,
+          "streak": 1,
+          "best_streak": 30,
+          "color": "#00BCD4"
+        },
+        {
           "id": "study",
           "name": "Estudo",
           "icon": "📚",
-          "score": 3.3,
-          "streak": 1,
-          "best_streak": 1,
+          "score": 66.7,
+          "streak": 5,
+          "best_streak": 17,
           "color": "#2196F3"
-        },
-        {
-          "id": "meditation",
-          "name": "Meditação",
-          "icon": "🧘",
-          "score": 3.3,
-          "streak": 1,
-          "best_streak": 1,
-          "color": "#9C27B0"
-        },
-        {
-          "id": "exercise",
-          "name": "Exercício",
-          "icon": "🏋️",
-          "score": 0.0,
-          "streak": 0,
-          "best_streak": 0,
-          "color": "#4CAF50"
         },
         {
           "id": "reading",
           "name": "Leitura",
           "icon": "📖",
-          "score": 0.0,
-          "streak": 0,
-          "best_streak": 0,
+          "score": 66.7,
+          "streak": 1,
+          "best_streak": 6,
           "color": "#FF9800"
+        },
+        {
+          "id": "meditation",
+          "name": "Meditação",
+          "icon": "🧘",
+          "score": 60.0,
+          "streak": 1,
+          "best_streak": 15,
+          "color": "#9C27B0"
         },
         {
           "id": "sleep_early",
           "name": "Dormir cedo",
           "icon": "🌙",
-          "score": 0.0,
+          "score": 53.3,
           "streak": 0,
-          "best_streak": 0,
+          "best_streak": 8,
           "color": "#673AB7"
         },
         {
-          "id": "water",
-          "name": "Água 2L",
-          "icon": "💧",
-          "score": 0.0,
+          "id": "exercise",
+          "name": "Exercício",
+          "icon": "🏋️",
+          "score": 50.0,
+          "streak": 1,
+          "best_streak": 7,
+          "color": "#4CAF50"
+        },
+        {
+          "id": "english",
+          "name": "Inglês 30min",
+          "icon": "🇬🇧",
+          "score": 50.0,
           "streak": 0,
-          "best_streak": 0,
-          "color": "#00BCD4"
+          "best_streak": 6,
+          "color": "#E91E63"
         }
       ]
     }
   },
-  "challenges": [],
+  "challenges": [
+    {
+      "id": "challenge_75_hard_lite_2026-02-01",
+      "name": "75 Hard Lite",
+      "progress": 0.0,
+      "days_elapsed": 0,
+      "days_total": 75,
+      "active": false
+    },
+    {
+      "id": "challenge_mba_prep_2026-03-01",
+      "name": "Preparação MBA",
+      "progress": 0.0,
+      "days_elapsed": 0,
+      "days_total": 60,
+      "active": false
+    }
+  ],
   "summary": {
-    "total_habits": 6,
-    "avg_score_30d": 1.1,
+    "total_habits": 7,
+    "avg_score_30d": 62.9,
     "active_challenges": 0
   }
 }
