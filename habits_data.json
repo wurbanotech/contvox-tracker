@@ -1,0 +1,584 @@
+{
+  "generated_at": "2025-12-21T15:37:01.782489",
+  "habits": [
+    {
+      "id": "study",
+      "name": "Estudo",
+      "icon": "📚",
+      "color": "#2196F3",
+      "frequency": "daily",
+      "score": 3.3,
+      "streak": 1,
+      "best_streak": 1
+    },
+    {
+      "id": "exercise",
+      "name": "Exercício",
+      "icon": "🏋️",
+      "color": "#4CAF50",
+      "frequency": "weekdays",
+      "score": 0.0,
+      "streak": 0,
+      "best_streak": 0
+    },
+    {
+      "id": "meditation",
+      "name": "Meditação",
+      "icon": "🧘",
+      "color": "#9C27B0",
+      "frequency": "daily",
+      "score": 3.3,
+      "streak": 1,
+      "best_streak": 1
+    },
+    {
+      "id": "reading",
+      "name": "Leitura",
+      "icon": "📖",
+      "color": "#FF9800",
+      "frequency": "daily",
+      "score": 0.0,
+      "streak": 0,
+      "best_streak": 0
+    },
+    {
+      "id": "sleep_early",
+      "name": "Dormir cedo",
+      "icon": "🌙",
+      "color": "#673AB7",
+      "frequency": "daily",
+      "score": 0.0,
+      "streak": 0,
+      "best_streak": 0
+    },
+    {
+      "id": "water",
+      "name": "Água 2L",
+      "icon": "💧",
+      "color": "#00BCD4",
+      "frequency": "daily",
+      "score": 0.0,
+      "streak": 0,
+      "best_streak": 0
+    }
+  ],
+  "today": {
+    "date": "2025-12-21",
+    "rate": 40.0,
+    "habits": {
+      "study": true,
+      "meditation": true,
+      "reading": false,
+      "sleep_early": false,
+      "water": false
+    }
+  },
+  "calendar": {
+    "days": {
+      "1": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "2": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "3": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "4": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "5": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "6": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "7": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "8": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "9": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "10": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "11": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "12": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "13": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "14": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "15": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "16": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "17": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "18": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "19": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "exercise": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "20": {
+        "rate": 0.0,
+        "habits": {
+          "study": false,
+          "meditation": false,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      },
+      "21": {
+        "rate": 40.0,
+        "habits": {
+          "study": true,
+          "meditation": true,
+          "reading": false,
+          "sleep_early": false,
+          "water": false
+        }
+      }
+    }
+  },
+  "charts": {
+    "daily": {
+      "labels": [
+        "dez 08",
+        "dez 09",
+        "dez 10",
+        "dez 11",
+        "dez 12",
+        "dez 13",
+        "dez 14",
+        "dez 15",
+        "dez 16",
+        "dez 17",
+        "dez 18",
+        "dez 19",
+        "dez 20",
+        "dez 21"
+      ],
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        40.0
+      ]
+    },
+    "weekly": {
+      "weeks": [
+        {
+          "week": "2025-W22",
+          "rate": 0.0,
+          "start": "2025-06-02",
+          "end": "2025-06-08"
+        },
+        {
+          "week": "2025-W23",
+          "rate": 0.0,
+          "start": "2025-06-09",
+          "end": "2025-06-15"
+        },
+        {
+          "week": "2025-W24",
+          "rate": 0.0,
+          "start": "2025-06-16",
+          "end": "2025-06-22"
+        },
+        {
+          "week": "2025-W25",
+          "rate": 0.0,
+          "start": "2025-06-23",
+          "end": "2025-06-29"
+        },
+        {
+          "week": "2025-W26",
+          "rate": 0.0,
+          "start": "2025-06-30",
+          "end": "2025-07-06"
+        },
+        {
+          "week": "2025-W27",
+          "rate": 0.0,
+          "start": "2025-07-07",
+          "end": "2025-07-13"
+        },
+        {
+          "week": "2025-W28",
+          "rate": 0.0,
+          "start": "2025-07-14",
+          "end": "2025-07-20"
+        },
+        {
+          "week": "2025-W29",
+          "rate": 0.0,
+          "start": "2025-07-21",
+          "end": "2025-07-27"
+        },
+        {
+          "week": "2025-W30",
+          "rate": 0.0,
+          "start": "2025-07-28",
+          "end": "2025-08-03"
+        },
+        {
+          "week": "2025-W31",
+          "rate": 0.0,
+          "start": "2025-08-04",
+          "end": "2025-08-10"
+        },
+        {
+          "week": "2025-W32",
+          "rate": 0.0,
+          "start": "2025-08-11",
+          "end": "2025-08-17"
+        },
+        {
+          "week": "2025-W33",
+          "rate": 0.0,
+          "start": "2025-08-18",
+          "end": "2025-08-24"
+        },
+        {
+          "week": "2025-W34",
+          "rate": 0.0,
+          "start": "2025-08-25",
+          "end": "2025-08-31"
+        },
+        {
+          "week": "2025-W35",
+          "rate": 0.0,
+          "start": "2025-09-01",
+          "end": "2025-09-07"
+        },
+        {
+          "week": "2025-W36",
+          "rate": 0.0,
+          "start": "2025-09-08",
+          "end": "2025-09-14"
+        },
+        {
+          "week": "2025-W37",
+          "rate": 0.0,
+          "start": "2025-09-15",
+          "end": "2025-09-21"
+        },
+        {
+          "week": "2025-W38",
+          "rate": 0.0,
+          "start": "2025-09-22",
+          "end": "2025-09-28"
+        },
+        {
+          "week": "2025-W39",
+          "rate": 0.0,
+          "start": "2025-09-29",
+          "end": "2025-10-05"
+        },
+        {
+          "week": "2025-W40",
+          "rate": 0.0,
+          "start": "2025-10-06",
+          "end": "2025-10-12"
+        },
+        {
+          "week": "2025-W41",
+          "rate": 0.0,
+          "start": "2025-10-13",
+          "end": "2025-10-19"
+        },
+        {
+          "week": "2025-W42",
+          "rate": 0.0,
+          "start": "2025-10-20",
+          "end": "2025-10-26"
+        },
+        {
+          "week": "2025-W43",
+          "rate": 0.0,
+          "start": "2025-10-27",
+          "end": "2025-11-02"
+        },
+        {
+          "week": "2025-W44",
+          "rate": 0.0,
+          "start": "2025-11-03",
+          "end": "2025-11-09"
+        },
+        {
+          "week": "2025-W45",
+          "rate": 0.0,
+          "start": "2025-11-10",
+          "end": "2025-11-16"
+        },
+        {
+          "week": "2025-W46",
+          "rate": 0.0,
+          "start": "2025-11-17",
+          "end": "2025-11-23"
+        },
+        {
+          "week": "2025-W47",
+          "rate": 0.0,
+          "start": "2025-11-24",
+          "end": "2025-11-30"
+        },
+        {
+          "week": "2025-W48",
+          "rate": 0.0,
+          "start": "2025-12-01",
+          "end": "2025-12-07"
+        },
+        {
+          "week": "2025-W49",
+          "rate": 0.0,
+          "start": "2025-12-08",
+          "end": "2025-12-14"
+        },
+        {
+          "week": "2025-W50",
+          "rate": 5.7,
+          "start": "2025-12-15",
+          "end": "2025-12-21"
+        }
+      ],
+      "trend": "stable"
+    },
+    "comparison": {
+      "habits": [
+        {
+          "id": "study",
+          "name": "Estudo",
+          "icon": "📚",
+          "score": 3.3,
+          "streak": 1,
+          "best_streak": 1,
+          "color": "#2196F3"
+        },
+        {
+          "id": "meditation",
+          "name": "Meditação",
+          "icon": "🧘",
+          "score": 3.3,
+          "streak": 1,
+          "best_streak": 1,
+          "color": "#9C27B0"
+        },
+        {
+          "id": "exercise",
+          "name": "Exercício",
+          "icon": "🏋️",
+          "score": 0.0,
+          "streak": 0,
+          "best_streak": 0,
+          "color": "#4CAF50"
+        },
+        {
+          "id": "reading",
+          "name": "Leitura",
+          "icon": "📖",
+          "score": 0.0,
+          "streak": 0,
+          "best_streak": 0,
+          "color": "#FF9800"
+        },
+        {
+          "id": "sleep_early",
+          "name": "Dormir cedo",
+          "icon": "🌙",
+          "score": 0.0,
+          "streak": 0,
+          "best_streak": 0,
+          "color": "#673AB7"
+        },
+        {
+          "id": "water",
+          "name": "Água 2L",
+          "icon": "💧",
+          "score": 0.0,
+          "streak": 0,
+          "best_streak": 0,
+          "color": "#00BCD4"
+        }
+      ]
+    }
+  },
+  "challenges": [],
+  "summary": {
+    "total_habits": 6,
+    "avg_score_30d": 1.1,
+    "active_challenges": 0
+  }
+}
