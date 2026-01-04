@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="refresh" content="3600">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0a0a0a">
-    <title>Habits | NEBULA</title>
+    <title>Centro de Comando | NEBULA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -40,12 +42,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Container */
         .container {
-            max-width: 480px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 16px;
-            padding-bottom: 100px;
+            padding-bottom: 40px;
         }
 
         /* Header */
@@ -77,51 +78,145 @@
         .date-display {
             font-size: 13px;
             color: var(--text-muted);
+            text-align: right;
         }
 
-        /* Stats Row */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 20px 0;
+        .date-display small {
+            display: block;
+            font-size: 11px;
+            color: var(--text-dim);
         }
 
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-sm);
-            padding: 16px;
+        /* Overall Score */
+        .overall-section {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .overall-card {
             text-align: center;
         }
 
-        .stat-value {
-            font-size: 28px;
+        .overall-score {
+            font-size: 72px;
             font-weight: 700;
-            color: var(--text);
+            background: linear-gradient(135deg, #ef4444 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .stat-value.accent {
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 11px;
+        .overall-label {
+            font-size: 14px;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
             margin-top: 4px;
         }
 
-        /* Section */
-        .section {
+        .overall-status {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+            background: #ef444420;
+            color: #ef4444;
+            border: 1px solid #ef444440;
+        }
+
+        /* Areas Grid */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
             margin: 24px 0;
+        }
+
+        .area-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .area-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--text-dim);
+        }
+
+        .area-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .area-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .area-icon {
+            font-size: 24px;
+        }
+
+        .area-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .area-percentage {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .area-progress {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .area-progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .area-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .area-detail {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .area-status {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        /* Charts Section */
+        .section {
+            margin: 32px 0;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .section-title {
@@ -132,414 +227,124 @@
             letter-spacing: 0.5px;
         }
 
-        .section-action {
-            font-size: 13px;
-            color: var(--accent);
-            cursor: pointer;
-        }
-
-        /* Today's Habits */
-        .habit-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .habit-item {
-            background: var(--bg-card);
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-
-        .habit-item:active {
-            transform: scale(0.98);
-        }
-
-        .habit-item.completed {
-            background: var(--accent-dim);
-            border-color: var(--accent);
-        }
-
-        .habit-checkbox {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 2px solid var(--text-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-        }
-
-        .habit-item.completed .habit-checkbox {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--bg);
-        }
-
-        .habit-info {
-            flex: 1;
-        }
-
-        .habit-name {
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .habit-meta {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .habit-streak {
-            font-size: 13px;
-            color: var(--warning);
-            font-weight: 600;
-        }
-
-        /* Progress Ring */
-        .progress-section {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .progress-ring-container {
-            position: relative;
-            width: 180px;
-            height: 180px;
-        }
-
-        .progress-ring {
-            transform: rotate(-90deg);
-        }
-
-        .progress-ring-bg {
-            fill: none;
-            stroke: var(--bg-secondary);
-            stroke-width: 12;
-        }
-
-        .progress-ring-fill {
-            fill: none;
-            stroke: var(--accent);
-            stroke-width: 12;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 0.5s ease;
-        }
-
-        .progress-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .progress-percent {
-            font-size: 42px;
-            font-weight: 700;
-        }
-
-        .progress-label {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* Calendar */
-        .calendar {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 16px;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .calendar-month {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .calendar-nav {
-            display: flex;
-            gap: 8px;
-        }
-
-        .calendar-nav button {
-            background: var(--bg-secondary);
-            border: none;
-            color: var(--text);
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .calendar-weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-            margin-bottom: 8px;
-        }
-
-        .calendar-weekday {
-            text-align: center;
-            font-size: 11px;
-            color: var(--text-dim);
-            padding: 8px 0;
-        }
-
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-        }
-
-        .calendar-day {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            border-radius: 8px;
-            color: var(--text-muted);
-        }
-
-        .calendar-day.today {
-            border: 2px solid var(--accent);
-            color: var(--text);
-        }
-
-        .calendar-day.completed {
-            background: var(--accent);
-            color: var(--bg);
-            font-weight: 600;
-        }
-
-        .calendar-day.partial {
-            background: var(--warning);
-            color: var(--bg);
-        }
-
-        .calendar-day.missed {
-            background: var(--danger);
-            color: var(--bg);
-        }
-
-        .calendar-day.empty {
-            visibility: hidden;
-        }
-
-        /* Chart */
         .chart-card {
             background: var(--bg-card);
             border-radius: var(--radius);
-            padding: 16px;
+            padding: 24px;
+            border: 1px solid var(--border);
         }
 
         .chart-container {
-            height: 150px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 4px;
-            padding-top: 20px;
+            height: 250px;
+            position: relative;
         }
 
-        .chart-bar-wrapper {
-            flex: 1;
+        /* Doughnut Chart */
+        .doughnut-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .doughnut-chart {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .doughnut-legend {
             display: flex;
             flex-direction: column;
+            gap: 12px;
+        }
+
+        .legend-item {
+            display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
         }
 
-        .chart-bar {
-            width: 100%;
-            max-width: 24px;
-            background: var(--accent);
-            border-radius: 4px 4px 0 0;
-            transition: height 0.3s ease;
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
         }
 
-        .chart-bar.low {
-            background: var(--danger);
+        .legend-label {
+            flex: 1;
+            font-size: 13px;
         }
 
-        .chart-bar.medium {
-            background: var(--warning);
+        .legend-value {
+            font-size: 13px;
+            font-weight: 600;
         }
 
-        .chart-label {
-            font-size: 10px;
-            color: var(--text-dim);
-        }
-
-        /* Challenges */
-        .challenge-card {
+        /* Quick Wins */
+        .quick-wins {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: var(--radius);
             padding: 20px;
             border: 1px solid #2a2a4a;
         }
 
-        .challenge-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+        .quick-wins-title {
+            font-size: 16px;
+            font-weight: 600;
             margin-bottom: 16px;
-        }
-
-        .challenge-name {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .challenge-days {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .challenge-badge {
-            background: var(--accent);
-            color: var(--bg);
-            font-size: 11px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .challenge-progress {
-            height: 8px;
-            background: var(--bg);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 12px;
-        }
-
-        .challenge-progress-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-
-        .challenge-stats {
             display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: var(--text-muted);
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Bottom Nav */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
+        .quick-win-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 0;
-            padding-bottom: max(12px, env(safe-area-inset-bottom));
+            border-bottom: 1px solid #2a2a4a;
         }
 
-        .nav-items {
-            max-width: 480px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
+        .quick-win-item:last-child {
+            border-bottom: none;
         }
 
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 10px;
-            cursor: pointer;
+        .quick-win-icon {
+            font-size: 20px;
         }
 
-        .nav-item.active {
+        .quick-win-text {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .quick-win-action {
+            font-size: 12px;
             color: var(--accent);
+            font-weight: 500;
         }
 
-        .nav-icon {
-            font-size: 22px;
-        }
-
-        /* Loading */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 200px;
-            color: var(--text-muted);
-        }
-
-        /* Responsive Desktop */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 600px;
-                padding: 0 24px;
-            }
-
-            .stats-row {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .habit-item {
-                padding: 20px;
-            }
-
-            .calendar {
-                padding: 24px;
-            }
-
-            .bottom-nav {
-                display: none;
-            }
-        }
-
-        /* Animations */
-        @keyframes checkmark {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .habit-item.completed .habit-checkbox::after {
-            content: '✓';
-            animation: checkmark 0.3s ease;
-        }
-
-        /* Pull to refresh indicator */
-        .refresh-indicator {
+        /* Footer */
+        .footer {
             text-align: center;
-            padding: 20px;
-            color: var(--text-muted);
-            font-size: 13px;
-            display: none;
+            padding: 24px 0;
+            font-size: 12px;
+            color: var(--text-dim);
         }
 
-        .refresh-indicator.visible {
-            display: block;
+        /* Responsive */
+        @media (max-width: 600px) {
+            .doughnut-section {
+                grid-template-columns: 1fr;
+            }
+
+            .overall-score {
+                font-size: 56px;
+            }
+
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -547,437 +352,355 @@
     <div class="container">
         <header class="header">
             <div class="header-content">
-                <div class="logo">NEBULA<span>.</span>habits</div>
-                <div class="date-display" id="currentDate"></div>
+                <div class="logo">NEBULA<span>.</span>command</div>
+                <div class="date-display">
+                    Janeiro 2026
+                    <small>Atualizado: 04/01/2026 às 18:38</small>
+                </div>
             </div>
         </header>
 
-        <div class="refresh-indicator" id="refreshIndicator">
-            Atualizando...
-        </div>
-
-        <!-- Progress Ring -->
-        <div class="progress-section">
-            <div class="progress-ring-container">
-                <svg class="progress-ring" width="180" height="180">
-                    <circle class="progress-ring-bg" cx="90" cy="90" r="78"/>
-                    <circle class="progress-ring-fill" id="progressRing" cx="90" cy="90" r="78" 
-                            stroke-dasharray="490" stroke-dashoffset="490"/>
-                </svg>
-                <div class="progress-center">
-                    <div class="progress-percent" id="todayPercent">0%</div>
-                    <div class="progress-label">hoje</div>
-                </div>
+        <!-- Overall Score -->
+        <div class="overall-section">
+            <div class="overall-card">
+                <div class="overall-score">0%</div>
+                <div class="overall-label">Progresso Geral</div>
+                <div class="overall-status">Crítico</div>
             </div>
         </div>
 
-        <!-- Stats -->
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-value accent" id="currentStreak">0</div>
-                <div class="stat-label">Streak</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="bestStreak">0</div>
-                <div class="stat-label">Best</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="avgScore">0%</div>
-                <div class="stat-label">30 dias</div>
-            </div>
-        </div>
-
-        <!-- Today's Habits -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-title">Hoje</div>
-                <div class="section-action" onclick="refreshData()">↻ Atualizar</div>
-            </div>
-            <div class="habit-list" id="habitList">
-                <div class="loading">Carregando...</div>
-            </div>
-        </div>
-
-        <!-- Active Challenges -->
-        <div class="section" id="challengesSection" style="display: none;">
-            <div class="section-header">
-                <div class="section-title">Desafios</div>
-            </div>
-            <div id="challengesList"></div>
-        </div>
-
-        <!-- Calendar -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-title">Calendário</div>
-            </div>
-            <div class="calendar">
-                <div class="calendar-header">
-                    <div class="calendar-month" id="calendarMonth"></div>
-                    <div class="calendar-nav">
-                        <button onclick="prevMonth()">‹</button>
-                        <button onclick="nextMonth()">›</button>
+        <!-- Areas Grid -->
+        <div class="areas-grid">
+            
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title">
+                        <span class="area-icon">💪</span>
+                        <span class="area-name">Saúde Física</span>
                     </div>
+                    <span class="area-percentage" style="color: #22c55e">0%</span>
                 </div>
-                <div class="calendar-weekdays">
-                    <div class="calendar-weekday">D</div>
-                    <div class="calendar-weekday">S</div>
-                    <div class="calendar-weekday">T</div>
-                    <div class="calendar-weekday">Q</div>
-                    <div class="calendar-weekday">Q</div>
-                    <div class="calendar-weekday">S</div>
-                    <div class="calendar-weekday">S</div>
+                <div class="area-progress">
+                    <div class="area-progress-fill" style="width: 0.0%; background: #22c55e;"></div>
                 </div>
-                <div class="calendar-days" id="calendarDays"></div>
+                <div class="area-details">
+                    <span class="area-detail">
+                        🔥 Hábitos: 0/4
+                    </span>
+                    <span class="area-detail">
+                        🎯 Objetivos: 0/4
+                    </span>
+                    <span class="area-status" style="background: #ef444420; color: #ef4444;">Crítico</span>
+                </div>
             </div>
+        
+
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title">
+                        <span class="area-icon">👥</span>
+                        <span class="area-name">Social</span>
+                    </div>
+                    <span class="area-percentage" style="color: #a855f7">0%</span>
+                </div>
+                <div class="area-progress">
+                    <div class="area-progress-fill" style="width: 0.0%; background: #a855f7;"></div>
+                </div>
+                <div class="area-details">
+                    <span class="area-detail">
+                        🔥 Hábitos: 0/0
+                    </span>
+                    <span class="area-detail">
+                        🎯 Objetivos: 0/2
+                    </span>
+                    <span class="area-status" style="background: #ef444420; color: #ef4444;">Crítico</span>
+                </div>
+            </div>
+        
+
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title">
+                        <span class="area-icon">📚</span>
+                        <span class="area-name">Acadêmico</span>
+                    </div>
+                    <span class="area-percentage" style="color: #3b82f6">0%</span>
+                </div>
+                <div class="area-progress">
+                    <div class="area-progress-fill" style="width: 0.0%; background: #3b82f6;"></div>
+                </div>
+                <div class="area-details">
+                    <span class="area-detail">
+                        🔥 Hábitos: 0/3
+                    </span>
+                    <span class="area-detail">
+                        🎯 Objetivos: 0/4
+                    </span>
+                    <span class="area-status" style="background: #ef444420; color: #ef4444;">Crítico</span>
+                </div>
+            </div>
+        
+
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title">
+                        <span class="area-icon">💼</span>
+                        <span class="area-name">Profissional</span>
+                    </div>
+                    <span class="area-percentage" style="color: #f59e0b">0%</span>
+                </div>
+                <div class="area-progress">
+                    <div class="area-progress-fill" style="width: 0.0%; background: #f59e0b;"></div>
+                </div>
+                <div class="area-details">
+                    <span class="area-detail">
+                        🔥 Hábitos: 0/0
+                    </span>
+                    <span class="area-detail">
+                        🎯 Objetivos: 0/1
+                    </span>
+                    <span class="area-status" style="background: #ef444420; color: #ef4444;">Crítico</span>
+                </div>
+            </div>
+        
+
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title">
+                        <span class="area-icon">💰</span>
+                        <span class="area-name">Financeiro</span>
+                    </div>
+                    <span class="area-percentage" style="color: #14b8a6">0%</span>
+                </div>
+                <div class="area-progress">
+                    <div class="area-progress-fill" style="width: 0.0%; background: #14b8a6;"></div>
+                </div>
+                <div class="area-details">
+                    <span class="area-detail">
+                        🔥 Hábitos: 0/0
+                    </span>
+                    <span class="area-detail">
+                        🎯 Objetivos: 0/3
+                    </span>
+                    <span class="area-status" style="background: #ef444420; color: #ef4444;">Crítico</span>
+                </div>
+            </div>
+        
         </div>
 
-        <!-- Weekly Chart -->
+        <!-- Distribution Chart -->
         <div class="section">
             <div class="section-header">
-                <div class="section-title">Últimos 14 dias</div>
+                <div class="section-title">Distribuição por Área</div>
             </div>
             <div class="chart-card">
-                <div class="chart-container" id="weeklyChart"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <div class="nav-items">
-            <div class="nav-item active">
-                <div class="nav-icon">📊</div>
-                <span>Hoje</span>
-            </div>
-            <div class="nav-item">
-                <div class="nav-icon">📅</div>
-                <span>Calendário</span>
-            </div>
-            <div class="nav-item">
-                <div class="nav-icon">🎯</div>
-                <span>Desafios</span>
-            </div>
-            <div class="nav-item">
-                <div class="nav-icon">⚙️</div>
-                <span>Config</span>
-            </div>
-        </div>
-    </nav>
-
-    <script>
-        // State
-        let habitsData = null;
-        let currentMonth = new Date().getMonth();
-        let currentYear = new Date().getFullYear();
-
-        // GitHub raw URL for the data
-        const DATA_URL = 'habits_data.json';
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            updateDateDisplay();
-            loadData();
-        });
-
-        // Update date display
-        function updateDateDisplay() {
-            const now = new Date();
-            const options = { weekday: 'long', day: 'numeric', month: 'short' };
-            document.getElementById('currentDate').textContent = 
-                now.toLocaleDateString('pt-BR', options);
-        }
-
-        // Load data from JSON
-        async function loadData() {
-            try {
-                // Try localStorage first
-                const cached = localStorage.getItem('habits_data');
-                if (cached) {
-                    habitsData = JSON.parse(cached);
-                    renderAll();
-                }
-
-                // Fetch fresh data
-                const response = await fetch(DATA_URL + '?t=' + Date.now());
-                if (response.ok) {
-                    habitsData = await response.json();
-                    localStorage.setItem('habits_data', JSON.stringify(habitsData));
-                    renderAll();
-                }
-            } catch (error) {
-                console.error('Error loading data:', error);
-                // Use demo data if no data available
-                if (!habitsData) {
-                    habitsData = getDemoData();
-                    renderAll();
-                }
-            }
-        }
-
-        // Refresh data
-        async function refreshData() {
-            document.getElementById('refreshIndicator').classList.add('visible');
-            await loadData();
-            setTimeout(() => {
-                document.getElementById('refreshIndicator').classList.remove('visible');
-            }, 500);
-        }
-
-        // Render all components
-        function renderAll() {
-            if (!habitsData) return;
-            
-            renderProgress();
-            renderStats();
-            renderHabits();
-            renderCalendar();
-            renderChart();
-            renderChallenges();
-        }
-
-        // Render progress ring
-        function renderProgress() {
-            const rate = habitsData.today?.rate || 0;
-            const circle = document.getElementById('progressRing');
-            const circumference = 2 * Math.PI * 78;
-            const offset = circumference - (rate / 100 * circumference);
-            
-            circle.style.strokeDashoffset = offset;
-            document.getElementById('todayPercent').textContent = `${Math.round(rate)}%`;
-        }
-
-        // Render stats
-        function renderStats() {
-            // Find best current streak
-            let maxStreak = 0;
-            let maxBest = 0;
-            
-            habitsData.habits?.forEach(h => {
-                if (h.streak > maxStreak) maxStreak = h.streak;
-                if (h.best_streak > maxBest) maxBest = h.best_streak;
-            });
-
-            document.getElementById('currentStreak').textContent = maxStreak;
-            document.getElementById('bestStreak').textContent = maxBest;
-            document.getElementById('avgScore').textContent = 
-                `${Math.round(habitsData.summary?.avg_score_30d || 0)}%`;
-        }
-
-        // Render habits list
-        function renderHabits() {
-            const container = document.getElementById('habitList');
-            const habits = habitsData.habits || [];
-            const todayHabits = habitsData.today?.habits || {};
-
-            if (habits.length === 0) {
-                container.innerHTML = '<div class="loading">Nenhum hábito configurado</div>';
-                return;
-            }
-
-            container.innerHTML = habits.map(habit => {
-                const completed = todayHabits[habit.id] || false;
-                return `
-                    <div class="habit-item ${completed ? 'completed' : ''}" 
-                         onclick="toggleHabit('${habit.id}')">
-                        <div class="habit-checkbox" style="border-color: ${habit.color}">
-                            ${completed ? '' : habit.icon}
-                        </div>
-                        <div class="habit-info">
-                            <div class="habit-name">${habit.name}</div>
-                            <div class="habit-meta">Score: ${habit.score}%</div>
-                        </div>
-                        ${habit.streak > 0 ? `<div class="habit-streak">🔥 ${habit.streak}</div>` : ''}
+                <div class="doughnut-section">
+                    <div class="doughnut-chart">
+                        <canvas id="doughnutChart"></canvas>
                     </div>
-                `;
-            }).join('');
-        }
+                    <div class="doughnut-legend">
+                        
+            <div class="legend-item">
+                <div class="legend-color" style="background: #22c55e;"></div>
+                <span class="legend-label">Saúde Física</span>
+                <span class="legend-value" style="color: #22c55e">0%</span>
+            </div>
+        
 
-        // Toggle habit (local only for now)
-        function toggleHabit(habitId) {
-            if (!habitsData.today.habits) habitsData.today.habits = {};
-            
-            const current = habitsData.today.habits[habitId] || false;
-            habitsData.today.habits[habitId] = !current;
+            <div class="legend-item">
+                <div class="legend-color" style="background: #a855f7;"></div>
+                <span class="legend-label">Social</span>
+                <span class="legend-value" style="color: #a855f7">0%</span>
+            </div>
+        
 
-            // Recalculate rate
-            const total = habitsData.habits.length;
-            const completed = Object.values(habitsData.today.habits).filter(v => v).length;
-            habitsData.today.rate = total > 0 ? (completed / total) * 100 : 0;
+            <div class="legend-item">
+                <div class="legend-color" style="background: #3b82f6;"></div>
+                <span class="legend-label">Acadêmico</span>
+                <span class="legend-value" style="color: #3b82f6">0%</span>
+            </div>
+        
 
-            // Save to localStorage
-            localStorage.setItem('habits_data', JSON.stringify(habitsData));
-            
-            renderAll();
-        }
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f59e0b;"></div>
+                <span class="legend-label">Profissional</span>
+                <span class="legend-value" style="color: #f59e0b">0%</span>
+            </div>
+        
 
-        // Render calendar
-        function renderCalendar() {
-            const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                          'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-            
-            document.getElementById('calendarMonth').textContent = 
-                `${months[currentMonth]} ${currentYear}`;
-
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-            const today = new Date();
-
-            const calendarData = habitsData.calendar?.days || {};
-            
-            let html = '';
-            
-            // Empty cells for days before month starts
-            for (let i = 0; i < firstDay; i++) {
-                html += '<div class="calendar-day empty"></div>';
-            }
-
-            // Days of month
-            for (let day = 1; day <= daysInMonth; day++) {
-                const isToday = day === today.getDate() && 
-                               currentMonth === today.getMonth() && 
-                               currentYear === today.getFullYear();
-                
-                const dayData = calendarData[day.toString()];
-                let dayClass = 'calendar-day';
-                
-                if (isToday) dayClass += ' today';
-                
-                if (dayData) {
-                    const rate = dayData.rate || 0;
-                    if (rate >= 100) dayClass += ' completed';
-                    else if (rate >= 50) dayClass += ' partial';
-                    else if (rate > 0) dayClass += ' missed';
-                }
-
-                html += `<div class="${dayClass}">${day}</div>`;
-            }
-
-            document.getElementById('calendarDays').innerHTML = html;
-        }
-
-        // Navigate calendar
-        function prevMonth() {
-            currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            }
-            renderCalendar();
-        }
-
-        function nextMonth() {
-            currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            renderCalendar();
-        }
-
-        // Render chart
-        function renderChart() {
-            const container = document.getElementById('weeklyChart');
-            const chartData = habitsData.charts?.daily || { labels: [], values: [] };
-
-            if (chartData.values.length === 0) {
-                container.innerHTML = '<div class="loading">Sem dados</div>';
-                return;
-            }
-
-            const maxValue = Math.max(...chartData.values, 100);
-
-            container.innerHTML = chartData.values.map((value, i) => {
-                const height = Math.max(4, (value / maxValue) * 120);
-                let barClass = 'chart-bar';
-                if (value < 50) barClass += ' low';
-                else if (value < 80) barClass += ' medium';
-
-                // Show only some labels on mobile
-                const label = chartData.labels[i]?.split(' ')[1] || '';
-
-                return `
-                    <div class="chart-bar-wrapper">
-                        <div class="chart-bar ${barClass}" style="height: ${height}px"></div>
-                        <div class="chart-label">${label}</div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Render challenges
-        function renderChallenges() {
-            const challenges = habitsData.challenges?.filter(c => c.active) || [];
-            const section = document.getElementById('challengesSection');
-            const container = document.getElementById('challengesList');
-
-            if (challenges.length === 0) {
-                section.style.display = 'none';
-                return;
-            }
-
-            section.style.display = 'block';
-            
-            container.innerHTML = challenges.map(c => `
-                <div class="challenge-card">
-                    <div class="challenge-header">
-                        <div>
-                            <div class="challenge-name">${c.name}</div>
-                            <div class="challenge-days">Dia ${c.days_elapsed} de ${c.days_total}</div>
-                        </div>
-                        <div class="challenge-badge">${Math.round(c.progress)}%</div>
-                    </div>
-                    <div class="challenge-progress">
-                        <div class="challenge-progress-fill" style="width: ${c.progress}%"></div>
-                    </div>
-                    <div class="challenge-stats">
-                        <span>${c.days_total - c.days_elapsed} dias restantes</span>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #14b8a6;"></div>
+                <span class="legend-label">Financeiro</span>
+                <span class="legend-value" style="color: #14b8a6">0%</span>
+            </div>
+        
                     </div>
                 </div>
-            `).join('');
-        }
+            </div>
+        </div>
 
-        // Demo data for when no real data is available
-        function getDemoData() {
-            return {
-                generated_at: new Date().toISOString(),
-                habits: [
-                    { id: 'study', name: 'Estudo', icon: '📚', color: '#2196F3', score: 85, streak: 7, best_streak: 14 },
-                    { id: 'exercise', name: 'Exercício', icon: '🏋️', color: '#4CAF50', score: 70, streak: 3, best_streak: 21 },
-                    { id: 'meditation', name: 'Meditação', icon: '🧘', color: '#9C27B0', score: 90, streak: 12, best_streak: 12 },
-                    { id: 'reading', name: 'Leitura', icon: '📖', color: '#FF9800', score: 60, streak: 0, best_streak: 5 },
-                    { id: 'water', name: 'Água 2L', icon: '💧', color: '#00BCD4', score: 95, streak: 30, best_streak: 30 }
-                ],
-                today: {
-                    date: new Date().toISOString().split('T')[0],
-                    rate: 60,
-                    habits: { study: true, exercise: true, meditation: true, reading: false, water: false }
+        <!-- Trend Chart -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Tendência (Últimos 7 dias)</div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Wins -->
+        <div class="section">
+            <div class="quick-wins">
+                <div class="quick-wins-title">⚡ Próximas Ações</div>
+                
+                <div class="quick-win-item">
+                    <span class="quick-win-icon">💪</span>
+                    <span class="quick-win-text">Complete seus hábitos de saúde hoje</span>
+                    <span class="quick-win-action">0%</span>
+                </div>
+            
+
+                <div class="quick-win-item">
+                    <span class="quick-win-icon">👥</span>
+                    <span class="quick-win-text">Agende um encontro com amigos/família</span>
+                    <span class="quick-win-action">0%</span>
+                </div>
+            
+
+                <div class="quick-win-item">
+                    <span class="quick-win-icon">📚</span>
+                    <span class="quick-win-text">Dedique 30min aos estudos</span>
+                    <span class="quick-win-action">0%</span>
+                </div>
+            
+            </div>
+        </div>
+
+        <footer class="footer">
+            NEBULA Command Center • Auto-refresh a cada hora
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js Global Config
+        Chart.defaults.color = '#888';
+        Chart.defaults.borderColor = '#222';
+
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ["Sa\u00fade F\u00edsica", "Social", "Acad\u00eamico", "Profissional", "Financeiro"],
+                datasets: [{
+                    data: [0.0, 0.0, 0.0, 0.0, 0.0],
+                    backgroundColor: ["#22c55e", "#a855f7", "#3b82f6", "#f59e0b", "#14b8a6"],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Trend Chart
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ["12-29", "12-30", "12-31", "01-01", "01-02", "01-03", "01-04"],
+                datasets: [
+                    {
+                        label: 'Geral',
+                        data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                        borderColor: '#ffffff',
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+            label: 'Saúde Física',
+            data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            borderColor: '#22c55e',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            tension: 0.4,
+            hidden: true
+        },
+{
+            label: 'Social',
+            data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            borderColor: '#a855f7',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            tension: 0.4,
+            hidden: true
+        },
+{
+            label: 'Acadêmico',
+            data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            borderColor: '#3b82f6',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            tension: 0.4,
+            hidden: true
+        },
+{
+            label: 'Profissional',
+            data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            borderColor: '#f59e0b',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            tension: 0.4,
+            hidden: true
+        },
+{
+            label: 'Financeiro',
+            data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+            borderColor: '#14b8a6',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            tension: 0.4,
+            hidden: true
+        }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
                 },
-                calendar: {
-                    days: Object.fromEntries(
-                        Array.from({length: 21}, (_, i) => [
-                            (i + 1).toString(),
-                            { rate: Math.random() * 100 }
-                        ])
-                    )
-                },
-                charts: {
-                    daily: {
-                        labels: ['Dec 08', 'Dec 09', 'Dec 10', 'Dec 11', 'Dec 12', 'Dec 13', 'Dec 14',
-                                'Dec 15', 'Dec 16', 'Dec 17', 'Dec 18', 'Dec 19', 'Dec 20', 'Dec 21'],
-                        values: [100, 80, 60, 100, 100, 40, 80, 100, 60, 80, 100, 100, 80, 60]
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: '#222' },
+                        ticks: { callback: v => v + '%' }
+                    },
+                    x: {
+                        grid: { display: false }
                     }
                 },
-                challenges: [
-                    { id: 'c1', name: 'Desafio 30 dias', progress: 70, days_elapsed: 21, days_total: 30, active: true }
-                ],
-                summary: {
-                    total_habits: 5,
-                    avg_score_30d: 80,
-                    active_challenges: 1
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { usePointStyle: true, padding: 20 }
+                    }
                 }
-            };
-        }
+            }
+        });
     </script>
 </body>
 </html>

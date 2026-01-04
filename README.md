@@ -1,58 +1,77 @@
-# NEBULA Habits Tracker
+# NEBULA Centro de Comando
 
-🔥 **tracker.contvox.com**
+🎯 **tracker.contvox.com**
 
-Frontend web mobile-first para tracking de hábitos, integrado ao sistema NEBULA.
+Dashboard dinâmico para monitoramento de progresso em 5 áreas da vida, integrado ao sistema NEBULA.
 
 ## Funcionalidades
 
-- ✅ **Checklist de hábitos** - Marque hábitos diários com um toque
-- 🔥 **Streaks** - Acompanhe sequências de dias consecutivos
-- 📊 **Score** - Nota de 0-100% por hábito (últimos 30 dias)
-- 📅 **Calendário** - Visualização mensal com cores por conclusão
-- 📈 **Gráficos** - Histórico diário/semanal
-- 🎯 **Desafios** - Challenges de 7/15/30/75 dias
-- 📝 **Resumo diário** - Para análise por IA
+- 📊 **Progresso por Área** - Visualização 0-100% para cada área da vida
+- 🎯 **5 Áreas de Vida** - Saúde Física, Social, Acadêmico, Carreira, Financeiro
+- 📈 **Gráfico de Tendência** - Últimos 7 dias de evolução
+- 🍩 **Gráfico de Distribuição** - Equilíbrio entre áreas (Doughnut Chart)
+- ⚡ **Quick Wins** - Áreas que precisam de atenção imediata
+- 🔄 **Auto-refresh** - Atualização automática a cada hora
+- 🌙 **Dark Theme** - Interface minimalista e moderna
+
+## Áreas Monitoradas
+
+| Área | Ícone | Fontes de Dados |
+|------|-------|-----------------|
+| 💪 Saúde Física | Exercício, Médico, Nutrição |
+| 👥 Social | Família, Amigos, Networking |
+| 📚 Acadêmico | Inglês, Estudos, Leitura |
+| 💼 Carreira | Trabalho, Projetos, Cursos |
+| 💰 Financeiro | Orçamento, Investimentos |
 
 ## Tecnologias
 
-- **Frontend:** HTML/CSS/JS vanilla (zero dependencies)
-- **Design:** Mobile-first, minimalista, dark theme
-- **Dados:** JSON estático + LocalStorage
-- **Deploy:** Cloudflare Pages / GitHub Pages
+- **Frontend:** HTML/CSS/JS vanilla + Chart.js (CDN)
+- **Design:** Mobile-first, dark theme
+- **Dados:** JSON estático gerado pelo NEBULA
+- **Deploy:** GitHub Pages
 
 ## Sincronização
 
-Os dados são gerados pelo CLI do NEBULA e exportados para `habits_data.json`:
+Os dados são gerados pelo CLI do NEBULA:
 
 ```bash
-# Exportar dados para o frontend
-python -m src.cli --habit_export
+# Gerar dashboard e fazer deploy
+python -m src.cli --command_center_deploy
 
-# O arquivo é criado em: output/habits_data.json
-# Copie para deploy/contvox-tracker/habits_data.json e faça commit
+# Ou gerar apenas HTML
+python -m src.cli --command_center
+
+# Ou exportar apenas JSON
+python -m src.cli --command_center_json
 ```
 
 ## Deploy
 
-1. Configure o repositório para deploy no Cloudflare Pages ou GitHub Pages
-2. Aponte o CNAME `tracker.contvox.com` para o serviço
-3. O site carrega `habits_data.json` automaticamente
+1. Execute `--command_center_deploy` para gerar os arquivos
+2. Faça commit e push para o GitHub
+3. GitHub Pages serve automaticamente em tracker.contvox.com
 
 ## Estrutura
 
 ```
 deploy/contvox-tracker/
-├── CNAME              # tracker.contvox.com
-├── index.html         # App completo (single file)
-├── habits_data.json   # Dados exportados do NEBULA
-└── README.md          # Esta documentação
+├── CNAME                  # tracker.contvox.com
+├── index.html             # Dashboard completo
+├── command_center.json    # Dados do progresso
+└── README.md              # Esta documentação
 ```
 
-## Modo Offline
+## Status de Progresso
 
-O app usa LocalStorage para cache, permitindo visualização mesmo offline.
-As alterações locais são salvas no navegador até a próxima sincronização.
+Os status são calculados automaticamente:
+
+| Status | Percentual | Cor |
+|--------|------------|-----|
+| 🔴 Crítico | < 30% | Vermelho |
+| 🟡 Atrasado | < 60% | Amarelo |
+| 🟢 No Caminho | < 90% | Verde |
+| 🚀 Adiantado | ≥ 90% | Azul |
 
 ---
 

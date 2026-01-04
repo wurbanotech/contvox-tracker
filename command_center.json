@@ -1,0 +1,790 @@
+{
+  "current": {
+    "date": "2026-01-04",
+    "areas": {
+      "saude": {
+        "area": "saude",
+        "area_name": "Saúde Física",
+        "icon": "💪",
+        "color": "#22c55e",
+        "completed": 0,
+        "total": 8,
+        "percentage": 0.0,
+        "status": "critical",
+        "status_name": "Crítico",
+        "status_color": "#ef4444",
+        "details": {
+          "habits_completed": 0,
+          "habits_total": 4,
+          "objectives_completed": 0,
+          "objectives_total": 4
+        }
+      },
+      "social": {
+        "area": "social",
+        "area_name": "Social",
+        "icon": "👥",
+        "color": "#a855f7",
+        "completed": 0,
+        "total": 2,
+        "percentage": 0.0,
+        "status": "critical",
+        "status_name": "Crítico",
+        "status_color": "#ef4444",
+        "details": {
+          "habits_completed": 0,
+          "habits_total": 0,
+          "objectives_completed": 0,
+          "objectives_total": 2
+        }
+      },
+      "academico": {
+        "area": "academico",
+        "area_name": "Acadêmico",
+        "icon": "📚",
+        "color": "#3b82f6",
+        "completed": 0,
+        "total": 7,
+        "percentage": 0.0,
+        "status": "critical",
+        "status_name": "Crítico",
+        "status_color": "#ef4444",
+        "details": {
+          "habits_completed": 0,
+          "habits_total": 3,
+          "objectives_completed": 0,
+          "objectives_total": 4
+        }
+      },
+      "profissional": {
+        "area": "profissional",
+        "area_name": "Profissional",
+        "icon": "💼",
+        "color": "#f59e0b",
+        "completed": 0,
+        "total": 1,
+        "percentage": 0.0,
+        "status": "critical",
+        "status_name": "Crítico",
+        "status_color": "#ef4444",
+        "details": {
+          "habits_completed": 0,
+          "habits_total": 0,
+          "objectives_completed": 0,
+          "objectives_total": 1
+        }
+      },
+      "financeiro": {
+        "area": "financeiro",
+        "area_name": "Financeiro",
+        "icon": "💰",
+        "color": "#14b8a6",
+        "completed": 0,
+        "total": 3,
+        "percentage": 0.0,
+        "status": "critical",
+        "status_name": "Crítico",
+        "status_color": "#ef4444",
+        "details": {
+          "habits_completed": 0,
+          "habits_total": 0,
+          "objectives_completed": 0,
+          "objectives_total": 3
+        }
+      }
+    },
+    "overall_percentage": 0.0,
+    "overall_status": "critical",
+    "generated_at": "2026-01-04T18:38:09.050850"
+  },
+  "trend_7d": [
+    {
+      "date": "2025-12-29",
+      "areas": {
+        "saude": {
+          "area": "saude",
+          "area_name": "Saúde Física",
+          "icon": "💪",
+          "color": "#22c55e",
+          "completed": 0,
+          "total": 4,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 4,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "social": {
+          "area": "social",
+          "area_name": "Social",
+          "icon": "👥",
+          "color": "#a855f7",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "academico": {
+          "area": "academico",
+          "area_name": "Acadêmico",
+          "icon": "📚",
+          "color": "#3b82f6",
+          "completed": 0,
+          "total": 3,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 3,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "profissional": {
+          "area": "profissional",
+          "area_name": "Profissional",
+          "icon": "💼",
+          "color": "#f59e0b",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "financeiro": {
+          "area": "financeiro",
+          "area_name": "Financeiro",
+          "icon": "💰",
+          "color": "#14b8a6",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        }
+      },
+      "overall_percentage": 0.0,
+      "overall_status": "critical",
+      "generated_at": "2026-01-04T18:38:09.053310"
+    },
+    {
+      "date": "2025-12-30",
+      "areas": {
+        "saude": {
+          "area": "saude",
+          "area_name": "Saúde Física",
+          "icon": "💪",
+          "color": "#22c55e",
+          "completed": 0,
+          "total": 4,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 4,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "social": {
+          "area": "social",
+          "area_name": "Social",
+          "icon": "👥",
+          "color": "#a855f7",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "academico": {
+          "area": "academico",
+          "area_name": "Acadêmico",
+          "icon": "📚",
+          "color": "#3b82f6",
+          "completed": 0,
+          "total": 3,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 3,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "profissional": {
+          "area": "profissional",
+          "area_name": "Profissional",
+          "icon": "💼",
+          "color": "#f59e0b",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "financeiro": {
+          "area": "financeiro",
+          "area_name": "Financeiro",
+          "icon": "💰",
+          "color": "#14b8a6",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        }
+      },
+      "overall_percentage": 0.0,
+      "overall_status": "critical",
+      "generated_at": "2026-01-04T18:38:09.055836"
+    },
+    {
+      "date": "2025-12-31",
+      "areas": {
+        "saude": {
+          "area": "saude",
+          "area_name": "Saúde Física",
+          "icon": "💪",
+          "color": "#22c55e",
+          "completed": 0,
+          "total": 4,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 4,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "social": {
+          "area": "social",
+          "area_name": "Social",
+          "icon": "👥",
+          "color": "#a855f7",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "academico": {
+          "area": "academico",
+          "area_name": "Acadêmico",
+          "icon": "📚",
+          "color": "#3b82f6",
+          "completed": 0,
+          "total": 3,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 3,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "profissional": {
+          "area": "profissional",
+          "area_name": "Profissional",
+          "icon": "💼",
+          "color": "#f59e0b",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        },
+        "financeiro": {
+          "area": "financeiro",
+          "area_name": "Financeiro",
+          "icon": "💰",
+          "color": "#14b8a6",
+          "completed": 0,
+          "total": 0,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 0
+          }
+        }
+      },
+      "overall_percentage": 0.0,
+      "overall_status": "critical",
+      "generated_at": "2026-01-04T18:38:09.058240"
+    },
+    {
+      "date": "2026-01-01",
+      "areas": {
+        "saude": {
+          "area": "saude",
+          "area_name": "Saúde Física",
+          "icon": "💪",
+          "color": "#22c55e",
+          "completed": 0,
+          "total": 8,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 4,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "social": {
+          "area": "social",
+          "area_name": "Social",
+          "icon": "👥",
+          "color": "#a855f7",
+          "completed": 0,
+          "total": 2,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 2
+          }
+        },
+        "academico": {
+          "area": "academico",
+          "area_name": "Acadêmico",
+          "icon": "📚",
+          "color": "#3b82f6",
+          "completed": 0,
+          "total": 7,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 3,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "profissional": {
+          "area": "profissional",
+          "area_name": "Profissional",
+          "icon": "💼",
+          "color": "#f59e0b",
+          "completed": 0,
+          "total": 1,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 1
+          }
+        },
+        "financeiro": {
+          "area": "financeiro",
+          "area_name": "Financeiro",
+          "icon": "💰",
+          "color": "#14b8a6",
+          "completed": 0,
+          "total": 3,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 3
+          }
+        }
+      },
+      "overall_percentage": 0.0,
+      "overall_status": "critical",
+      "generated_at": "2026-01-04T18:38:09.060721"
+    },
+    {
+      "date": "2026-01-02",
+      "areas": {
+        "saude": {
+          "area": "saude",
+          "area_name": "Saúde Física",
+          "icon": "💪",
+          "color": "#22c55e",
+          "completed": 0,
+          "total": 8,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 4,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "social": {
+          "area": "social",
+          "area_name": "Social",
+          "icon": "👥",
+          "color": "#a855f7",
+          "completed": 0,
+          "total": 2,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 2
+          }
+        },
+        "academico": {
+          "area": "academico",
+          "area_name": "Acadêmico",
+          "icon": "📚",
+          "color": "#3b82f6",
+          "completed": 0,
+          "total": 7,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 3,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "profissional": {
+          "area": "profissional",
+          "area_name": "Profissional",
+          "icon": "💼",
+          "color": "#f59e0b",
+          "completed": 0,
+          "total": 1,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 1
+          }
+        },
+        "financeiro": {
+          "area": "financeiro",
+          "area_name": "Financeiro",
+          "icon": "💰",
+          "color": "#14b8a6",
+          "completed": 0,
+          "total": 3,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 3
+          }
+        }
+      },
+      "overall_percentage": 0.0,
+      "overall_status": "critical",
+      "generated_at": "2026-01-04T18:38:09.063298"
+    },
+    {
+      "date": "2026-01-03",
+      "areas": {
+        "saude": {
+          "area": "saude",
+          "area_name": "Saúde Física",
+          "icon": "💪",
+          "color": "#22c55e",
+          "completed": 0,
+          "total": 8,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 4,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "social": {
+          "area": "social",
+          "area_name": "Social",
+          "icon": "👥",
+          "color": "#a855f7",
+          "completed": 0,
+          "total": 2,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 2
+          }
+        },
+        "academico": {
+          "area": "academico",
+          "area_name": "Acadêmico",
+          "icon": "📚",
+          "color": "#3b82f6",
+          "completed": 0,
+          "total": 7,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 3,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "profissional": {
+          "area": "profissional",
+          "area_name": "Profissional",
+          "icon": "💼",
+          "color": "#f59e0b",
+          "completed": 0,
+          "total": 1,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 1
+          }
+        },
+        "financeiro": {
+          "area": "financeiro",
+          "area_name": "Financeiro",
+          "icon": "💰",
+          "color": "#14b8a6",
+          "completed": 0,
+          "total": 3,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 3
+          }
+        }
+      },
+      "overall_percentage": 0.0,
+      "overall_status": "critical",
+      "generated_at": "2026-01-04T18:38:09.065708"
+    },
+    {
+      "date": "2026-01-04",
+      "areas": {
+        "saude": {
+          "area": "saude",
+          "area_name": "Saúde Física",
+          "icon": "💪",
+          "color": "#22c55e",
+          "completed": 0,
+          "total": 8,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 4,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "social": {
+          "area": "social",
+          "area_name": "Social",
+          "icon": "👥",
+          "color": "#a855f7",
+          "completed": 0,
+          "total": 2,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 2
+          }
+        },
+        "academico": {
+          "area": "academico",
+          "area_name": "Acadêmico",
+          "icon": "📚",
+          "color": "#3b82f6",
+          "completed": 0,
+          "total": 7,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 3,
+            "objectives_completed": 0,
+            "objectives_total": 4
+          }
+        },
+        "profissional": {
+          "area": "profissional",
+          "area_name": "Profissional",
+          "icon": "💼",
+          "color": "#f59e0b",
+          "completed": 0,
+          "total": 1,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 1
+          }
+        },
+        "financeiro": {
+          "area": "financeiro",
+          "area_name": "Financeiro",
+          "icon": "💰",
+          "color": "#14b8a6",
+          "completed": 0,
+          "total": 3,
+          "percentage": 0.0,
+          "status": "critical",
+          "status_name": "Crítico",
+          "status_color": "#ef4444",
+          "details": {
+            "habits_completed": 0,
+            "habits_total": 0,
+            "objectives_completed": 0,
+            "objectives_total": 3
+          }
+        }
+      },
+      "overall_percentage": 0.0,
+      "overall_status": "critical",
+      "generated_at": "2026-01-04T18:38:09.068201"
+    }
+  ],
+  "month": "2026-01",
+  "generated_at": "2026-01-04T18:38:09.068210"
+}
