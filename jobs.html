@@ -422,8 +422,20 @@
 
     function copyPrepare(jobId, evt) {
         if (evt) evt.stopPropagation();
-        const cmd = `python -m core_logic.workflows.job_hunter_cli prepare --job-id ${jobId}`;
-        navigator.clipboard.writeText(cmd).then(() => showToast('📄 Comando copiado!'));
+        const cmd = `python -m core_logic.workflows.job_hunter_cli process --job-id ${jobId}`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(cmd)
+                .then(() => showToast('Comando copiado. Cole no terminal para analisar a vaga.'))
+                .catch(() => {
+                    window.prompt('Copie o comando abaixo e rode no terminal:', cmd);
+                    showToast('Nao foi possivel copiar automaticamente. Use o comando exibido.', false);
+                });
+            return;
+        }
+
+        window.prompt('Copie o comando abaixo e rode no terminal:', cmd);
+        showToast('Clipboard indisponivel. Comando exibido para copia.', false);
     }
 
     function refreshView() {
