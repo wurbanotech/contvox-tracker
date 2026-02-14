@@ -90,14 +90,19 @@
     </div>
 
     <script>
-    // Load bookmarklet.js and set it as the href
-    fetch('bookmarklet.js')
+    // Load bookmarklet.js with cache-buster
+    var link = document.getElementById('bookmarkletLink');
+    link.textContent = 'Carregando...';
+    link.style.opacity = '0.5';
+    fetch('bookmarklet.js?v=' + Date.now())
         .then(r => r.text())
         .then(code => {
             const min = code.replace(/\s*\n\s*/g, ' ').replace(/\s+/g, ' ').trim();
-            document.getElementById('bookmarkletLink').href = 'javascript:' + min;
+            link.href = 'javascript:' + min;
+            link.textContent = 'Salvar Vaga';
+            link.style.opacity = '1';
         })
-        .catch(e => console.error('Failed to load bookmarklet:', e));
+        .catch(e => { link.textContent = 'Erro ao carregar'; console.error(e); });
     </script>
 </body>
 </html>
