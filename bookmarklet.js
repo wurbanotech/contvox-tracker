@@ -51,6 +51,10 @@
     '.job-details-jobs-unified-top-card__job-title',
     '.jobs-unified-top-card__job-title',
     '.top-card-layout__title',
+    '.jobsearch-JobInfoHeader-title',
+    '[data-job-title]',
+    'h1[class*="job"]',
+    'h1[class*="title"]',
     'h1'
   ]);
 
@@ -60,29 +64,42 @@
     '.jobs-unified-top-card__company-name a',
     '.jobs-unified-top-card__company-name',
     '.top-card-layout__card a[data-tracking-control-name="public_jobs_topcard-org-name"]',
-    '.topcard__org-name-link'
+    '.topcard__org-name-link',
+    '[data-company-name]',
+    'a[class*="company"]',
+    '.job-details-jobs-unified-top-card__primary-description-container a'
   ]);
 
   var location = q([
     '.job-details-jobs-unified-top-card__bullet',
     '.jobs-unified-top-card__bullet',
     '.job-details-jobs-unified-top-card__primary-description-container .tvm__text',
-    '.top-card-layout__bullet'
+    '.top-card-layout__bullet',
+    'span[class*="location"]',
+    'span[class*="bullet"]'
   ]);
 
   var descEl = document.querySelector('#job-details') ||
                document.querySelector('.jobs-description__content') ||
                document.querySelector('.jobs-box__html-content') ||
-               document.querySelector('.description__text');
+               document.querySelector('.description__text') ||
+               document.querySelector('[class*="description"]');
   var description = descEl ? descEl.innerText.trim() : '';
 
-  if (!title) {
-    showToast('Nao consegui extrair o titulo da vaga', false);
-    return;
-  }
-  if (!company) {
-    showToast('Nao consegui extrair a empresa', false);
-    return;
+  if (!title || !company) {
+    var h1s = []; document.querySelectorAll('h1,h2').forEach(function(el) { h1s.push(el.className + ': ' + el.textContent.trim().substring(0,60)); });
+    var debug = 'DEBUG - Title: ' + (title||'VAZIO') + ' | Company: ' + (company||'VAZIO') + '\nH1/H2 encontrados: ' + h1s.join(' | ');
+    console.log('NEBULA BOOKMARKLET DEBUG:', debug);
+    var msg = prompt('Nao consegui extrair automaticamente.\n\n' + debug + '\n\nCole manualmente: Titulo | Empresa');
+    if (msg) {
+      var parts = msg.split('|').map(function(s){ return s.trim(); });
+      title = parts[0] || title;
+      company = parts[1] || company;
+    }
+    if (!title || !company) {
+      showToast('Titulo e empresa sao obrigatorios', false);
+      return;
+    }
   }
 
   var remote = detectRemote(location, description);
