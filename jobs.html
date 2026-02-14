@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Job Hunter | NEBULA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #141414;
+            --bg-secondary: #1a1a1a;
+            --text: #ffffff;
+            --text-muted: #888;
+            --text-dim: #555;
+            --accent: #818cf8;
+            --accent-dim: rgba(129, 140, 248, 0.15);
+            --green: #22c55e;
+            --green-dim: rgba(34, 197, 94, 0.15);
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #222;
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 0 16px 40px; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; background: var(--bg);
+            padding: 16px 0; z-index: 100; border-bottom: 1px solid var(--border);
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 16px; align-items: center; }
+        .nav-links a {
+            font-size: 13px; color: var(--text-muted); text-decoration: none;
+            padding: 6px 12px; border-radius: 8px; transition: all .2s;
+        }
+        .nav-links a:hover { color: var(--text); background: var(--bg-secondary); }
+        .nav-links a.active { color: var(--accent); background: var(--accent-dim); }
+        .update-time { font-size: 11px; color: var(--text-dim); }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px; margin: 24px 0;
+        }
+        .stat-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 16px; text-align: center;
+        }
+        .stat-card .number { font-size: 32px; font-weight: 800; line-height: 1; }
+        .stat-card .label {
+            font-size: 11px; color: var(--text-muted); margin-top: 6px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .stat-card .number.green { color: var(--green); }
+        .stat-card .number.accent { color: var(--accent); }
+        .stat-card .number.warning { color: var(--warning); }
+
+        /* Funnel */
+        .funnel {
+            display: flex; gap: 8px; margin: 20px 0; flex-wrap: wrap;
+            overflow-x: auto; padding-bottom: 4px;
+        }
+        .funnel-step {
+            flex: 1; min-width: 80px; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 12px 8px; text-align: center;
+            cursor: pointer; transition: all .2s;
+        }
+        .funnel-step:hover { border-color: var(--accent); }
+        .funnel-step.active { border-color: var(--accent); box-shadow: 0 0 16px rgba(129,140,248,0.15); }
+        .funnel-step .count { font-size: 24px; font-weight: 800; }
+        .funnel-step .name { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+
+        /* Filters */
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter-bar button {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted);
+            padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 12px;
+            font-weight: 600; transition: all .2s;
+        }
+        .filter-bar button:hover { border-color: var(--accent); color: var(--text); }
+        .filter-bar button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+        /* Job Cards */
+        .jobs-grid { display: grid; gap: 12px; }
+        .job-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 20px; transition: all 0.2s; cursor: pointer;
+        }
+        .job-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+        .job-card.dimmed { opacity: 0.4; }
+
+        .job-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+        .job-title { font-size: 16px; font-weight: 700; color: #f1f5f9; }
+        .job-company { font-size: 13px; color: var(--accent); margin-top: 2px; }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 3px 10px; border-radius: 16px; font-size: 11px; font-weight: 600; white-space: nowrap;
+        }
+
+        .job-meta {
+            display: flex; gap: 16px; font-size: 12px; color: var(--text-muted);
+            margin-top: 10px; flex-wrap: wrap;
+        }
+        .job-meta span { display: flex; align-items: center; gap: 4px; }
+
+        .job-materials { display: flex; gap: 6px; margin-top: 10px; }
+        .mat {
+            padding: 3px 8px; border-radius: 6px; font-size: 10px;
+            background: var(--bg-secondary); color: var(--text-dim);
+        }
+        .mat.ready { background: #16653480; color: #bbf7d0; }
+
+        .bar-container { margin-top: 12px; display: flex; align-items: center; gap: 10px; }
+        .bar-bg { flex: 1; height: 5px; background: var(--bg-secondary); border-radius: 3px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+        .bar-label { font-size: 11px; min-width: 36px; text-align: right; font-weight: 700; }
+
+        .tier-badge {
+            display: inline-flex; align-items: center; gap: 3px;
+            padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 700;
+        }
+        .tier-1 { background: #78350f; color: #fcd34d; }
+        .tier-2 { background: #1e3a5f; color: #93c5fd; }
+        .tier-3 { background: #374151; color: #d1d5db; }
+
+        /* Detail Overlay */
+        .detail-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+            z-index: 200; justify-content: center; align-items: flex-start;
+            padding: 40px 16px; overflow-y: auto;
+        }
+        .detail-overlay.show { display: flex; }
+        .detail-panel {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); max-width: 800px; width: 100%;
+            padding: 28px; position: relative; max-height: 90vh; overflow-y: auto;
+        }
+        .close-btn {
+            position: absolute; top: 14px; right: 14px;
+            background: var(--bg-secondary); border: none; color: var(--text);
+            width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 18px;
+        }
+        .close-btn:hover { background: var(--border); }
+        .detail-panel h2 { font-size: 20px; margin-bottom: 4px; padding-right: 40px; }
+        .detail-company { color: var(--accent); font-size: 15px; margin-bottom: 16px; }
+
+        .tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; }
+        .tabs button {
+            background: none; border: none; color: var(--text-muted);
+            padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 13px;
+        }
+        .tabs button.active { background: var(--bg-secondary); color: #f1f5f9; font-weight: 600; }
+        .tabs button:hover { color: #f1f5f9; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-content pre {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+            padding: 16px; font-size: 13px; line-height: 1.7; white-space: pre-wrap;
+            word-wrap: break-word; font-family: 'Inter', sans-serif; color: #e2e8f0;
+            max-height: 60vh; overflow-y: auto;
+        }
+        .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+        .chip { padding: 3px 10px; border-radius: 12px; font-size: 11px; background: var(--bg-secondary); }
+        .chip.match { background: #16653480; color: #bbf7d0; }
+        .chip.gap { background: #7f1d1d80; color: #fecaca; }
+
+        .empty { text-align: center; padding: 60px 20px; color: var(--text-dim); }
+        .empty .icon { font-size: 48px; margin-bottom: 12px; }
+
+        @media (max-width: 600px) {
+            .stats-bar { grid-template-columns: repeat(3, 1fr); }
+            .funnel-step { min-width: 60px; padding: 8px 4px; }
+            .funnel-step .count { font-size: 18px; }
+            .job-card { padding: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">NEBULA <span>Job Hunter</span></div>
+                <div class="nav-links">
+                    <a href="index.html">Centro de Comando</a>
+                    <a href="jobs.html" class="active">Vagas</a>
+                    <span class="update-time" id="updateTime"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats-bar" id="statsBar"></div>
+
+        <!-- Funnel -->
+        <div class="funnel" id="funnel"></div>
+
+        <!-- Tier Filter -->
+        <div class="filter-bar" id="tierFilter"></div>
+
+        <!-- Jobs Grid -->
+        <div class="jobs-grid" id="jobsGrid"></div>
+    </div>
+
+    <!-- Detail Overlay -->
+    <div class="detail-overlay" id="detailOverlay">
+        <div class="detail-panel" id="detailPanel"></div>
+    </div>
+
+    <script>
+    const STATUS_CONFIG = {
+        new:          { emoji: '🆕', color: '#6b7280', label: 'Nova' },
+        analyzing:    { emoji: '🔄', color: '#f59e0b', label: 'Analisando' },
+        ready:        { emoji: '✅', color: '#10b981', label: 'Pronta' },
+        applied:      { emoji: '📤', color: '#3b82f6', label: 'Aplicada' },
+        phone_screen: { emoji: '📞', color: '#8b5cf6', label: 'Phone Screen' },
+        tech_interview:    { emoji: '💻', color: '#6366f1', label: 'Entrev. Técnica' },
+        manager_interview: { emoji: '👔', color: '#a855f7', label: 'Entrev. Gestor' },
+        interview:    { emoji: '🎤', color: '#6366f1', label: 'Entrevista' },
+        final_round:  { emoji: '🏆', color: '#ec4899', label: 'Final Round' },
+        offer:        { emoji: '💰', color: '#f97316', label: 'Oferta' },
+        accepted:     { emoji: '🎉', color: '#22c55e', label: 'Aceita' },
+        rejected:     { emoji: '❌', color: '#ef4444', label: 'Rejeitada' },
+        rejected_by_me:        { emoji: '🚫', color: '#f87171', label: 'Recusada' },
+        rejected_by_recruiter: { emoji: '👎', color: '#dc2626', label: 'Recusada Recr.' },
+        closed:       { emoji: '🔒', color: '#6b7280', label: 'Fechada' },
+        withdrawn:    { emoji: '🚫', color: '#9ca3af', label: 'Desistiu' },
+        expired:      { emoji: '⏰', color: '#9ca3af', label: 'Expirada' },
+    };
+
+    const FUNNEL_ORDER = ['new','ready','applied','interview','tech_interview','offer','accepted','rejected','closed'];
+
+    let allJobs = [];
+    let currentFilter = 'all';
+    let currentTier = 'all';
+
+    function fitColor(score) {
+        if (score >= 80) return '#22c55e';
+        if (score >= 60) return '#f59e0b';
+        return '#ef4444';
+    }
+
+    function renderStats(stats) {
+        const bar = document.getElementById('statsBar');
+        bar.innerHTML = `
+            <div class="stat-card"><div class="number">${stats.total}</div><div class="label">Total</div></div>
+            <div class="stat-card"><div class="number green">${stats.ready}</div><div class="label">Prontas</div></div>
+            <div class="stat-card"><div class="number accent">${stats.applied}</div><div class="label">Aplicadas</div></div>
+            <div class="stat-card"><div class="number warning">${stats.interviews}</div><div class="label">Entrevistas</div></div>
+            <div class="stat-card"><div class="number">${stats.avg_fit}%</div><div class="label">Fit Médio</div></div>
+            <div class="stat-card"><div class="number green">${stats.offers}</div><div class="label">Ofertas</div></div>
+        `;
+    }
+
+    function renderFunnel(stats) {
+        const el = document.getElementById('funnel');
+        const byStatus = stats.by_status || {};
+        el.innerHTML = FUNNEL_ORDER.map(s => {
+            const cfg = STATUS_CONFIG[s] || {};
+            const count = byStatus[s] || 0;
+            const active = currentFilter === s ? 'active' : '';
+            return `<div class="funnel-step ${active}" onclick="filterByStatus('${s}')" style="border-bottom: 3px solid ${cfg.color}">
+                <div class="count" style="color:${cfg.color}">${count}</div>
+                <div class="name">${cfg.label || s}</div>
+            </div>`;
+        }).join('');
+    }
+
+    function renderTierFilter() {
+        const el = document.getElementById('tierFilter');
+        const tiers = [{k:'all',l:'Todas'},{k:'1',l:'⭐ Premium'},{k:'2',l:'👍 Bom'},{k:'3',l:'📋 Backup'}];
+        el.innerHTML = tiers.map(t =>
+            `<button class="${currentTier===t.k?'active':''}" onclick="filterByTier('${t.k}')">${t.l}</button>`
+        ).join('');
+    }
+
+    function renderJobs(jobs) {
+        const grid = document.getElementById('jobsGrid');
+        if (!jobs.length) {
+            grid.innerHTML = '<div class="empty"><div class="icon">🔍</div><p>Nenhuma vaga encontrada</p></div>';
+            return;
+        }
+        grid.innerHTML = jobs.map(j => {
+            const s = STATUS_CONFIG[j.status] || STATUS_CONFIG.new;
+            const fit = j.fit_score || 0;
+            const fc = fitColor(fit);
+            const tier = j.tier || 0;
+            const tierClass = tier ? `tier-${tier}` : '';
+            const tierLabel = {1:'⭐ T1',2:'👍 T2',3:'📋 T3'}[tier] || '';
+            const dimmed = ['rejected','rejected_by_me','rejected_by_recruiter','closed','expired','withdrawn'].includes(j.status) ? 'dimmed' : '';
+
+            return `<div class="job-card ${dimmed}" onclick="showDetail('${j.id}')">
+                <div class="job-top">
+                    <div>
+                        <div class="job-title">${j.title}</div>
+                        <div class="job-company">${j.company}</div>
+                    </div>
+                    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                        ${tierLabel ? `<span class="tier-badge ${tierClass}">${tierLabel}</span>` : ''}
+                        <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.emoji} ${s.label}</span>
+                    </div>
+                </div>
+                <div class="job-meta">
+                    ${j.location ? `<span>📍 ${j.location}</span>` : ''}
+                    ${j.remote && j.remote !== 'unknown' ? `<span>🏠 ${j.remote}</span>` : ''}
+                    ${j.source ? `<span>🔗 ${j.source}</span>` : ''}
+                </div>
+                <div class="job-materials">
+                    <span class="mat ${j.has_resume?'ready':''}">${j.has_resume?'✅':'❌'} CV</span>
+                    <span class="mat ${j.has_cover_letter?'ready':''}">${j.has_cover_letter?'✅':'❌'} CL</span>
+                </div>
+                ${fit > 0 ? `<div class="bar-container">
+                    <div class="bar-bg"><div class="bar-fill" style="width:${fit}%;background:${fc}"></div></div>
+                    <div class="bar-label" style="color:${fc}">${fit}%</div>
+                </div>` : ''}
+            </div>`;
+        }).join('');
+    }
+
+    function showDetail(id) {
+        const j = allJobs.find(x => x.id === id);
+        if (!j) return;
+        const s = STATUS_CONFIG[j.status] || STATUS_CONFIG.new;
+        const fit = j.fit_score || 0;
+
+        const panel = document.getElementById('detailPanel');
+        panel.innerHTML = `
+            <button class="close-btn" onclick="closeDetail()">✕</button>
+            <h2>${j.title}</h2>
+            <div class="detail-company">${j.company}</div>
+            <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+                <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.emoji} ${s.label}</span>
+                ${j.tier ? `<span class="tier-badge tier-${j.tier}">Tier ${j.tier}</span>` : ''}
+                ${fit ? `<span class="badge" style="background:${fitColor(fit)}20;color:${fitColor(fit)};border:1px solid ${fitColor(fit)}40">Fit: ${fit}%</span>` : ''}
+            </div>
+            <div class="job-meta" style="margin-bottom:16px">
+                ${j.location ? `<span>📍 ${j.location}</span>` : ''}
+                ${j.remote ? `<span>🏠 ${j.remote}</span>` : ''}
+                ${j.source ? `<span>🔗 ${j.source}</span>` : ''}
+                ${j.url ? `<span><a href="${j.url}" target="_blank" style="color:var(--accent)">🔗 Abrir vaga</a></span>` : ''}
+            </div>
+            ${j.key_matches && j.key_matches.length ? `
+                <div style="margin-bottom:12px">
+                    <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase">Matches</div>
+                    <div class="chips">${j.key_matches.map(m => `<span class="chip match">✅ ${m}</span>`).join('')}</div>
+                </div>` : ''}
+            ${j.gaps && j.gaps.length ? `
+                <div style="margin-bottom:12px">
+                    <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase">Gaps</div>
+                    <div class="chips">${j.gaps.map(g => `<span class="chip gap">⚠️ ${g}</span>`).join('')}</div>
+                </div>` : ''}
+            ${j.description ? `
+                <div class="tabs">
+                    <button class="active" onclick="switchTab(this,'tab-desc')">Descrição</button>
+                </div>
+                <div class="tab-content active" id="tab-desc">
+                    <pre>${escapeHtml(j.description || '').substring(0, 3000)}</pre>
+                </div>` : ''}
+        `;
+        document.getElementById('detailOverlay').classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetail() {
+        document.getElementById('detailOverlay').classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    function switchTab(btn, tabId) {
+        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById(tabId)?.classList.add('active');
+    }
+
+    function escapeHtml(text) {
+        const d = document.createElement('div');
+        d.textContent = text;
+        return d.innerHTML;
+    }
+
+    function filterByStatus(status) {
+        currentFilter = currentFilter === status ? 'all' : status;
+        applyFilters();
+    }
+
+    function filterByTier(tier) {
+        currentTier = tier;
+        applyFilters();
+    }
+
+    function applyFilters() {
+        let filtered = [...allJobs];
+        if (currentFilter !== 'all') filtered = filtered.filter(j => j.status === currentFilter);
+        if (currentTier !== 'all') filtered = filtered.filter(j => String(j.tier) === currentTier);
+        filtered.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
+        renderJobs(filtered);
+        renderTierFilter();
+        // Update funnel active state
+        document.querySelectorAll('.funnel-step').forEach(el => {
+            el.classList.toggle('active', el.onclick?.toString().includes(`'${currentFilter}'`));
+        });
+    }
+
+    function computeStats(jobs) {
+        const byStatus = {};
+        let fitScores = [], probs = [];
+        jobs.forEach(j => {
+            const s = j.status || 'new';
+            byStatus[s] = (byStatus[s] || 0) + 1;
+            if (j.fit_score) fitScores.push(j.fit_score);
+            if (j.probability) probs.push(j.probability);
+        });
+        const interviewStatuses = ['interview','phone_screen','tech_interview','manager_interview','final_round'];
+        return {
+            total: jobs.length,
+            by_status: byStatus,
+            avg_fit: fitScores.length ? Math.round(fitScores.reduce((a,b)=>a+b,0)/fitScores.length) : 0,
+            ready: byStatus.ready || 0,
+            applied: byStatus.applied || 0,
+            interviews: interviewStatuses.reduce((sum,s) => sum + (byStatus[s]||0), 0),
+            offers: (byStatus.offer||0) + (byStatus.accepted||0),
+        };
+    }
+
+    // Load data
+    fetch('jobs.json')
+        .then(r => r.json())
+        .then(data => {
+            allJobs = data.jobs || [];
+            const stats = data.stats || computeStats(allJobs);
+            document.getElementById('updateTime').textContent = data.generated_at ? `Atualizado: ${data.generated_at}` : '';
+            renderStats(stats);
+            renderFunnel(stats);
+            renderTierFilter();
+            allJobs.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
+            renderJobs(allJobs);
+        })
+        .catch(err => {
+            document.getElementById('jobsGrid').innerHTML =
+                '<div class="empty"><div class="icon">⚠️</div><p>Erro ao carregar dados. Execute: <code>python -m core_logic.workflows.job_hunter_cli deploy-dashboard</code></p></div>';
+        });
+
+    // Close overlay on ESC or click outside
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+    document.getElementById('detailOverlay').addEventListener('click', e => {
+        if (e.target === document.getElementById('detailOverlay')) closeDetail();
+    });
+    </script>
+</body>
+</html>
