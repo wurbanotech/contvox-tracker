@@ -71,7 +71,7 @@
             <div class="logo">NEBULA <span>Bookmarklet</span></div>
             <h1>Salvar Vagas do LinkedIn</h1>
             <p class="subtitle">Adicione vagas do LinkedIn ao seu tracker com um clique</p>
-            <span class="site-version">v2026.02.14-1545</span>
+            <span class="site-version">v2026.02.14-1625</span>
         </div>
 
         <div class="install-box">
@@ -123,9 +123,53 @@
             var link = document.getElementById('bookmarkletLink');
             var status = document.getElementById('bookmarkletStatus');
 
-            var bookmarklet = "javascript:(function(){try{var company=(document.querySelector('.job-details-jobs-unified-top-card__company-name a,.job-details-jobs-unified-top-card__company-name,.jobs-unified-top-card__company-name a,.jobs-unified-top-card__company-name,[class*=company] a,[class*=company]')||{}).innerText||'';var desc=(document.querySelector('#job-details,.jobs-description__content,.jobs-box__html-content,[class*=description]')||{}).innerText||'';var d={title:document.title||'',url:location.href.split('?')[0],h1:(document.querySelector('h1')||{}).innerText||'',company:company.trim(),description:desc.trim().slice(0,15000)};var u='https://tracker.contvox.com/bookmarklet-capture.html#d='+encodeURIComponent(JSON.stringify(d));location.href=u;}catch(e){alert('Erro ao capturar vaga: '+(e.message||e));}})();";
+            var bookmarkletFn = function () {
+                try {
+                    function txt(sel) {
+                        var el = document.querySelector(sel);
+                        return el && el.innerText ? el.innerText.trim() : '';
+                    }
 
-            link.setAttribute('href', bookmarklet);
+                    var company = txt('.job-details-jobs-unified-top-card__company-name a') ||
+                                  txt('.job-details-jobs-unified-top-card__company-name') ||
+                                  txt('.jobs-unified-top-card__company-name a') ||
+                                  txt('.jobs-unified-top-card__company-name') ||
+                                  txt('.topcard__org-name-link') ||
+                                  txt('[class*=company] a') ||
+                                  txt('[class*=company]');
+
+                    var description = txt('#job-details') ||
+                                      txt('.jobs-description__content') ||
+                                      txt('.jobs-box__html-content') ||
+                                      txt('.description__text') ||
+                                      txt('[data-job-description]') ||
+                                      txt('[class*=jobs-description]') ||
+                                      txt('[class*=description]');
+
+                    if (!description) {
+                        var bodyText = (document.body && document.body.innerText ? document.body.innerText : '');
+                        var marker = bodyText.indexOf('Sobre a vaga');
+                        if (marker !== -1) {
+                            description = bodyText.slice(marker, marker + 8000);
+                        }
+                    }
+
+                    var d = {
+                        title: document.title || '',
+                        url: location.href.split('?')[0],
+                        h1: txt('h1'),
+                        company: company,
+                        description: (description || '').slice(0, 15000)
+                    };
+
+                    var u = 'https://tracker.contvox.com/bookmarklet-capture.html#d=' + encodeURIComponent(JSON.stringify(d));
+                    location.href = u;
+                } catch (e) {
+                    alert('Erro ao capturar vaga: ' + (e.message || e));
+                }
+            };
+
+            link.setAttribute('href', 'javascript:(' + bookmarkletFn.toString() + ')();');
             status.textContent = 'Pronto: agora arraste para a barra de favoritos';
         })();
     </script>
