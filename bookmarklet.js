@@ -40,66 +40,89 @@
     return m ? 'https://www.linkedin.com/jobs/view/' + m[1] + '/' : window.location.href.split('?')[0];
   }
 
-  if (!/linkedin\.com\/jobs\/view/.test(window.location.href)) {
+  if (!/linkedin\.com\/jobs/.test(window.location.href)) {
     showToast('Abra uma vaga do LinkedIn primeiro!', false);
     return;
   }
 
-  var title = q([
-    'h1.t-24',
-    '.job-details-jobs-unified-top-card__job-title h1',
-    '.job-details-jobs-unified-top-card__job-title',
-    '.jobs-unified-top-card__job-title',
-    '.top-card-layout__title',
-    '.jobsearch-JobInfoHeader-title',
-    '[data-job-title]',
-    'h1[class*="job"]',
-    'h1[class*="title"]',
-    'h1'
-  ]);
+  // Strategy 1: Parse document.title (most reliable)
+  // LinkedIn titles: "Job Title - Company | LinkedIn" or "Company hiring Job Title in Location | LinkedIn"
+  var title = '', company = '', location = '';
+  var pageTitle = document.title.replace(/\s*\|\s*LinkedIn\s*$/, '').trim();
 
-  var company = q([
+  // Pattern: "Company hiring: Job Title in Location"
+  var hiringMatch = pageTitle.match(/^(.+?)\s+(?:is\s+)?hiring:?\s+(.+?)(?:\s+in\s+(.+))?$/i);
+  if (hiringMatch) {
+    company = hiringMatch[1].trim();
+    title = hiringMatch[2].trim();
+    location = (hiringMatch[3] || '').trim();
+  }
+  // Pattern: "Job Title - Company - Location"
+  if (!title) {
+    var dashParts = pageTitle.split(/\s*[-–—]\s*/);
+    if (dashParts.length >= 2) {
+      title = dashParts[0].trim();
+      company = dashParts[1].trim();
+      if (dashParts.length >= 3) location = dashParts[2].trim();
+    }
+  }
+  // Pattern: "(number) Job Title - Company" (when there's a notification count)
+  if (!title || /^\(\d+\)/.test(title)) {
+    var cleaned = pageTitle.replace(/^\(\d+\)\s*/, '');
+    var dp = cleaned.split(/\s*[-–—]\s*/);
+    if (dp.length >= 2) {
+      title = dp[0].trim();
+      company = dp[1].trim();
+    }
+  }
+
+  // Strategy 2: meta tags
+  if (!title) {
+    var ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      var og = ogTitle.content.replace(/\s*\|\s*LinkedIn\s*$/, '').trim();
+      var ogParts = og.split(/\s*[-–—]\s*/);
+      if (ogParts.length >= 2) { title = ogParts[0].trim(); company = ogParts[1].trim(); }
+      else title = og;
+    }
+  }
+
+  // Strategy 3: DOM selectors as fallback
+  if (!title) title = q([
+    'h1.t-24', '.job-details-jobs-unified-top-card__job-title h1',
+    '.job-details-jobs-unified-top-card__job-title', '.jobs-unified-top-card__job-title',
+    '.top-card-layout__title', 'h1[class*="job"]', 'h1[class*="title"]', 'h1'
+  ]);
+  if (!company) company = q([
     '.job-details-jobs-unified-top-card__company-name a',
     '.job-details-jobs-unified-top-card__company-name',
-    '.jobs-unified-top-card__company-name a',
-    '.jobs-unified-top-card__company-name',
-    '.top-card-layout__card a[data-tracking-control-name="public_jobs_topcard-org-name"]',
-    '.topcard__org-name-link',
-    '[data-company-name]',
-    'a[class*="company"]',
+    '.jobs-unified-top-card__company-name a', '.jobs-unified-top-card__company-name',
+    '.topcard__org-name-link', 'a[class*="company"]',
     '.job-details-jobs-unified-top-card__primary-description-container a'
   ]);
-
-  var location = q([
-    '.job-details-jobs-unified-top-card__bullet',
-    '.jobs-unified-top-card__bullet',
-    '.job-details-jobs-unified-top-card__primary-description-container .tvm__text',
-    '.top-card-layout__bullet',
-    'span[class*="location"]',
-    'span[class*="bullet"]'
+  if (!location) location = q([
+    '.job-details-jobs-unified-top-card__bullet', '.jobs-unified-top-card__bullet',
+    '.top-card-layout__bullet', 'span[class*="location"]', 'span[class*="bullet"]'
   ]);
 
+  // Description
   var descEl = document.querySelector('#job-details') ||
                document.querySelector('.jobs-description__content') ||
                document.querySelector('.jobs-box__html-content') ||
-               document.querySelector('.description__text') ||
-               document.querySelector('[class*="description"]');
+               document.querySelector('.description__text');
   var description = descEl ? descEl.innerText.trim() : '';
 
+  // Fallback: manual prompt
   if (!title || !company) {
-    var h1s = []; document.querySelectorAll('h1,h2').forEach(function(el) { h1s.push(el.className + ': ' + el.textContent.trim().substring(0,60)); });
-    var debug = 'DEBUG - Title: ' + (title||'VAZIO') + ' | Company: ' + (company||'VAZIO') + '\nH1/H2 encontrados: ' + h1s.join(' | ');
-    console.log('NEBULA BOOKMARKLET DEBUG:', debug);
-    var msg = prompt('Nao consegui extrair automaticamente.\n\n' + debug + '\n\nCole manualmente: Titulo | Empresa');
+    var debug = 'Page title: ' + document.title;
+    console.log('NEBULA DEBUG:', debug);
+    var msg = prompt('Nao consegui extrair automaticamente.\n' + debug + '\n\nDigite: Titulo | Empresa');
     if (msg) {
       var parts = msg.split('|').map(function(s){ return s.trim(); });
       title = parts[0] || title;
       company = parts[1] || company;
     }
-    if (!title || !company) {
-      showToast('Titulo e empresa sao obrigatorios', false);
-      return;
-    }
+    if (!title || !company) { showToast('Titulo e empresa obrigatorios', false); return; }
   }
 
   var remote = detectRemote(location, description);
