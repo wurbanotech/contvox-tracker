@@ -382,6 +382,12 @@
         }
     }
 
+    function copyPrepare(jobId, evt) {
+        if (evt) evt.stopPropagation();
+        const cmd = `python -m core_logic.workflows.job_hunter_cli prepare --job-id ${jobId}`;
+        navigator.clipboard.writeText(cmd).then(() => showToast('📄 Comando copiado!'));
+    }
+
     function refreshView() {
         const stats = computeStats(allJobs);
         renderStats(stats);
@@ -454,6 +460,7 @@
                     <button class="btn-tech" onclick="changeStatus('${j.id}','tech_interview',event)">💻 Entrev. Técnica</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
                     <button class="btn-closed" onclick="changeStatus('${j.id}','closed',event)">🔒 Fechada</button>
+                    ${!j.has_resume ? `<button class="btn-open-url" onclick="copyPrepare('${j.id}',event)">📄 Preparar Docs</button>` : ''}
                 </div>` : j.status === 'tech_interview' ? `
                 <div class="quick-actions">
                     <button class="btn-manager" onclick="changeStatus('${j.id}','manager_interview',event)">👔 Entrev. Gestor</button>
