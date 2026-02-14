@@ -309,9 +309,36 @@
 
     const FUNNEL_ORDER = ['new','ready','applied','interview','tech_interview','offer','accepted','rejected','closed'];
 
+    // ── Visa / US-only detection ──
+    const VISA_PATTERNS = [
+        /\bno\s+(?:visa\s+)?sponsorship\b/i,
+        /\bnot\s+(?:able\s+to\s+)?sponsor\b/i,
+        /\bwill\s+not\s+sponsor\b/i,
+        /\bwithout\s+(?:visa\s+)?sponsorship\b/i,
+        /\bauthori[sz]ed\s+to\s+work\s+in\s+(?:the\s+)?(?:US|U\.S\.|United\s+States)\b/i,
+        /\blegally\s+(?:authorized|eligible)\s+to\s+work\b/i,
+        /\bwork\s+(?:authorization|permit)\s+(?:is\s+)?required\b/i,
+        /\bUS\s+citizen(?:s|ship)?\s+(?:only|required)\b/i,
+        /\bU\.?S\.?\s+work\s+(?:authorization|eligibility)\b/i,
+        /\bmust\s+be\s+(?:a\s+)?(?:US|U\.S\.)\s+(?:citizen|resident|person)\b/i,
+        /\bpermanent\s+resident\b/i,
+        /\bgreen\s+card\b/i,
+        /\bsecurity\s+clearance\b/i,
+        /\bEAD\s+(?:required|holders?)\b/i,
+        /\bE-?Verify\b/i,
+        /\bonly\s+(?:US|U\.S\.)\s+based\b/i,
+        /\bcandidates?\s+must\s+(?:reside|be\s+located)\s+in\s+(?:the\s+)?(?:US|U\.S\.)\b/i,
+    ];
+    function needsVisa(job) {
+        const text = (job.description || '') + ' ' + (job.requirements || '');
+        if (!text.trim()) return false;
+        return VISA_PATTERNS.some(rx => rx.test(text));
+    }
+
     let allJobs = [];
     let currentFilter = 'all';
     let currentTier = 'all';
+    let hideVisaJobs = true;
 
     // ── Toast ──
     function showToast(msg, ok = true) {
@@ -343,6 +370,7 @@
                     gaps: app.gaps || [],
                 };
             });
+            allJobs.forEach(j => j.visa_required = needsVisa(j));
             document.getElementById('updateTime').textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`;
             refreshView();
         } catch (e) {
@@ -430,9 +458,15 @@
     function renderTierFilter() {
         const el = document.getElementById('tierFilter');
         const tiers = [{k:'all',l:'Todas'},{k:'1',l:'⭐ Premium'},{k:'2',l:'👍 Bom'},{k:'3',l:'📋 Backup'}];
+        const visaCount = allJobs.filter(j => j.visa_required).length;
         el.innerHTML = tiers.map(t =>
             `<button class="${currentTier===t.k?'active':''}" onclick="filterByTier('${t.k}')">${t.l}</button>`
-        ).join('');
+        ).join('') + (visaCount ? `<button class="${hideVisaJobs?'active':''}" onclick="toggleVisaFilter()" style="margin-left:auto;${hideVisaJobs?'background:#ef4444;color:#fff':''}">🚫 Visa (${visaCount})</button>` : '');
+    }
+
+    function toggleVisaFilter() {
+        hideVisaJobs = !hideVisaJobs;
+        applyFilters();
     }
 
     function renderJobs(jobs) {
@@ -478,6 +512,7 @@
                         <div class="job-company">${j.company}</div>
                     </div>
                     <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                        ${j.visa_required ? `<span class="badge" style="background:#ef444420;color:#ef4444;border:1px solid #ef444440;font-size:11px">🚫 Visa</span>` : ''}
                         ${tierLabel ? `<span class="tier-badge ${tierClass}">${tierLabel}</span>` : ''}
                         <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.emoji} ${s.label}</span>
                     </div>
@@ -584,6 +619,7 @@
         let filtered = [...allJobs];
         if (currentFilter !== 'all') filtered = filtered.filter(j => j.status === currentFilter);
         if (currentTier !== 'all') filtered = filtered.filter(j => String(j.tier) === currentTier);
+        if (hideVisaJobs) filtered = filtered.filter(j => !j.visa_required);
         filtered.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
         renderJobs(filtered);
         renderTierFilter();
