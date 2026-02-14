@@ -288,26 +288,26 @@
     };
 
     const STATUS_CONFIG = {
-        new:          { emoji: '🆕', color: '#6b7280', label: 'Nova' },
-        analyzing:    { emoji: '🔄', color: '#f59e0b', label: 'Analisando' },
-        ready:        { emoji: '✅', color: '#10b981', label: 'Pronta' },
-        applied:      { emoji: '📤', color: '#3b82f6', label: 'Aplicada' },
-        phone_screen: { emoji: '📞', color: '#8b5cf6', label: 'Phone Screen' },
-        tech_interview:    { emoji: '💻', color: '#6366f1', label: 'Entrev. Técnica' },
-        manager_interview: { emoji: '👔', color: '#a855f7', label: 'Entrev. Gestor' },
-        interview:    { emoji: '🎤', color: '#6366f1', label: 'Entrevista' },
-        final_round:  { emoji: '🏆', color: '#ec4899', label: 'Final Round' },
-        offer:        { emoji: '💰', color: '#f97316', label: 'Oferta' },
-        accepted:     { emoji: '🎉', color: '#22c55e', label: 'Aceita' },
-        rejected:     { emoji: '❌', color: '#ef4444', label: 'Rejeitada' },
-        rejected_by_me:        { emoji: '🚫', color: '#f87171', label: 'Recusada' },
-        rejected_by_recruiter: { emoji: '👎', color: '#dc2626', label: 'Recusada Recr.' },
-        closed:       { emoji: '🔒', color: '#6b7280', label: 'Fechada' },
-        withdrawn:    { emoji: '🚫', color: '#9ca3af', label: 'Desistiu' },
-        expired:      { emoji: '⏰', color: '#9ca3af', label: 'Expirada' },
+        new:          { emoji: '', color: '#6b7280', label: 'Nova' },
+        analyzing:    { emoji: '', color: '#f59e0b', label: 'Analisando' },
+        ready:        { emoji: '', color: '#10b981', label: 'Pronta' },
+        applied:      { emoji: '', color: '#3b82f6', label: 'Aplicada' },
+        phone_screen: { emoji: '', color: '#8b5cf6', label: 'Phone Screen' },
+        tech_interview:    { emoji: '', color: '#6366f1', label: 'Técnica' },
+        manager_interview: { emoji: '', color: '#a855f7', label: 'Gestor' },
+        interview:    { emoji: '', color: '#6366f1', label: 'RH' },
+        final_round:  { emoji: '', color: '#ec4899', label: 'Final Round' },
+        offer:        { emoji: '', color: '#f97316', label: 'Oferta' },
+        accepted:     { emoji: '', color: '#22c55e', label: 'Aceita' },
+        rejected:     { emoji: '', color: '#ef4444', label: 'Rejeitada' },
+        rejected_by_me:        { emoji: '', color: '#f87171', label: 'Recusada' },
+        rejected_by_recruiter: { emoji: '', color: '#dc2626', label: 'Recusada Recr.' },
+        closed:       { emoji: '', color: '#6b7280', label: 'Fechada' },
+        withdrawn:    { emoji: '', color: '#9ca3af', label: 'Desistiu' },
+        expired:      { emoji: '', color: '#9ca3af', label: 'Expirada' },
     };
 
-    const FUNNEL_ORDER = ['new','ready','applied','interview','tech_interview','offer','accepted','rejected','closed'];
+    const FUNNEL_ORDER = ['ready','applied','interview','tech_interview','manager_interview','offer','accepted','rejected'];
 
     // ── Visa / US-only detection ──
     const VISA_PATTERNS = [
@@ -338,7 +338,6 @@
     let allJobs = [];
     let currentFilter = 'all';
     let currentTier = 'all';
-    let hideVisaJobs = true;
 
     // ── Toast ──
     function showToast(msg, ok = true) {
@@ -370,7 +369,7 @@
                     gaps: app.gaps || [],
                 };
             });
-            allJobs.forEach(j => j.visa_required = needsVisa(j));
+            allJobs = allJobs.filter(j => !needsVisa(j));
             document.getElementById('updateTime').textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`;
             refreshView();
         } catch (e) {
@@ -400,7 +399,7 @@
             });
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const label = STATUS_CONFIG[newStatus]?.label || newStatus;
-            showToast(`${STATUS_CONFIG[newStatus]?.emoji || ''} ${label}`);
+            showToast(label);
         } catch (e) {
             // Rollback
             job.status = oldStatus;
@@ -458,15 +457,9 @@
     function renderTierFilter() {
         const el = document.getElementById('tierFilter');
         const tiers = [{k:'all',l:'Todas'},{k:'1',l:'⭐ Premium'},{k:'2',l:'👍 Bom'},{k:'3',l:'📋 Backup'}];
-        const visaCount = allJobs.filter(j => j.visa_required).length;
         el.innerHTML = tiers.map(t =>
             `<button class="${currentTier===t.k?'active':''}" onclick="filterByTier('${t.k}')">${t.l}</button>`
-        ).join('') + (visaCount ? `<button class="${hideVisaJobs?'active':''}" onclick="toggleVisaFilter()" style="margin-left:auto;${hideVisaJobs?'background:#ef4444;color:#fff':''}">🚫 Visa (${visaCount})</button>` : '');
-    }
-
-    function toggleVisaFilter() {
-        hideVisaJobs = !hideVisaJobs;
-        applyFilters();
+        ).join('');
     }
 
     function renderJobs(jobs) {
@@ -512,9 +505,8 @@
                         <div class="job-company">${j.company}</div>
                     </div>
                     <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-                        ${j.visa_required ? `<span class="badge" style="background:#ef444420;color:#ef4444;border:1px solid #ef444440;font-size:11px">🚫 Visa</span>` : ''}
                         ${tierLabel ? `<span class="tier-badge ${tierClass}">${tierLabel}</span>` : ''}
-                        <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.emoji} ${s.label}</span>
+                        <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.label}</span>
                     </div>
                 </div>
                 <div class="job-meta">
@@ -547,7 +539,7 @@
             <h2>${j.title}</h2>
             <div class="detail-company">${j.company}</div>
             <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-                <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.emoji} ${s.label}</span>
+                <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.label}</span>
                 ${j.tier ? `<span class="tier-badge tier-${j.tier}">Tier ${j.tier}</span>` : ''}
                 ${fit ? `<span class="badge" style="background:${fitColor(fit)}20;color:${fitColor(fit)};border:1px solid ${fitColor(fit)}40">Fit: ${fit}%</span>` : ''}
             </div>
@@ -571,7 +563,7 @@
                 <label>Alterar Status</label>
                 <div class="status-grid">
                     ${Object.entries(STATUS_CONFIG).map(([k, v]) =>
-                        `<button class="${j.status===k?'current':''}" onclick="changeStatus('${j.id}','${k}')">${v.emoji} ${v.label}</button>`
+                        `<button class="${j.status===k?'current':''}" onclick="changeStatus('${j.id}','${k}')">${v.label}</button>`
                     ).join('')}
                 </div>
             </div>
@@ -619,7 +611,6 @@
         let filtered = [...allJobs];
         if (currentFilter !== 'all') filtered = filtered.filter(j => j.status === currentFilter);
         if (currentTier !== 'all') filtered = filtered.filter(j => String(j.tier) === currentTier);
-        if (hideVisaJobs) filtered = filtered.filter(j => !j.visa_required);
         filtered.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
         renderJobs(filtered);
         renderTierFilter();
