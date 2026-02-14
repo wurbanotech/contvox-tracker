@@ -55,6 +55,15 @@
         }
         .nav-links a:hover { color: var(--text); background: var(--bg-secondary); }
         .nav-links a.active { color: var(--accent); background: var(--accent-dim); }
+        .site-version {
+            font-size: 11px;
+            color: var(--accent);
+            border: 1px solid var(--accent-dim);
+            background: rgba(129, 140, 248, 0.08);
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
         .update-time { font-size: 11px; color: var(--text-dim); }
 
         /* Stats Bar */
@@ -248,6 +257,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
+                    <span class="site-version" id="siteVersion">v2026.02.14-1341</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
