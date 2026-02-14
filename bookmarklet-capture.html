@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEBULA - Captura LinkedIn</title>
+  <style>
+    :root { --bg:#0a0a0f; --card:#12121a; --border:#1f2937; --text:#e2e8f0; --muted:#94a3b8; --ok:#10b981; --err:#ef4444; --accent:#6366f1; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: Inter, system-ui, sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:grid; place-items:center; padding:20px; }
+    .card { width:min(680px, 100%); background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px; }
+    h1 { font-size:20px; margin-bottom:8px; }
+    .meta { color:var(--muted); font-size:12px; margin-bottom:16px; }
+    .row { margin-bottom:12px; }
+    .label { color:var(--muted); font-size:12px; margin-bottom:4px; display:block; }
+    input, textarea { width:100%; background:#0b1020; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px; font:inherit; }
+    textarea { min-height:100px; resize:vertical; }
+    .actions { display:flex; gap:8px; margin-top:12px; }
+    button { background:var(--accent); color:#fff; border:0; border-radius:8px; padding:10px 14px; cursor:pointer; font-weight:700; }
+    .ghost { background:transparent; border:1px solid var(--border); color:var(--muted); }
+    .status { margin-top:12px; font-size:13px; }
+    .ok { color:var(--ok); }
+    .err { color:var(--err); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Captura da vaga</h1>
+    <div class="meta">v2026.02.14-1510</div>
+
+    <div class="row"><label class="label">Titulo</label><input id="title"></div>
+    <div class="row"><label class="label">Empresa</label><input id="company"></div>
+    <div class="row"><label class="label">URL</label><input id="url"></div>
+    <div class="row"><label class="label">Descricao (opcional)</label><textarea id="description"></textarea></div>
+
+    <div class="actions">
+      <button id="saveBtn">Salvar no tracker</button>
+      <button class="ghost" id="closeBtn">Fechar</button>
+    </div>
+
+    <div id="status" class="status"></div>
+  </div>
+
+  <script>
+    (function(){
+      var SUPABASE_URL = 'https://hlpudkddsvhfngluqmkq.supabase.co';
+      var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhscHVka2Rkc3ZoZm5nbHVxbWtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEwMzMwNjYsImV4cCI6MjA4NjYwOTA2Nn0.dUQgXSDygDhUYsdzb-y1qpHXhzRBjF54vxoTt21E5Mo';
+      var API = SUPABASE_URL + '/rest/v1';
+
+      var elTitle = document.getElementById('title');
+      var elCompany = document.getElementById('company');
+      var elUrl = document.getElementById('url');
+      var elDesc = document.getElementById('description');
+      var elStatus = document.getElementById('status');
+
+      function setStatus(msg, ok){
+        elStatus.className = 'status ' + (ok ? 'ok' : 'err');
+        elStatus.textContent = msg;
+      }
+
+      function parseFromHash(){
+        try {
+          var raw = location.hash.startsWith('#d=') ? location.hash.slice(3) : '';
+          if (!raw) return {};
+          return JSON.parse(decodeURIComponent(raw));
+        } catch (e) {
+          setStatus('Erro lendo dados da captura: ' + e.message, false);
+          return {};
+        }
+      }
+
+      function deriveTitle(docTitle, h1){
+        var t = (h1 || '').trim();
+        if (t) return t;
+        t = (docTitle || '').replace(/\s*\|\s*LinkedIn\s*$/i, '').trim();
+        t = t.replace(/^\(\d+\)\s*/, '');
+        var parts = t.split(/\s*[-–—]\s*/);
+        return parts[0] || '';
+      }
+
+      function deriveCompany(docTitle, explicit){
+        if ((explicit || '').trim()) return explicit.trim();
+        var t = (docTitle || '').replace(/\s*\|\s*LinkedIn\s*$/i, '').trim();
+        t = t.replace(/^\(\d+\)\s*/, '');
+        var parts = t.split(/\s*[-–—]\s*/);
+        return parts[1] || '';
+      }
+
+      var d = parseFromHash();
+      elTitle.value = deriveTitle(d.title || '', d.h1 || '');
+      elCompany.value = deriveCompany(d.title || '', d.company || '');
+      elUrl.value = (d.url || '').split('?')[0];
+
+      document.getElementById('closeBtn').onclick = function(){ window.close(); };
+
+      document.getElementById('saveBtn').onclick = function(){
+        var title = elTitle.value.trim();
+        var company = elCompany.value.trim();
+        var url = elUrl.value.trim();
+        var description = elDesc.value.trim();
+
+        if (!title || !company) { setStatus('Titulo e empresa sao obrigatorios.', false); return; }
+
+        setStatus('Salvando...', true);
+
+        fetch(API + '/job_listings?select=id&title=eq.' + encodeURIComponent(title) + '&company=eq.' + encodeURIComponent(company) + '&deleted_at=is.null', {
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(existing){
+          if (existing && existing.length > 0) throw new Error('Vaga ja existe no tracker');
+          return fetch(API + '/job_listings', {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_KEY,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify({
+              title: title.substring(0, 500),
+              company: company.substring(0, 300),
+              url: url || null,
+              description: description || null,
+              source: 'linkedin',
+              status: 'ready',
+              tier: 1,
+              metadata: { added_via: 'bookmarklet_redirect' }
+            })
+          });
+        })
+        .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function(){ setStatus('Vaga salva com sucesso! Pode fechar esta aba.', true); })
+        .catch(function(e){ setStatus(e.message || String(e), false); console.error(e); });
+      };
+
+      if (!elTitle.value && !elCompany.value) {
+        setStatus('Nao consegui ler os dados automaticamente. Preencha titulo/empresa e clique Salvar.', false);
+      }
+    })();
+  </script>
+</body>
+</html>
