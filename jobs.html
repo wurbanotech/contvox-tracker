@@ -109,6 +109,8 @@
         .filter-bar button:hover { border-color: var(--accent); color: var(--text); }
         .filter-bar button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
+        .filter-section .filter-header:hover span:first-child { color: var(--accent); }
+
         /* Job Cards */
         .jobs-grid { display: grid; gap: 12px; }
         .job-card {
@@ -274,6 +276,16 @@
         <!-- Tier Filter -->
         <div class="filter-bar" id="tierFilter"></div>
 
+        <!-- Platform Filter -->
+        <div class="filter-section" id="platformSection" style="margin-bottom:16px">
+            <div class="filter-header" onclick="togglePlatformFilter()" style="cursor:pointer;display:flex;align-items:center;gap:8px;margin-bottom:8px">
+                <span style="font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px">Plataforma</span>
+                <span id="platformToggle" style="font-size:10px;color:var(--text-dim);transition:transform .2s">&#9660;</span>
+                <span id="platformActive" style="font-size:11px;color:var(--accent);font-weight:600;display:none"></span>
+            </div>
+            <div class="filter-bar" id="platformFilter" style="display:none"></div>
+        </div>
+
         <!-- Jobs Grid -->
         <div class="jobs-grid" id="jobsGrid"></div>
     </div>
@@ -349,6 +361,83 @@
     let allJobs = [];
     let currentFilter = 'all';
     let currentTier = 'all';
+    let currentPlatform = 'all';
+    let platformExpanded = false;
+
+    // Normalize source names for display
+    const PLATFORM_LABELS = {
+        'linkedin': 'LinkedIn',
+        'indeed': 'Indeed',
+        'manual': 'Manual',
+    };
+
+    function normalizePlatform(source) {
+        if (!source) return 'Desconhecida';
+        const lower = source.toLowerCase().trim();
+        if (lower.includes('linkedin')) return 'LinkedIn';
+        if (lower.includes('indeed')) return 'Indeed';
+        if (lower.includes('catho')) return 'Catho';
+        if (lower.includes('quickin')) return 'Quickin';
+        if (lower.includes('gupy')) return 'Gupy';
+        if (lower.includes('empregos')) return 'Empregos.com.br';
+        if (lower.includes('talent.com') || lower.includes('talent')) return 'Talent.com';
+        if (lower.includes('glassdoor')) return 'Glassdoor';
+        if (lower.includes('vagas')) return 'Vagas.com.br';
+        if (lower.includes('randstad')) return 'Randstad';
+        if (lower.includes('robert half')) return 'Robert Half';
+        if (lower.includes('dice')) return 'Dice';
+        if (lower.includes('jobrapido')) return 'Jobrapido';
+        if (lower.includes('snagajob')) return 'Snagajob';
+        if (lower.includes('whatjobs')) return 'WhatJobs';
+        if (lower.includes('jobilize')) return 'Jobilize';
+        if (lower.includes('career vault')) return 'Career Vault';
+        if (lower.includes('ladders')) return 'Ladders';
+        if (lower.includes('jobgether')) return 'Jobgether';
+        if (lower === 'manual') return 'Manual';
+        return source; // Keep original for uncommon ones
+    }
+
+    function getPlatformCounts() {
+        const counts = {};
+        allJobs.forEach(j => {
+            const plat = normalizePlatform(j.source);
+            counts[plat] = (counts[plat] || 0) + 1;
+        });
+        return counts;
+    }
+
+    function togglePlatformFilter() {
+        platformExpanded = !platformExpanded;
+        document.getElementById('platformFilter').style.display = platformExpanded ? 'flex' : 'none';
+        document.getElementById('platformToggle').style.transform = platformExpanded ? 'rotate(180deg)' : '';
+    }
+
+    function filterByPlatform(platform) {
+        currentPlatform = currentPlatform === platform ? 'all' : platform;
+        applyFilters();
+        renderPlatformFilter();
+    }
+
+    function renderPlatformFilter() {
+        const el = document.getElementById('platformFilter');
+        const counts = getPlatformCounts();
+        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+        let html = `<button class="${currentPlatform==='all'?'active':''}" onclick="filterByPlatform('all')">Todas (${allJobs.length})</button>`;
+        sorted.forEach(([plat, count]) => {
+            html += `<button class="${currentPlatform===plat?'active':''}" onclick="filterByPlatform('${plat.replace(/'/g, "\\'")}')">${plat} (${count})</button>`;
+        });
+        el.innerHTML = html;
+
+        // Show active platform indicator
+        const indicator = document.getElementById('platformActive');
+        if (currentPlatform !== 'all') {
+            indicator.textContent = currentPlatform;
+            indicator.style.display = 'inline';
+        } else {
+            indicator.style.display = 'none';
+        }
+    }
 
     // ── Toast ──
     function showToast(msg, ok = true) {
@@ -656,9 +745,11 @@
         let filtered = [...allJobs];
         if (currentFilter !== 'all') filtered = filtered.filter(j => j.status === currentFilter);
         if (currentTier !== 'all') filtered = filtered.filter(j => String(j.tier) === currentTier);
+        if (currentPlatform !== 'all') filtered = filtered.filter(j => normalizePlatform(j.source) === currentPlatform);
         filtered.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
         renderJobs(filtered);
         renderTierFilter();
+        renderPlatformFilter();
         // Update funnel active state
         document.querySelectorAll('.funnel-step').forEach(el => {
             el.classList.toggle('active', el.onclick?.toString().includes(`'${currentFilter}'`));
