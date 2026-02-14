@@ -361,7 +361,7 @@
     let allJobs = [];
     let currentFilter = 'all';
     let currentTier = 'all';
-    let currentPlatform = 'all';
+    let selectedPlatforms = new Set(); // empty = all
     let platformExpanded = false;
 
     // Normalize source names for display
@@ -413,26 +413,33 @@
     }
 
     function filterByPlatform(platform) {
-        currentPlatform = currentPlatform === platform ? 'all' : platform;
+        if (platform === 'all') {
+            selectedPlatforms.clear();
+        } else if (selectedPlatforms.has(platform)) {
+            selectedPlatforms.delete(platform);
+        } else {
+            selectedPlatforms.add(platform);
+        }
         applyFilters();
-        renderPlatformFilter();
     }
 
     function renderPlatformFilter() {
         const el = document.getElementById('platformFilter');
         const counts = getPlatformCounts();
         const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+        const none = selectedPlatforms.size === 0;
 
-        let html = `<button class="${currentPlatform==='all'?'active':''}" onclick="filterByPlatform('all')">Todas (${allJobs.length})</button>`;
+        let html = `<button class="${none?'active':''}" onclick="filterByPlatform('all')">Todas (${allJobs.length})</button>`;
         sorted.forEach(([plat, count]) => {
-            html += `<button class="${currentPlatform===plat?'active':''}" onclick="filterByPlatform('${plat.replace(/'/g, "\\'")}')">${plat} (${count})</button>`;
+            const sel = selectedPlatforms.has(plat);
+            html += `<button class="${sel?'active':''}" onclick="filterByPlatform('${plat.replace(/'/g, "\\'")}')">${plat} (${count})</button>`;
         });
         el.innerHTML = html;
 
         // Show active platform indicator
         const indicator = document.getElementById('platformActive');
-        if (currentPlatform !== 'all') {
-            indicator.textContent = currentPlatform;
+        if (selectedPlatforms.size > 0) {
+            indicator.textContent = [...selectedPlatforms].join(', ');
             indicator.style.display = 'inline';
         } else {
             indicator.style.display = 'none';
@@ -745,7 +752,7 @@
         let filtered = [...allJobs];
         if (currentFilter !== 'all') filtered = filtered.filter(j => j.status === currentFilter);
         if (currentTier !== 'all') filtered = filtered.filter(j => String(j.tier) === currentTier);
-        if (currentPlatform !== 'all') filtered = filtered.filter(j => normalizePlatform(j.source) === currentPlatform);
+        if (selectedPlatforms.size > 0) filtered = filtered.filter(j => selectedPlatforms.has(normalizePlatform(j.source)));
         filtered.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
         renderJobs(filtered);
         renderTierFilter();
