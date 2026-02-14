@@ -71,7 +71,7 @@
             <div class="logo">NEBULA <span>Bookmarklet</span></div>
             <h1>Salvar Vagas do LinkedIn</h1>
             <p class="subtitle">Adicione vagas do LinkedIn ao seu tracker com um clique</p>
-            <span class="site-version">v2026.02.14-1341</span>
+            <span class="site-version">v2026.02.14-1450</span>
         </div>
 
         <div class="install-box">
@@ -130,7 +130,9 @@
                 })
                 .then(function (code) {
                     var min = code.replace(/\s*\n\s*/g, ' ').replace(/\s+/g, ' ').trim();
-                    link.setAttribute('href', 'javascript:' + min);
+                    var encoded = encodeURIComponent(min);
+                    var bookmarklet = "javascript:(function(){try{var c=decodeURIComponent('" + encoded + "');(0,eval)(c);}catch(e){try{var s=document.createElement('script');s.text=c;document.documentElement.appendChild(s);s.remove();}catch(e2){alert('Erro no bookmarklet: '+(e2.message||e.message));console.error(e,e2);}}})();";
+                    link.setAttribute('href', bookmarklet);
                     status.textContent = 'Pronto: agora arraste para a barra de favoritos';
                 })
                 .catch(function (err) {
