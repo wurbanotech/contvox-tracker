@@ -222,23 +222,14 @@
         .status-grid button:hover { border-color: var(--accent); color: var(--text); }
         .status-grid button.current { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
-        /* Sync Banner */
-        .sync-banner {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: #1e293b; border-top: 2px solid var(--accent);
-            padding: 12px 20px; z-index: 300; display: none;
-            align-items: center; justify-content: space-between; gap: 12px;
+        /* Toast */
+        .toast-show { transform: translateY(0) !important; opacity: 1 !important; }
+        .toast-ok { background: #166534; color: #bbf7d0; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .toast-err { background: #7f1d1d; color: #fecaca; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .loading-spinner {
+            display: none; text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px;
         }
-        .sync-banner.show { display: flex; }
-        .sync-banner .sync-info { font-size: 13px; color: var(--text); }
-        .sync-banner .sync-info strong { color: var(--accent); }
-        .sync-banner button {
-            padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
-            cursor: pointer; border: none; transition: all .15s;
-        }
-        .sync-banner .btn-copy { background: var(--accent); color: #fff; }
-        .sync-banner .btn-copy:hover { filter: brightness(1.1); }
-        .sync-banner .btn-dismiss { background: var(--bg-secondary); color: var(--text-muted); }
+        .loading-spinner.show { display: block; }
 
         @media (max-width: 600px) {
             .stats-bar { grid-template-columns: repeat(3, 1fr); }
@@ -281,16 +272,21 @@
         <div class="detail-panel" id="detailPanel"></div>
     </div>
 
-    <!-- Sync Banner -->
-    <div class="sync-banner" id="syncBanner">
-        <div class="sync-info"><strong id="syncCount">0</strong> alterações pendentes</div>
-        <div style="display:flex;gap:8px">
-            <button class="btn-copy" onclick="copySyncCommands()">📋 Copiar Comandos</button>
-            <button class="btn-dismiss" onclick="clearPending()">✕ Limpar</button>
-        </div>
-    </div>
+    <!-- Toast -->
+    <div id="toast" style="position:fixed;bottom:24px;right:24px;padding:14px 24px;border-radius:10px;font-size:14px;font-weight:600;z-index:300;transform:translateY(100px);opacity:0;transition:all .3s;pointer-events:none"></div>
 
     <script>
+    // ── Supabase Config ──
+    const SUPABASE_URL = 'https://hlpudkddsvhfngluqmkq.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhscHVka2Rkc3ZoZm5nbHVxbWtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEwMzMwNjYsImV4cCI6MjA4NjYwOTA2Nn0.dUQgXSDygDhUYsdzb-y1qpHXhzRBjF54vxoTt21E5Mo';
+    const API = `${SUPABASE_URL}/rest/v1`;
+    const HEADERS = {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+    };
+
     const STATUS_CONFIG = {
         new:          { emoji: '🆕', color: '#6b7280', label: 'Nova' },
         analyzing:    { emoji: '🔄', color: '#f59e0b', label: 'Analisando' },
@@ -317,71 +313,73 @@
     let currentFilter = 'all';
     let currentTier = 'all';
 
-    // --- localStorage status management ---
-    const STORAGE_KEY = 'nebula_job_status_changes';
-
-    function getPendingChanges() {
-        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+    // ── Toast ──
+    function showToast(msg, ok = true) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.className = ok ? 'toast-ok toast-show' : 'toast-err toast-show';
+        setTimeout(() => t.className = '', 3000);
     }
 
-    function savePendingChange(jobId, newStatus) {
-        const changes = getPendingChanges();
-        const job = allJobs.find(j => j.id === jobId);
-        if (!job) return;
-        // If reverting to original, remove from pending
-        if (job._originalStatus === newStatus) {
-            delete changes[jobId];
-        } else {
-            changes[jobId] = { status: newStatus, company: job.company, title: job.title };
+    // ── Supabase API ──
+    async function loadJobs() {
+        try {
+            const url = `${API}/job_listings?select=id,title,company,url,fit_score,status,remote,location,salary_min,salary_max,tier,company_size,source,status_notes,export_folder,status_changed_at,found_at,created_at,description,metadata,job_applications(probability,next_action,next_action_date,resume_optimized,cover_letter,interview_prep,key_matches,gaps)&deleted_at=is.null&order=tier.asc.nullslast,fit_score.desc.nullslast`;
+            const res = await fetch(url, { headers: HEADERS });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const rows = await res.json();
+            // Flatten the joined application data
+            allJobs = rows.map(j => {
+                const app = (j.job_applications && j.job_applications[0]) || {};
+                return {
+                    ...j,
+                    probability: app.probability,
+                    next_action: app.next_action,
+                    next_action_date: app.next_action_date,
+                    has_resume: !!app.resume_optimized,
+                    has_cover_letter: !!app.cover_letter,
+                    has_interview_prep: !!app.interview_prep,
+                    key_matches: app.key_matches || [],
+                    gaps: app.gaps || [],
+                };
+            });
+            document.getElementById('updateTime').textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`;
+            refreshView();
+        } catch (e) {
+            console.error(e);
+            document.getElementById('jobsGrid').innerHTML =
+                '<div class="empty"><div class="icon">⚠️</div><p>Erro ao conectar com Supabase. Verifique console.</p></div>';
         }
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(changes));
-        updateSyncBanner();
     }
 
-    function applyLocalChanges() {
-        const changes = getPendingChanges();
-        allJobs.forEach(j => {
-            j._originalStatus = j._originalStatus || j.status;
-            if (changes[j.id]) j.status = changes[j.id].status;
-        });
-    }
-
-    function updateSyncBanner() {
-        const changes = getPendingChanges();
-        const count = Object.keys(changes).length;
-        document.getElementById('syncCount').textContent = count;
-        document.getElementById('syncBanner').classList.toggle('show', count > 0);
-    }
-
-    function copySyncCommands() {
-        const changes = getPendingChanges();
-        const cmds = Object.entries(changes).map(([id, c]) =>
-            `python -m core_logic.workflows.job_hunter_cli status --job-id ${id} --set ${c.status}`
-        ).join('\n');
-        navigator.clipboard.writeText(cmds).then(() => {
-            const btn = document.querySelector('.btn-copy');
-            btn.textContent = '✅ Copiado!';
-            setTimeout(() => btn.textContent = '📋 Copiar Comandos', 2000);
-        });
-    }
-
-    function clearPending() {
-        localStorage.removeItem(STORAGE_KEY);
-        // Revert visual status
-        allJobs.forEach(j => { if (j._originalStatus) j.status = j._originalStatus; });
-        updateSyncBanner();
-        refreshView();
-    }
-
-    function changeStatus(jobId, newStatus, evt) {
+    async function changeStatus(jobId, newStatus, evt) {
         if (evt) evt.stopPropagation();
         const job = allJobs.find(j => j.id === jobId);
         if (!job) return;
+        const oldStatus = job.status;
+        // Optimistic update
         job.status = newStatus;
-        savePendingChange(jobId, newStatus);
         refreshView();
-        // If detail is open, refresh it
         if (document.getElementById('detailOverlay').classList.contains('show')) showDetail(jobId);
+        try {
+            const res = await fetch(`${API}/job_listings?id=eq.${jobId}`, {
+                method: 'PATCH',
+                headers: HEADERS,
+                body: JSON.stringify({
+                    status: newStatus,
+                    status_changed_at: new Date().toISOString(),
+                }),
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const label = STATUS_CONFIG[newStatus]?.label || newStatus;
+            showToast(`${STATUS_CONFIG[newStatus]?.emoji || ''} ${label}`);
+        } catch (e) {
+            // Rollback
+            job.status = oldStatus;
+            refreshView();
+            showToast('Erro ao salvar status', false);
+            console.error(e);
+        }
     }
 
     function refreshView() {
@@ -609,25 +607,10 @@
         };
     }
 
-    // Load data
-    fetch('jobs.json')
-        .then(r => r.json())
-        .then(data => {
-            allJobs = data.jobs || [];
-            applyLocalChanges();
-            const stats = computeStats(allJobs);
-            document.getElementById('updateTime').textContent = data.generated_at ? `Atualizado: ${data.generated_at}` : '';
-            renderStats(stats);
-            renderFunnel(stats);
-            renderTierFilter();
-            allJobs.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
-            renderJobs(allJobs);
-            updateSyncBanner();
-        })
-        .catch(err => {
-            document.getElementById('jobsGrid').innerHTML =
-                '<div class="empty"><div class="icon">⚠️</div><p>Erro ao carregar dados. Execute: <code>python -m core_logic.workflows.job_hunter_cli deploy-dashboard</code></p></div>';
-        });
+    // Load from Supabase
+    loadJobs();
+    // Auto-refresh every 60s
+    setInterval(loadJobs, 60000);
 
     // Close overlay on ESC or click outside
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
