@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEBULA - Instalar Bookmarklet</title>
+    <style>
+        :root { --bg: #0a0a0f; --surface: #12121a; --border: #1e1e2e; --text: #e2e8f0; --text-muted: #64748b; --accent: #6366f1; --green: #10b981; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 640px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 48px; }
+        .logo { font-size: 28px; font-weight: 800; letter-spacing: 2px; color: var(--accent); }
+        .logo span { font-weight: 400; font-size: 16px; color: var(--text-muted); letter-spacing: 0; margin-left: 8px; }
+        h1 { font-size: 22px; margin-top: 16px; }
+        .subtitle { color: var(--text-muted); margin-top: 8px; font-size: 14px; }
+
+        .install-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 32px; }
+        .install-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+
+        .bookmarklet-link {
+            display: inline-block; padding: 16px 32px; background: var(--accent); color: #fff;
+            font-size: 16px; font-weight: 700; border-radius: 12px; text-decoration: none;
+            cursor: grab; transition: all .2s; box-shadow: 0 4px 16px rgba(99,102,241,.3);
+        }
+        .bookmarklet-link:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(99,102,241,.4); }
+        .bookmarklet-link:active { cursor: grabbing; }
+
+        .drag-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; color: var(--green); font-size: 13px; font-weight: 600; }
+
+        .steps { margin-bottom: 32px; }
+        .steps h2 { font-size: 16px; margin-bottom: 16px; color: var(--accent); }
+        .step { display: flex; gap: 16px; align-items: flex-start; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; }
+        .step-num { flex-shrink: 0; width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .step-text { font-size: 14px; line-height: 1.5; }
+        .step-text strong { color: var(--accent); }
+
+        .info { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+        .info strong { color: var(--text); }
+
+        .back-link { display: block; text-align: center; margin-top: 32px; color: var(--accent); font-size: 14px; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">NEBULA <span>Bookmarklet</span></div>
+            <h1>Salvar Vagas do LinkedIn</h1>
+            <p class="subtitle">Adicione vagas do LinkedIn ao seu tracker com um clique</p>
+        </div>
+
+        <div class="install-box">
+            <p>Arraste o botao abaixo para a <strong>barra de favoritos</strong> do navegador:</p>
+            <a class="bookmarklet-link" id="bookmarkletLink" href="#">Salvar Vaga</a>
+            <div class="drag-hint">Arraste para a barra de favoritos</div>
+        </div>
+
+        <div class="steps">
+            <h2>Como usar</h2>
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">Ative a <strong>barra de favoritos</strong> no navegador (Ctrl+Shift+B no Chrome)</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text"><strong>Arraste</strong> o botao roxo acima para a barra de favoritos</div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">Abra uma <strong>vaga no LinkedIn</strong> (linkedin.com/jobs/view/...)</div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-text">Clique em <strong>"Salvar Vaga"</strong> na barra de favoritos</div>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-text">A vaga aparece no <strong>tracker</strong> como "Pronta" com tier 1</div>
+            </div>
+        </div>
+
+        <div class="info">
+            <strong>O que e extraido:</strong> titulo, empresa, localizacao, descricao completa, URL, e tipo (remote/hybrid/onsite).<br><br>
+            <strong>Dedup:</strong> se a vaga ja existe no tracker (mesmo titulo + empresa), nao duplica.<br><br>
+            <strong>Limitacao:</strong> funciona apenas no desktop. No celular, use o formulario manual no tracker.
+        </div>
+
+        <a class="back-link" href="jobs.html">Voltar para o Tracker</a>
+    </div>
+
+    <script>
+    // Load bookmarklet.js and set it as the href
+    fetch('bookmarklet.js')
+        .then(r => r.text())
+        .then(code => {
+            const min = code.replace(/\s*\n\s*/g, ' ').replace(/\s+/g, ' ').trim();
+            document.getElementById('bookmarkletLink').href = 'javascript:' + min;
+        })
+        .catch(e => console.error('Failed to load bookmarklet:', e));
+    </script>
+</body>
+</html>
