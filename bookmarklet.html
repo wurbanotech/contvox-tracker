@@ -37,6 +37,18 @@
         .bookmarklet-link:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(99,102,241,.4); }
         .bookmarklet-link:active { cursor: grabbing; }
 
+        .bookmarklet-test {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px dashed var(--border);
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+        .bookmarklet-test:hover { color: var(--text); border-color: var(--accent); }
+
         .drag-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; color: var(--green); font-size: 13px; font-weight: 600; }
 
         .steps { margin-bottom: 32px; }
@@ -65,6 +77,8 @@
         <div class="install-box">
             <p>Arraste o botao abaixo para a <strong>barra de favoritos</strong> do navegador:</p>
             <a class="bookmarklet-link" id="bookmarkletLink" href="#">Salvar Vaga</a>
+            <br>
+            <a class="bookmarklet-test" href="javascript:alert('Teste OK: bookmarklet executou nesta pagina')">Teste Bookmarklet (diagnostico)</a>
             <div class="drag-hint" id="bookmarkletStatus">Aguarde: carregando bookmarklet...</div>
         </div>
 
@@ -95,7 +109,11 @@
         <div class="info">
             <strong>O que e extraido:</strong> titulo, empresa, localizacao, descricao completa, URL, e tipo (remote/hybrid/onsite).<br><br>
             <strong>Dedup:</strong> se a vaga ja existe no tracker (mesmo titulo + empresa), nao duplica.<br><br>
-            <strong>Limitacao:</strong> funciona apenas no desktop. No celular, use o formulario manual no tracker.
+            <strong>Limitacao:</strong> funciona apenas no desktop. No celular, use o formulario manual no tracker.<br><br>
+            <strong>Se clicar e nao acontecer nada:</strong><br>
+            1) Reinstale o favorito "Salvar Vaga" (apague o antigo e arraste de novo).<br>
+            2) Teste o favorito "Teste Bookmarklet" numa vaga do LinkedIn.<br>
+            3) Se o teste tambem nao abrir alerta, o navegador/pagina bloqueou bookmarklets; nesse caso use extensao ou console.
         </div>
 
         <a class="back-link" href="jobs.html">Voltar para o Tracker</a>
