@@ -188,6 +188,58 @@
         .empty { text-align: center; padding: 60px 20px; color: var(--text-dim); }
         .empty .icon { font-size: 48px; margin-bottom: 12px; }
 
+        /* Action Buttons */
+        .quick-actions {
+            display: flex; gap: 5px; margin-top: 10px; flex-wrap: wrap;
+        }
+        .quick-actions button {
+            padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: 600;
+            cursor: pointer; border: 1px solid; transition: all .15s; background: transparent;
+        }
+        .quick-actions button:hover { transform: scale(1.05); filter: brightness(1.2); }
+        .btn-applied { border-color: #3b82f6; color: #93c5fd; background: #1e3a5f; }
+        .btn-rejected-me { border-color: #f87171; color: #fecaca; background: #4c1d1d; }
+        .btn-tech { border-color: #6366f1; color: #c7d2fe; background: #312e81; }
+        .btn-manager { border-color: #a855f7; color: #e9d5ff; background: #581c87; }
+        .btn-offer { border-color: #f97316; color: #fed7aa; background: #7c2d12; }
+        .btn-closed { border-color: #6b7280; color: #d1d5db; background: #374151; }
+        .btn-open-url { border-color: #22c55e; color: #bbf7d0; background: #14532d; }
+
+        /* Status Selector in Detail */
+        .status-selector { margin: 16px 0; }
+        .status-selector label {
+            font-size: 11px; color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 0.5px; display: block; margin-bottom: 8px;
+        }
+        .status-grid {
+            display: flex; flex-wrap: wrap; gap: 6px;
+        }
+        .status-grid button {
+            padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg-secondary);
+            color: var(--text-muted); transition: all .15s;
+        }
+        .status-grid button:hover { border-color: var(--accent); color: var(--text); }
+        .status-grid button.current { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+        /* Sync Banner */
+        .sync-banner {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: #1e293b; border-top: 2px solid var(--accent);
+            padding: 12px 20px; z-index: 300; display: none;
+            align-items: center; justify-content: space-between; gap: 12px;
+        }
+        .sync-banner.show { display: flex; }
+        .sync-banner .sync-info { font-size: 13px; color: var(--text); }
+        .sync-banner .sync-info strong { color: var(--accent); }
+        .sync-banner button {
+            padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
+            cursor: pointer; border: none; transition: all .15s;
+        }
+        .sync-banner .btn-copy { background: var(--accent); color: #fff; }
+        .sync-banner .btn-copy:hover { filter: brightness(1.1); }
+        .sync-banner .btn-dismiss { background: var(--bg-secondary); color: var(--text-muted); }
+
         @media (max-width: 600px) {
             .stats-bar { grid-template-columns: repeat(3, 1fr); }
             .funnel-step { min-width: 60px; padding: 8px 4px; }
@@ -229,6 +281,15 @@
         <div class="detail-panel" id="detailPanel"></div>
     </div>
 
+    <!-- Sync Banner -->
+    <div class="sync-banner" id="syncBanner">
+        <div class="sync-info"><strong id="syncCount">0</strong> alterações pendentes</div>
+        <div style="display:flex;gap:8px">
+            <button class="btn-copy" onclick="copySyncCommands()">📋 Copiar Comandos</button>
+            <button class="btn-dismiss" onclick="clearPending()">✕ Limpar</button>
+        </div>
+    </div>
+
     <script>
     const STATUS_CONFIG = {
         new:          { emoji: '🆕', color: '#6b7280', label: 'Nova' },
@@ -255,6 +316,80 @@
     let allJobs = [];
     let currentFilter = 'all';
     let currentTier = 'all';
+
+    // --- localStorage status management ---
+    const STORAGE_KEY = 'nebula_job_status_changes';
+
+    function getPendingChanges() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+    }
+
+    function savePendingChange(jobId, newStatus) {
+        const changes = getPendingChanges();
+        const job = allJobs.find(j => j.id === jobId);
+        if (!job) return;
+        // If reverting to original, remove from pending
+        if (job._originalStatus === newStatus) {
+            delete changes[jobId];
+        } else {
+            changes[jobId] = { status: newStatus, company: job.company, title: job.title };
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(changes));
+        updateSyncBanner();
+    }
+
+    function applyLocalChanges() {
+        const changes = getPendingChanges();
+        allJobs.forEach(j => {
+            j._originalStatus = j._originalStatus || j.status;
+            if (changes[j.id]) j.status = changes[j.id].status;
+        });
+    }
+
+    function updateSyncBanner() {
+        const changes = getPendingChanges();
+        const count = Object.keys(changes).length;
+        document.getElementById('syncCount').textContent = count;
+        document.getElementById('syncBanner').classList.toggle('show', count > 0);
+    }
+
+    function copySyncCommands() {
+        const changes = getPendingChanges();
+        const cmds = Object.entries(changes).map(([id, c]) =>
+            `python -m core_logic.workflows.job_hunter_cli status --job-id ${id} --set ${c.status}`
+        ).join('\n');
+        navigator.clipboard.writeText(cmds).then(() => {
+            const btn = document.querySelector('.btn-copy');
+            btn.textContent = '✅ Copiado!';
+            setTimeout(() => btn.textContent = '📋 Copiar Comandos', 2000);
+        });
+    }
+
+    function clearPending() {
+        localStorage.removeItem(STORAGE_KEY);
+        // Revert visual status
+        allJobs.forEach(j => { if (j._originalStatus) j.status = j._originalStatus; });
+        updateSyncBanner();
+        refreshView();
+    }
+
+    function changeStatus(jobId, newStatus, evt) {
+        if (evt) evt.stopPropagation();
+        const job = allJobs.find(j => j.id === jobId);
+        if (!job) return;
+        job.status = newStatus;
+        savePendingChange(jobId, newStatus);
+        refreshView();
+        // If detail is open, refresh it
+        if (document.getElementById('detailOverlay').classList.contains('show')) showDetail(jobId);
+    }
+
+    function refreshView() {
+        const stats = computeStats(allJobs);
+        renderStats(stats);
+        renderFunnel(stats);
+        applyFilters();
+    }
 
     function fitColor(score) {
         if (score >= 80) return '#22c55e';
@@ -311,6 +446,26 @@
             const tierLabel = {1:'⭐ T1',2:'👍 T2',3:'📋 T3'}[tier] || '';
             const dimmed = ['rejected','rejected_by_me','rejected_by_recruiter','closed','expired','withdrawn'].includes(j.status) ? 'dimmed' : '';
 
+            const actions = j.status === 'ready' ? `
+                <div class="quick-actions">
+                    <button class="btn-applied" onclick="changeStatus('${j.id}','applied',event)">📤 Apliquei</button>
+                    <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_me',event)">🚫 Ignorar</button>
+                    ${j.url ? `<a href="${j.url}" target="_blank" onclick="event.stopPropagation()" style="text-decoration:none"><button class="btn-open-url">🔗 Abrir</button></a>` : ''}
+                </div>` : j.status === 'applied' ? `
+                <div class="quick-actions">
+                    <button class="btn-tech" onclick="changeStatus('${j.id}','tech_interview',event)">💻 Entrev. Técnica</button>
+                    <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
+                    <button class="btn-closed" onclick="changeStatus('${j.id}','closed',event)">🔒 Fechada</button>
+                </div>` : j.status === 'tech_interview' ? `
+                <div class="quick-actions">
+                    <button class="btn-manager" onclick="changeStatus('${j.id}','manager_interview',event)">👔 Entrev. Gestor</button>
+                    <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
+                </div>` : j.status === 'manager_interview' ? `
+                <div class="quick-actions">
+                    <button class="btn-offer" onclick="changeStatus('${j.id}','offer',event)">💰 Oferta</button>
+                    <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
+                </div>` : '';
+
             return `<div class="job-card ${dimmed}" onclick="showDetail('${j.id}')">
                 <div class="job-top">
                     <div>
@@ -335,6 +490,7 @@
                     <div class="bar-bg"><div class="bar-fill" style="width:${fit}%;background:${fc}"></div></div>
                     <div class="bar-label" style="color:${fc}">${fit}%</div>
                 </div>` : ''}
+                ${actions}
             </div>`;
         }).join('');
     }
@@ -371,6 +527,14 @@
                     <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase">Gaps</div>
                     <div class="chips">${j.gaps.map(g => `<span class="chip gap">⚠️ ${g}</span>`).join('')}</div>
                 </div>` : ''}
+            <div class="status-selector">
+                <label>Alterar Status</label>
+                <div class="status-grid">
+                    ${Object.entries(STATUS_CONFIG).map(([k, v]) =>
+                        `<button class="${j.status===k?'current':''}" onclick="changeStatus('${j.id}','${k}')">${v.emoji} ${v.label}</button>`
+                    ).join('')}
+                </div>
+            </div>
             ${j.description ? `
                 <div class="tabs">
                     <button class="active" onclick="switchTab(this,'tab-desc')">Descrição</button>
@@ -450,13 +614,15 @@
         .then(r => r.json())
         .then(data => {
             allJobs = data.jobs || [];
-            const stats = data.stats || computeStats(allJobs);
+            applyLocalChanges();
+            const stats = computeStats(allJobs);
             document.getElementById('updateTime').textContent = data.generated_at ? `Atualizado: ${data.generated_at}` : '';
             renderStats(stats);
             renderFunnel(stats);
             renderTierFilter();
             allJobs.sort((a, b) => (b.fit_score || 0) - (a.fit_score || 0));
             renderJobs(allJobs);
+            updateSyncBanner();
         })
         .catch(err => {
             document.getElementById('jobsGrid').innerHTML =
