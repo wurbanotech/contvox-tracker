@@ -452,6 +452,7 @@
 
             const actions = j.status === 'ready' ? `
                 <div class="quick-actions">
+                    <button class="btn-open-url" onclick="copyPrepare('${j.id}',event)">📄 Preparar Docs</button>
                     <button class="btn-applied" onclick="changeStatus('${j.id}','applied',event)">📤 Apliquei</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_me',event)">🚫 Ignorar</button>
                     ${j.url ? `<a href="${j.url}" target="_blank" onclick="event.stopPropagation()" style="text-decoration:none"><button class="btn-open-url">🔗 Abrir</button></a>` : ''}
@@ -460,7 +461,6 @@
                     <button class="btn-tech" onclick="changeStatus('${j.id}','tech_interview',event)">💻 Entrev. Técnica</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
                     <button class="btn-closed" onclick="changeStatus('${j.id}','closed',event)">🔒 Fechada</button>
-                    ${!j.has_resume ? `<button class="btn-open-url" onclick="copyPrepare('${j.id}',event)">📄 Preparar Docs</button>` : ''}
                 </div>` : j.status === 'tech_interview' ? `
                 <div class="quick-actions">
                     <button class="btn-manager" onclick="changeStatus('${j.id}','manager_interview',event)">👔 Entrev. Gestor</button>
