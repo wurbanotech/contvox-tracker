@@ -257,7 +257,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.14-1642</span>
+                    <span class="site-version" id="siteVersion">v2026.02.14-1744</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -420,22 +420,44 @@
         }
     }
 
-    function copyPrepare(jobId, evt) {
+    const JOB_API = 'http://localhost:8200/api';
+
+    async function processJob(jobId, evt) {
         if (evt) evt.stopPropagation();
-        const cmd = `python -m core_logic.workflows.job_hunter_cli process --job-id ${jobId}`;
+        const job = allJobs.find(j => j.id === jobId);
+        if (!job) return;
 
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(cmd)
-                .then(() => showToast('Comando copiado. Cole no terminal para analisar a vaga.'))
-                .catch(() => {
-                    window.prompt('Copie o comando abaixo e rode no terminal:', cmd);
-                    showToast('Nao foi possivel copiar automaticamente. Use o comando exibido.', false);
-                });
-            return;
+        // Optimistic UI: show analyzing
+        const oldStatus = job.status;
+        job.status = 'analyzing';
+        refreshView();
+        showToast('Analisando vaga com IA... aguarde.');
+
+        try {
+            const res = await fetch(`${JOB_API}/job/${jobId}/process`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const data = await res.json();
+
+            if (!data.ok) {
+                throw new Error(data.error || 'Erro desconhecido');
+            }
+
+            showToast(`Analise concluida! Fit: ${data.fit_score || '?'}/100`);
+            // Reload fresh data from Supabase
+            await loadJobs();
+        } catch (e) {
+            console.error('Process job error:', e);
+            if (e.message && e.message.includes('Failed to fetch')) {
+                showToast('Servidor local offline. Rode: uvicorn core_logic.api.job_dashboard:app --port 8200', false);
+            } else {
+                showToast('Erro: ' + e.message, false);
+            }
+            // Rollback
+            job.status = oldStatus;
+            refreshView();
         }
-
-        window.prompt('Copie o comando abaixo e rode no terminal:', cmd);
-        showToast('Clipboard indisponivel. Comando exibido para copia.', false);
     }
 
     function refreshView() {
@@ -502,7 +524,7 @@
 
             const actions = j.status === 'ready' ? `
                 <div class="quick-actions">
-                    <button class="btn-open-url" onclick="copyPrepare('${j.id}',event)">📄 Preparar Docs</button>
+                    <button class="btn-open-url" onclick="processJob('${j.id}',event)">📄 Preparar Docs</button>
                     <button class="btn-applied" onclick="changeStatus('${j.id}','applied',event)">📤 Apliquei</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_me',event)">🚫 Ignorar</button>
                     ${j.url ? `<a href="${j.url}" target="_blank" onclick="event.stopPropagation()" style="text-decoration:none"><button class="btn-open-url">🔗 Abrir</button></a>` : ''}
