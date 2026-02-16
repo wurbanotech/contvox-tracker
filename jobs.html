@@ -215,6 +215,82 @@
         .btn-offer { border-color: #f97316; color: #fed7aa; background: #7c2d12; }
         .btn-closed { border-color: #6b7280; color: #d1d5db; background: #374151; }
         .btn-open-url { border-color: #22c55e; color: #bbf7d0; background: #14532d; }
+        .btn-download { border-color: #14b8a6; color: #99f6e4; background: #134e4a; }
+        .btn-cover { border-color: #f59e0b; color: #fde68a; background: #78350f; }
+
+        .fit-diagnosis {
+            margin: 16px 0;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+        }
+        .fit-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .fit-title {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .fit-target {
+            font-size: 11px;
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            background: rgba(245, 158, 11, 0.08);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-weight: 700;
+        }
+        .fit-summary {
+            font-size: 13px;
+            color: #dbe3ee;
+            line-height: 1.55;
+            margin-bottom: 12px;
+        }
+        .fit-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .fit-column {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .fit-column-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            letter-spacing: 0.4px;
+        }
+        .fit-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .fit-list li {
+            font-size: 12px;
+            line-height: 1.45;
+            color: #d6dde8;
+            padding-left: 2px;
+        }
+        .fit-empty {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.45;
+        }
 
         /* Status Selector in Detail */
         .status-selector { margin: 16px 0; }
@@ -247,6 +323,7 @@
             .funnel-step { min-width: 60px; padding: 8px 4px; }
             .funnel-step .count { font-size: 18px; }
             .job-card { padding: 14px; }
+            .fit-columns { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -259,7 +336,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.14-1744</span>
+                    <span class="site-version" id="siteVersion">v2026.02.16-CL01</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -300,6 +377,12 @@
 
     <script>
     // ── Supabase Config ──
+    // SECURITY NOTE: This is the Supabase ANON key (public/client-side key).
+    // It is safe to expose in frontend ONLY because Row Level Security (RLS) is
+    // enabled on all tables. The anon role can only SELECT job_listings,
+    // job_applications, and UPDATE status on job_listings.
+    // Sensitive tables (user_profiles, ai_usage, ai_cache) are blocked.
+    // See: database/migrations/005_rls_policies.sql
     const SUPABASE_URL = 'https://hlpudkddsvhfngluqmkq.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhscHVka2Rkc3ZoZm5nbHVxbWtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEwMzMwNjYsImV4cCI6MjA4NjYwOTA2Nn0.dUQgXSDygDhUYsdzb-y1qpHXhzRBjF54vxoTt21E5Mo';
     const API = `${SUPABASE_URL}/rest/v1`;
@@ -397,6 +480,195 @@
         return source; // Keep original for uncommon ones
     }
 
+    function normalizeInsightList(raw) {
+        const out = [];
+
+        const pushClean = (text) => {
+            const clean = String(text || '')
+                .replace(/^[-,*\s\d.)]+/, '')
+                .replace(/^['"`\[]+|['"`\],]+$/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+            if (!clean || clean.length < 3) return;
+            out.push(clean);
+        };
+
+        const collect = (value) => {
+            if (value == null) return;
+
+            if (Array.isArray(value)) {
+                value.forEach(collect);
+                return;
+            }
+
+            let text = String(value).trim();
+            if (!text) return;
+
+            if ((text.startsWith('[') && text.endsWith(']')) || (text.startsWith('{') && text.endsWith('}'))) {
+                try {
+                    collect(JSON.parse(text));
+                    return;
+                } catch (_) {
+                    // Keep fallback parsing below.
+                }
+            }
+
+            const quoted = [...text.matchAll(/"([^"]+)"/g)].map(m => m[1].trim()).filter(Boolean);
+            if (quoted.length >= 2) {
+                quoted.forEach(pushClean);
+                return;
+            }
+
+            const parts = text
+                .replace(/^\[|\]$/g, ' ')
+                .split(/\n|;|•/)
+                .map(p => p.trim())
+                .filter(Boolean);
+
+            if (parts.length > 1) {
+                parts.forEach(pushClean);
+                return;
+            }
+
+            pushClean(text);
+        };
+
+        collect(raw);
+        return [...new Set(out)];
+    }
+
+    function slugifyFilename(value) {
+        return (value || 'vaga')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '_')
+            .replace(/^_+|_+$/g, '')
+            .slice(0, 60) || 'vaga';
+    }
+
+    function isFullyAnalyzed(job) {
+        if (!job) return false;
+        if (job.status === 'new' || job.status === 'analyzing') return false;
+        return Boolean(
+            Number(job.fit_score || 0) > 0
+            || job.has_resume
+            || job.has_cover_letter
+            || (job.key_matches && job.key_matches.length)
+            || (job.gaps && job.gaps.length)
+            || (job.fit_analysis && String(job.fit_analysis).trim())
+        );
+    }
+
+    function canDownloadResume(job) {
+        return isFullyAnalyzed(job) && Boolean(job.resume_optimized && String(job.resume_optimized).trim());
+    }
+
+    function canDownloadCoverLetter(job) {
+        return isFullyAnalyzed(job) && Boolean(job.cover_letter && String(job.cover_letter).trim());
+    }
+
+    function downloadTextDocument(content, filename) {
+        const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+        const fileUrl = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = fileUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(fileUrl);
+    }
+
+    function downloadResume(jobId, evt) {
+        if (evt) evt.stopPropagation();
+        const job = allJobs.find(j => j.id === jobId);
+        if (!job || !canDownloadResume(job)) {
+            showToast('Currículo otimizado ainda não disponível', false);
+            return;
+        }
+
+        const filename = `curriculo_${slugifyFilename(job.company)}_${slugifyFilename(job.title)}.md`;
+        downloadTextDocument(job.resume_optimized, filename);
+
+        showToast('Currículo baixado com sucesso');
+    }
+
+    function downloadCoverLetter(jobId, evt) {
+        if (evt) evt.stopPropagation();
+        const job = allJobs.find(j => j.id === jobId);
+        if (!job || !canDownloadCoverLetter(job)) {
+            showToast('Cover Letter ainda não disponível', false);
+            return;
+        }
+
+        const filename = `cover_letter_${slugifyFilename(job.company)}_${slugifyFilename(job.title)}.md`;
+        downloadTextDocument(job.cover_letter, filename);
+
+        showToast('Cover Letter baixada com sucesso');
+    }
+
+    function renderDocButtons(job) {
+        const buttons = [];
+        if (canDownloadResume(job)) {
+            buttons.push(`<button class="btn-download" onclick="downloadResume('${job.id}',event)">📄 Currículo</button>`);
+        }
+        if (canDownloadCoverLetter(job)) {
+            buttons.push(`<button class="btn-cover" onclick="downloadCoverLetter('${job.id}',event)">✉️ Cover Letter</button>`);
+        }
+        if (job.url) {
+            buttons.push(`<a href="${job.url}" target="_blank" onclick="event.stopPropagation()" style="text-decoration:none"><button class="btn-open-url">🔗 Abrir vaga</button></a>`);
+        }
+        return buttons.join('');
+    }
+
+    function renderFitDiagnosis(job) {
+        const score = Number(job.fit_score || 0);
+        const matches = normalizeInsightList(job.key_matches || []);
+        const gaps = normalizeInsightList(job.gaps || []);
+        const fitSummary = (job.fit_analysis || '').trim();
+
+        if (!isFullyAnalyzed(job) && !fitSummary && !matches.length && !gaps.length) {
+            return `
+                <div class="fit-diagnosis">
+                    <div class="fit-head"><div class="fit-title">Diagnóstico de Fit</div></div>
+                    <div class="fit-empty">A análise ainda não foi concluída para esta vaga.</div>
+                </div>
+            `;
+        }
+
+        const pointsTo100 = Math.max(0, 100 - Math.min(score, 100));
+
+        const strengthsHtml = matches.length
+            ? `<ul class="fit-list">${matches.slice(0, 8).map(m => `<li>✅ ${escapeHtml(m)}</li>`).join('')}</ul>`
+            : '<div class="fit-empty">Sem pontos fortes estruturados nesta análise.</div>';
+
+        const gapsHtml = gaps.length
+            ? `<ul class="fit-list">${gaps.slice(0, 8).map(g => `<li>⚠️ ${escapeHtml(g)}</li>`).join('')}</ul>`
+            : '<div class="fit-empty">A IA não apontou gaps críticos para esta vaga.</div>';
+
+        return `
+            <div class="fit-diagnosis">
+                <div class="fit-head">
+                    <div class="fit-title">Diagnóstico de Fit</div>
+                    ${score ? `<span class="fit-target">Faltam ${pointsTo100} pts para 100%</span>` : ''}
+                </div>
+                ${fitSummary ? `<div class="fit-summary">${escapeHtml(fitSummary)}</div>` : ''}
+                <div class="fit-columns">
+                    <div class="fit-column">
+                        <div class="fit-column-title">Pontos fortes</div>
+                        ${strengthsHtml}
+                    </div>
+                    <div class="fit-column">
+                        <div class="fit-column-title">O que faltou para 100%</div>
+                        ${gapsHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
     function getPlatformCounts() {
         const counts = {};
         allJobs.forEach(j => {
@@ -457,7 +729,7 @@
     // ── Supabase API ──
     async function loadJobs() {
         try {
-            const url = `${API}/job_listings?select=id,title,company,url,fit_score,status,remote,location,salary_min,salary_max,tier,company_size,source,status_notes,export_folder,status_changed_at,found_at,created_at,description,metadata,job_applications(probability,next_action,next_action_date,resume_optimized,cover_letter,interview_prep,key_matches,gaps)&deleted_at=is.null&order=tier.asc.nullslast,fit_score.desc.nullslast`;
+            const url = `${API}/job_listings?select=id,title,company,url,fit_score,fit_analysis,status,remote,location,salary_min,salary_max,tier,company_size,source,status_notes,export_folder,status_changed_at,found_at,created_at,description,metadata,job_applications(probability,next_action,next_action_date,resume_optimized,cover_letter,interview_prep,key_matches,gaps)&deleted_at=is.null&order=tier.asc.nullslast,fit_score.desc.nullslast`;
             const res = await fetch(url, { headers: HEADERS });
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const rows = await res.json();
@@ -472,8 +744,12 @@
                     has_resume: !!app.resume_optimized,
                     has_cover_letter: !!app.cover_letter,
                     has_interview_prep: !!app.interview_prep,
-                    key_matches: app.key_matches || [],
-                    gaps: app.gaps || [],
+                    resume_optimized: app.resume_optimized || '',
+                    cover_letter: app.cover_letter || '',
+                    interview_prep: app.interview_prep || '',
+                    key_matches: normalizeInsightList(app.key_matches || []),
+                    gaps: normalizeInsightList(app.gaps || []),
+                    fit_analysis: (j.fit_analysis || '').trim(),
                 };
             });
             allJobs = allJobs.filter(j => !needsVisa(j));
@@ -617,27 +893,37 @@
             const tierClass = tier ? `tier-${tier}` : '';
             const tierLabel = {1:'⭐ T1',2:'👍 T2',3:'📋 T3'}[tier] || '';
             const dimmed = ['rejected','rejected_by_me','rejected_by_recruiter','closed','expired','withdrawn'].includes(j.status) ? 'dimmed' : '';
+            const docsActions = renderDocButtons(j);
 
-            const actions = j.status === 'ready' ? `
+            const actions = (j.status === 'new' || j.status === 'analyzing') ? `
                 <div class="quick-actions">
                     <button class="btn-open-url" onclick="processJob('${j.id}',event)">📄 Preparar Docs</button>
+                    <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_me',event)">🚫 Ignorar</button>
+                    ${docsActions}
+                </div>` : j.status === 'ready' ? `
+                <div class="quick-actions">
+                    <button class="btn-open-url" onclick="processJob('${j.id}',event)">🔄 Reprocessar</button>
                     <button class="btn-applied" onclick="changeStatus('${j.id}','applied',event)">📤 Apliquei</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_me',event)">🚫 Ignorar</button>
-                    ${j.url ? `<a href="${j.url}" target="_blank" onclick="event.stopPropagation()" style="text-decoration:none"><button class="btn-open-url">🔗 Abrir</button></a>` : ''}
+                    ${docsActions}
                 </div>` : j.status === 'applied' ? `
                 <div class="quick-actions">
                     <button class="btn-tech" onclick="changeStatus('${j.id}','tech_interview',event)">💻 Entrev. Técnica</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
                     <button class="btn-closed" onclick="changeStatus('${j.id}','closed',event)">🔒 Fechada</button>
+                    ${docsActions}
                 </div>` : j.status === 'tech_interview' ? `
                 <div class="quick-actions">
                     <button class="btn-manager" onclick="changeStatus('${j.id}','manager_interview',event)">👔 Entrev. Gestor</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
+                    ${docsActions}
                 </div>` : j.status === 'manager_interview' ? `
                 <div class="quick-actions">
                     <button class="btn-offer" onclick="changeStatus('${j.id}','offer',event)">💰 Oferta</button>
                     <button class="btn-rejected-me" onclick="changeStatus('${j.id}','rejected_by_recruiter',event)">👎 Rejeitada</button>
-                </div>` : '';
+                    ${docsActions}
+                </div>` : docsActions ? `
+                <div class="quick-actions">${docsActions}</div>` : '';
 
             return `<div class="job-card ${dimmed}" onclick="showDetail('${j.id}')">
                 <div class="job-top">
@@ -689,17 +975,10 @@
                 ${j.remote ? `<span>🏠 ${j.remote}</span>` : ''}
                 ${j.source ? `<span>🔗 ${j.source}</span>` : ''}
                 ${j.url ? `<span><a href="${j.url}" target="_blank" style="color:var(--accent)">🔗 Abrir vaga</a></span>` : ''}
+                ${canDownloadResume(j) ? `<span><a href="#" onclick="downloadResume('${j.id}', event); return false;" style="color:#5eead4">📄 Currículo</a></span>` : ''}
+                ${canDownloadCoverLetter(j) ? `<span><a href="#" onclick="downloadCoverLetter('${j.id}', event); return false;" style="color:#fde68a">✉️ Cover Letter</a></span>` : ''}
             </div>
-            ${j.key_matches && j.key_matches.length ? `
-                <div style="margin-bottom:12px">
-                    <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase">Matches</div>
-                    <div class="chips">${j.key_matches.map(m => `<span class="chip match">✅ ${m}</span>`).join('')}</div>
-                </div>` : ''}
-            ${j.gaps && j.gaps.length ? `
-                <div style="margin-bottom:12px">
-                    <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase">Gaps</div>
-                    <div class="chips">${j.gaps.map(g => `<span class="chip gap">⚠️ ${g}</span>`).join('')}</div>
-                </div>` : ''}
+            ${renderFitDiagnosis(j)}
             <div class="status-selector">
                 <label>Alterar Status</label>
                 <div class="status-grid">
