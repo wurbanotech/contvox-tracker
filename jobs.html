@@ -9,6 +9,7 @@
     <title>Job Hunter | NEBULA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -292,6 +293,41 @@
             line-height: 1.45;
         }
 
+        .meta-link {
+            text-decoration: none;
+            border-bottom: none;
+            font-weight: 500;
+        }
+        .meta-link:hover { filter: brightness(1.2); }
+
+        .fit-toggle-row {
+            display: flex;
+            justify-content: flex-end;
+            margin: 8px 0 2px;
+        }
+        .fit-toggle-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .fit-toggle-btn:hover {
+            border-color: var(--accent);
+            color: #dbeafe;
+        }
+        .fit-toggle-btn.active {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: #c7d2fe;
+        }
+
         /* Status Selector in Detail */
         .status-selector { margin: 16px 0; }
         .status-selector label {
@@ -336,7 +372,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.16-CL02</span>
+                    <span class="site-version" id="siteVersion">v2026.02.16-CL03</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -446,6 +482,7 @@
     let currentTier = 'all';
     let selectedPlatforms = new Set(); // empty = all
     let platformExpanded = false;
+    let fitDiagnosisExpanded = true;
 
     // Normalize source names for display
     const PLATFORM_LABELS = {
@@ -580,17 +617,92 @@
         );
     }
 
-    function downloadTextDocument(content, filename) {
-        const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
-        const fileUrl = URL.createObjectURL(blob);
+    function markdownToPlainText(markdown) {
+        return String(markdown || '')
+            .replace(/\r\n/g, '\n')
+            .replace(/```([\s\S]*?)```/g, '$1')
+            .replace(/^#{1,6}\s*/gm, '')
+            .replace(/\*\*(.*?)\*\*/g, '$1')
+            .replace(/__(.*?)__/g, '$1')
+            .replace(/\*(.*?)\*/g, '$1')
+            .replace(/`([^`]+)`/g, '$1')
+            .replace(/\[(.*?)\]\((.*?)\)/g, '$1 ($2)')
+            .replace(/^\s*[-*]\s+/gm, '• ')
+            .replace(/\n{3,}/g, '\n\n')
+            .trim();
+    }
 
-        const a = document.createElement('a');
-        a.href = fileUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(fileUrl);
+    function downloadPdfDocument(content, filename, title, subtitle) {
+        if (!window.jspdf || !window.jspdf.jsPDF) {
+            showToast('Gerador de PDF indisponível no navegador', false);
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const margin = 44;
+        const usableWidth = pageWidth - margin * 2;
+        let y = margin;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(16);
+        doc.setTextColor(17, 24, 39);
+        doc.text(title, margin, y);
+
+        y += 18;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(75, 85, 99);
+        doc.text(subtitle, margin, y);
+
+        y += 12;
+        doc.setDrawColor(209, 213, 219);
+        doc.line(margin, y, pageWidth - margin, y);
+        y += 16;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(11);
+        doc.setTextColor(17, 24, 39);
+
+        const text = markdownToPlainText(content);
+        const lines = doc.splitTextToSize(text || 'Conteúdo vazio.', usableWidth);
+        const lineHeight = 15;
+
+        for (const line of lines) {
+            if (y > pageHeight - margin) {
+                doc.addPage();
+                y = margin;
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(11);
+                doc.setTextColor(17, 24, 39);
+            }
+            doc.text(String(line), margin, y);
+            y += lineHeight;
+        }
+
+        doc.save(filename);
+    }
+
+    function renderFitToggleLabel() {
+        return fitDiagnosisExpanded ? 'Ocultar diagnóstico' : 'Mostrar diagnóstico';
+    }
+
+    function toggleFitDiagnosis(evt) {
+        if (evt) evt.stopPropagation();
+        fitDiagnosisExpanded = !fitDiagnosisExpanded;
+
+        const wrap = document.getElementById('fitDiagnosisWrap');
+        if (wrap) {
+            wrap.style.display = fitDiagnosisExpanded ? 'block' : 'none';
+        }
+
+        const btn = document.getElementById('fitToggleBtn');
+        if (btn) {
+            btn.textContent = renderFitToggleLabel();
+            btn.classList.toggle('active', fitDiagnosisExpanded);
+        }
     }
 
     function downloadResume(jobId, evt) {
@@ -601,10 +713,15 @@
             return;
         }
 
-        const filename = `curriculo_${slugifyFilename(job.company)}_${slugifyFilename(job.title)}.md`;
-        downloadTextDocument(job.resume_optimized, filename);
+        const filename = `curriculo_${slugifyFilename(job.company)}_${slugifyFilename(job.title)}.pdf`;
+        downloadPdfDocument(
+            job.resume_optimized,
+            filename,
+            'Currículo Otimizado',
+            `${job.company || 'Empresa'} • ${job.title || 'Vaga'}`,
+        );
 
-        showToast('Currículo baixado com sucesso');
+        showToast('Currículo PDF baixado com sucesso');
     }
 
     function downloadCoverLetter(jobId, evt) {
@@ -615,10 +732,15 @@
             return;
         }
 
-        const filename = `cover_letter_${slugifyFilename(job.company)}_${slugifyFilename(job.title)}.md`;
-        downloadTextDocument(job.cover_letter, filename);
+        const filename = `cover_letter_${slugifyFilename(job.company)}_${slugifyFilename(job.title)}.pdf`;
+        downloadPdfDocument(
+            job.cover_letter,
+            filename,
+            'Cover Letter',
+            `${job.company || 'Empresa'} • ${job.title || 'Vaga'}`,
+        );
 
-        showToast('Cover Letter baixada com sucesso');
+        showToast('Cover Letter PDF baixada com sucesso');
     }
 
     function renderDocButtons(job) {
@@ -989,11 +1111,16 @@
                 ${j.location ? `<span>📍 ${j.location}</span>` : ''}
                 ${j.remote ? `<span>🏠 ${j.remote}</span>` : ''}
                 ${j.source ? `<span>🔗 ${j.source}</span>` : ''}
-                ${j.url ? `<span><a href="${j.url}" target="_blank" style="color:var(--accent)">🔗 Abrir vaga</a></span>` : ''}
-                ${canDownloadResume(j) ? `<span><a href="#" onclick="downloadResume('${j.id}', event); return false;" style="color:#5eead4">📄 Currículo</a></span>` : ''}
-                ${canDownloadCoverLetter(j) ? `<span><a href="#" onclick="downloadCoverLetter('${j.id}', event); return false;" style="color:#fde68a">✉️ Cover Letter</a></span>` : ''}
+                ${j.url ? `<span><a class="meta-link" href="${j.url}" target="_blank" style="color:var(--accent)" onclick="event.stopPropagation()">🔗 Abrir vaga</a></span>` : ''}
+                ${canDownloadResume(j) ? `<span><a class="meta-link" href="#" onclick="downloadResume('${j.id}', event); return false;" style="color:#5eead4">📄 Currículo</a></span>` : ''}
+                ${canDownloadCoverLetter(j) ? `<span><a class="meta-link" href="#" onclick="downloadCoverLetter('${j.id}', event); return false;" style="color:#fde68a">✉️ Cover Letter</a></span>` : ''}
             </div>
-            ${renderFitDiagnosis(j)}
+            <div class="fit-toggle-row">
+                <button id="fitToggleBtn" class="fit-toggle-btn ${fitDiagnosisExpanded ? 'active' : ''}" onclick="toggleFitDiagnosis(event)">${renderFitToggleLabel()}</button>
+            </div>
+            <div id="fitDiagnosisWrap" style="display:${fitDiagnosisExpanded ? 'block' : 'none'}">
+                ${renderFitDiagnosis(j)}
+            </div>
             <div class="status-selector">
                 <label>Alterar Status</label>
                 <div class="status-grid">
