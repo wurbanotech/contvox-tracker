@@ -336,7 +336,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.16-CL01</span>
+                    <span class="site-version" id="siteVersion">v2026.02.16-CL02</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -568,6 +568,18 @@
         return isFullyAnalyzed(job) && Boolean(job.cover_letter && String(job.cover_letter).trim());
     }
 
+    function isSystemFallbackSummary(text) {
+        const value = String(text || '').toLowerCase();
+        if (!value) return false;
+        return (
+            value.includes('budget de ia esgotado')
+            || value.includes('erro na chamada llm')
+            || value.includes('nenhuma autenticacao openai')
+            || value.includes('ações recomendadas (sem ia)')
+            || value.includes("execute 'codex --login'")
+        );
+    }
+
     function downloadTextDocument(content, filename) {
         const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
         const fileUrl = URL.createObjectURL(blob);
@@ -628,6 +640,7 @@
         const matches = normalizeInsightList(job.key_matches || []);
         const gaps = normalizeInsightList(job.gaps || []);
         const fitSummary = (job.fit_analysis || '').trim();
+        const summaryIsFallback = isSystemFallbackSummary(fitSummary);
 
         if (!isFullyAnalyzed(job) && !fitSummary && !matches.length && !gaps.length) {
             return `
@@ -639,6 +652,7 @@
         }
 
         const pointsTo100 = Math.max(0, 100 - Math.min(score, 100));
+        const showTargetBadge = score && !summaryIsFallback;
 
         const strengthsHtml = matches.length
             ? `<ul class="fit-list">${matches.slice(0, 8).map(m => `<li>✅ ${escapeHtml(m)}</li>`).join('')}</ul>`
@@ -652,9 +666,10 @@
             <div class="fit-diagnosis">
                 <div class="fit-head">
                     <div class="fit-title">Diagnóstico de Fit</div>
-                    ${score ? `<span class="fit-target">Faltam ${pointsTo100} pts para 100%</span>` : ''}
+                    ${showTargetBadge ? `<span class="fit-target">Faltam ${pointsTo100} pts para 100%</span>` : ''}
                 </div>
-                ${fitSummary ? `<div class="fit-summary">${escapeHtml(fitSummary)}</div>` : ''}
+                ${summaryIsFallback ? `<div class="fit-empty" style="margin-bottom:12px">A análise por IA ficou indisponível neste processamento. Reprocesse a vaga para atualizar o diagnóstico.</div>` : ''}
+                ${fitSummary && !summaryIsFallback ? `<div class="fit-summary">${escapeHtml(fitSummary)}</div>` : ''}
                 <div class="fit-columns">
                     <div class="fit-column">
                         <div class="fit-column-title">Pontos fortes</div>
