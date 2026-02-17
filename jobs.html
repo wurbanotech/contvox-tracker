@@ -578,7 +578,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.16-GM01</span>
+                    <span class="site-version" id="siteVersion">v2026.02.17-FIX02</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -681,6 +681,44 @@
         const text = (job.description || '') + ' ' + (job.requirements || '');
         if (!text.trim()) return false;
         return VISA_PATTERNS.some(rx => rx.test(text));
+    }
+
+    function tryExtractFitFromJson(raw) {
+        /**
+         * If fit_analysis in DB contains raw/truncated JSON from the LLM,
+         * try to parse it and extract structured fields (summary, key_matches, gaps).
+         * Returns null if not JSON.
+         */
+        if (!raw || !raw.trim().startsWith('{') || !raw.includes('fit_score')) return null;
+        const attempts = [raw];
+        // Strip invalid JSON escapes
+        attempts.push(raw.replace(/\\(?!["\\\/bfnrtu])/g, ''));
+        for (const attempt of attempts) {
+            // Try direct parse
+            try { return JSON.parse(attempt); } catch (_) {}
+            // Try repairing truncated JSON
+            try {
+                let repaired = attempt;
+                const q = (repaired.match(/(?:^|[^\\])"/g) || []).length;
+                if (q % 2 !== 0) repaired += '"';
+                const ob = (repaired.match(/\[/g) || []).length - (repaired.match(/\]/g) || []).length;
+                repaired += ']'.repeat(Math.max(0, ob));
+                const oc = (repaired.match(/\{/g) || []).length - (repaired.match(/\}/g) || []).length;
+                repaired += '}'.repeat(Math.max(0, oc));
+                const parsed = JSON.parse(repaired);
+                if (parsed && typeof parsed === 'object') return parsed;
+            } catch (_) {}
+        }
+        // Last resort: regex extraction
+        try {
+            const scoreM = raw.match(/"fit_score"\s*:\s*(\d+)/);
+            const matchesM = [...raw.matchAll(/"([^"]{10,})"/g)].map(m => m[1])
+                .filter(s => !['fit_score','probability','key_matches','gaps','talking_points','summary'].includes(s));
+            if (scoreM || matchesM.length) {
+                return { fit_score: scoreM ? +scoreM[1] : null, key_matches: matchesM, gaps: [], talking_points: [], summary: '' };
+            }
+        } catch (_) {}
+        return null;
     }
 
     let allJobs = [];
@@ -1351,6 +1389,12 @@
             // Flatten the joined application data
             allJobs = rows.map(j => {
                 const app = (j.job_applications && j.job_applications[0]) || {};
+                const rawFitAnalysis = (j.fit_analysis || '').trim();
+                const parsedFit = tryExtractFitFromJson(rawFitAnalysis);
+
+                const appMatches = normalizeInsightList(app.key_matches || []);
+                const appGaps = normalizeInsightList(app.gaps || []);
+
                 return {
                     ...j,
                     probability: app.probability,
@@ -1362,9 +1406,15 @@
                     resume_optimized: app.resume_optimized || '',
                     cover_letter: app.cover_letter || '',
                     interview_prep: app.interview_prep || '',
-                    key_matches: normalizeInsightList(app.key_matches || []),
-                    gaps: normalizeInsightList(app.gaps || []),
-                    fit_analysis: (j.fit_analysis || '').trim(),
+                    key_matches: appMatches.length ? appMatches
+                        : parsedFit ? normalizeInsightList(parsedFit.key_matches || [])
+                        : [],
+                    gaps: appGaps.length ? appGaps
+                        : parsedFit ? normalizeInsightList(parsedFit.gaps || [])
+                        : [],
+                    fit_analysis: parsedFit && parsedFit.summary
+                        ? parsedFit.summary
+                        : (!parsedFit ? rawFitAnalysis : ''),
                 };
             });
             allJobs = allJobs.filter(j => !needsVisa(j));
