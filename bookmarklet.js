@@ -17,6 +17,21 @@
     setTimeout(function() { el.remove(); }, 3500);
   }
 
+  function readSupabaseError(response) {
+    return response.text().then(function(text) {
+      var message = 'HTTP ' + response.status;
+      if (!text) throw new Error(message);
+
+      var detail = text;
+      try {
+        var body = JSON.parse(text);
+        detail = body.message || body.error || body.details || body.hint || text;
+      } catch (_) {}
+
+      throw new Error(message + ' - ' + detail);
+    });
+  }
+
   function q(selectors) {
     for (var i = 0; i < selectors.length; i++) {
       var el = document.querySelector(selectors[i]);
@@ -146,7 +161,10 @@
   fetch(API + '/job_listings?select=id&title=eq.' + encodeURIComponent(payload.title) + '&company=eq.' + encodeURIComponent(payload.company) + '&deleted_at=is.null', {
     headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
   })
-  .then(function(r) { return r.json(); })
+  .then(function(r) {
+    if (!r.ok) return readSupabaseError(r);
+    return r.json();
+  })
   .then(function(existing) {
     if (existing && existing.length > 0) {
       showToast('Vaga ja existe no tracker!', false);
@@ -165,7 +183,7 @@
   })
   .then(function(r) {
     if (!r) return;
-    if (!r.ok) throw new Error('HTTP ' + r.status);
+    if (!r.ok) return readSupabaseError(r);
     return r.json();
   })
   .then(function(data) {
