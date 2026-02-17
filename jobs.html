@@ -1415,11 +1415,7 @@
 
         let base = fromQuery || fromStorage || fromGlobal;
         if (!base) {
-            if (window.location.protocol.startsWith('http')) {
-                base = `${window.location.origin}/api`;
-            } else {
-                base = 'http://localhost:8200/api';
-            }
+            base = 'https://nebula-job-dashboard-production.up.railway.app/api';
         }
 
         return String(base).replace(/\/$/, '');
