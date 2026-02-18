@@ -699,7 +699,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.17-PB03</span>
+                    <span class="site-version" id="siteVersion">v2026.02.18-PB04</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -2028,6 +2028,17 @@
         ).join('');
     }
 
+    function getLlmLabel(model) {
+        if (!model) return '';
+        const map = {
+            'glm-5': 'GLM-5', 'glm-4.7-flash': 'GLM-4.7',
+            'glm-4.7': 'GLM-4.7', 'codex-cli-fallback': 'GPT Codex',
+            'gemini-3-flash-preview': 'Gemini', 'gpt-5.2-codex': 'GPT-5.2',
+            'deterministic': 'Determ.',
+        };
+        return map[model] || model;
+    }
+
     function renderJobs(jobs) {
         const grid = document.getElementById('jobsGrid');
         if (!jobs.length) {
@@ -2093,6 +2104,7 @@
                 <div class="job-materials">
                     <span class="mat ${j.has_resume?'ready':''}">${j.has_resume?'✅':'❌'} CV</span>
                     <span class="mat ${j.has_cover_letter?'ready':''}">${j.has_cover_letter?'✅':'❌'} CL</span>
+                    ${(j.metadata && j.metadata.llm_model) ? `<span class="mat" style="color:#a78bfa" title="Modelo LLM usado">🤖 ${getLlmLabel(j.metadata.llm_model)}</span>` : ''}
                 </div>
                 ${fit > 0 ? `<div class="bar-container">
                     <div class="bar-bg"><div class="bar-fill" style="width:${fit}%;background:${fc}"></div></div>
@@ -2119,6 +2131,7 @@
                 <span class="badge" style="background:${s.color}20;color:${s.color};border:1px solid ${s.color}40">${s.label}</span>
                 ${j.tier ? `<span class="tier-badge tier-${j.tier}">Tier ${j.tier}</span>` : ''}
                 ${fit ? `<span class="badge" style="background:${fitColor(fit)}20;color:${fitColor(fit)};border:1px solid ${fitColor(fit)}40">Fit: ${fit}%</span>` : ''}
+                ${(j.metadata && j.metadata.llm_model) ? `<span class="badge" style="background:#7c3aed20;color:#a78bfa;border:1px solid #7c3aed40">🤖 ${getLlmLabel(j.metadata.llm_model)}</span>` : ''}
             </div>
             <div class="job-meta" style="margin-bottom:16px">
                 ${j.location ? `<span>📍 ${j.location}</span>` : ''}
