@@ -151,7 +151,7 @@
     description: description || null,
     url: url,
     source: 'linkedin',
-    status: 'ready',
+    status: 'new',
     tier: 1,
     metadata: { added_via: 'bookmarklet', linkedin_url: url }
   };

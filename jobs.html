@@ -798,7 +798,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.22-JA11</span>
+                    <span class="site-version" id="siteVersion">v2026.02.22-AP01</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -856,7 +856,7 @@
     };
 
     const STATUS_CONFIG = {
-        new:          { emoji: '', color: '#6b7280', label: 'Nova' },
+        new:          { emoji: '', color: '#6b7280', label: 'Na Fila' },
         analyzing:    { emoji: '', color: '#f59e0b', label: 'Analisando' },
         ready:        { emoji: '', color: '#10b981', label: 'Pronta' },
         applied:      { emoji: '', color: '#3b82f6', label: 'Aplicada' },
@@ -875,7 +875,7 @@
         expired:      { emoji: '', color: '#9ca3af', label: 'Expirada' },
     };
 
-    const FUNNEL_ORDER = ['ready','applied','interview','tech_interview','manager_interview','offer','accepted','rejected'];
+    const FUNNEL_ORDER = ['new','analyzing','ready','applied','interview','tech_interview','manager_interview','offer','accepted','rejected'];
 
     // ── Visa / US-only detection ──
     const VISA_PATTERNS = [
@@ -2220,6 +2220,8 @@
                     ${j.source ? `<span>🔗 ${j.source}</span>` : ''}
                 </div>
                 <div class="job-materials">
+                    ${j.status === 'new' ? '<span class="mat" style="color:#6b7280">⏳ Na fila de análise</span>' : ''}
+                    ${j.status === 'analyzing' ? '<span class="mat" style="color:#f59e0b;animation:pulse-sub 1.2s ease-in-out infinite">🔄 Analisando...</span>' : ''}
                     <span class="mat ${j.has_resume?'ready':''}">${j.has_resume?'✅':'❌'} CV</span>
                     <span class="mat ${j.has_cover_letter?'ready':''}">${j.has_cover_letter?'✅':'❌'} CL</span>
                     ${(j.metadata && j.metadata.llm_model) ? `<span class="mat" style="color:#a78bfa" title="Modelo LLM usado">🤖 ${getLlmLabel(j.metadata.llm_model)}</span>` : ''}
