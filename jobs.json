@@ -1,21 +1,22 @@
 {
-  "generated_at": "22/02/2026 09:09",
+  "generated_at": "22/02/2026 09:43",
   "stats": {
     "total": 77,
     "by_status": {
       "rejected_by_me": 1,
-      "ready": 41,
-      "analyzing": 3,
+      "ready": 40,
       "expired": 11,
+      "applied": 2,
       "rejected_by_recruiter": 1,
+      "analyzing": 2,
       "new": 17,
       "withdrawn": 1,
       "rejected": 1,
       "closed": 1
     },
     "avg_fit": 74.2,
-    "ready": 41,
-    "applied": 0,
+    "ready": 40,
+    "applied": 2,
     "interviews": 0,
     "offers": 0
   },
@@ -31,8 +32,9 @@
       "status": "rejected_by_me",
       "tier": 0,
       "fit_score": 50.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 50.0,
       "key_matches": [],
       "gaps": [],
@@ -49,8 +51,89 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {
+        "added_via": "bookmarklet_redirect",
+        "quality_gate": {
+          "score": 87.1,
+          "passed": true,
+          "source": "deterministic",
+          "metrics": {
+            "bullet_count": 29,
+            "keywords_total": 24,
+            "cover_word_count": 161,
+            "keywords_covered": 3,
+            "resume_word_count": 697,
+            "quantified_bullets": 10,
+            "keyword_coverage_ratio": 0.125
+          },
+          "summary": "ATS deterministic score 87.1/100. Coverage 3/24 keywords; bullets=29, quantified=10.",
+          "version": "ats-v1",
+          "warnings": [
+            "LLM ATS audit retornou JSON inválido; usando validação determinística."
+          ],
+          "checklist": {
+            "cover_length": {
+              "ok": true,
+              "detail": "palavras_cover=161",
+              "weight": 5
+            },
+            "bullet_volume": {
+              "ok": true,
+              "detail": "bullets=29",
+              "weight": 10
+            },
+            "resume_length": {
+              "ok": true,
+              "detail": "palavras_curriculo=697",
+              "weight": 5
+            },
+            "no_placeholders": {
+              "ok": true,
+              "detail": "Sem [REDACTED]",
+              "weight": 10
+            },
+            "keyword_coverage": {
+              "ok": false,
+              "detail": "coverage=0.12 (3/24)",
+              "weight": 20
+            },
+            "required_sections": {
+              "ok": true,
+              "detail": "headings=5",
+              "weight": 20
+            },
+            "quantified_bullets": {
+              "ok": true,
+              "detail": "bullets_com_numero=10",
+              "weight": 10
+            },
+            "fit_analysis_complete": {
+              "ok": true,
+              "detail": "Fit com resumo + matches",
+              "weight": 10
+            },
+            "cover_letter_alignment": {
+              "ok": true,
+              "detail": "Empresa citada na cover letter",
+              "weight": 10
+            }
+          },
+          "llm_score": null,
+          "mandatory": {
+            "no_placeholders": true,
+            "required_sections": true,
+            "fit_analysis_complete": true,
+            "cover_letter_alignment": true
+          },
+          "threshold": 70.0,
+          "missing_items": [],
+          "blocking_issues": [],
+          "deterministic_score": 87.1
+        },
+        "quality_gate_checked_at": "2026-02-17T18:21:45.857615+00:00"
+      },
       "probability": 90.0,
       "key_matches": [
         "Domínio avançado de Excel e Power BI (requisitos críticos da vaga)",
@@ -66,6 +149,25 @@
       "description": "Sobre a vaga\n\nOur Client is one of the United States' largest insurers, providing a wide range of insurance and financial services products with gross written premiums well over US$25 Billion (P&C). They proudly serve more than 10 million U.S. households with more than 19 million individual policies across all 50 states through the efforts of over 48,000 exclusive and independent agents and nearly 18,500 employees. Finally, our Client is part of one the largest Insurance Groups in the world.\n\nJob Summary\n\nPrepare complex financial reports and analysis for business unit management personnel at all levels. Provide other finance support and special projects as required. Train financial analyst and work closely with Accounting Manager - Finance in developing reports and models to improve the business operations.\n\nEssential Job Functions\n\n\n Prepare monthly budget variance analysis and forecasting reports and provide recommendations\n Prepare monthly key performance indicator metrics reports and provide analysis on trends and drivers\n Develop financial and business models to provide the business additional insight to make decisions on improving the business\n Prepare and review special projects and initiatives to provide critical feedback to business partners\n Perform consolidation and analysis on annual strategic and financial planning\n Prepare ad hoc reports, analysis and conduct special projects as necessary\n Analyze underlying business factors that drive expenses within the department\n Provide critical feedback on capital appropriation proposals\n Conduct financial review of vendors and review Capital Appropriation Proposals\n Lead process improvement projects\n Promotes safety at all times and complies with safety/ergonomic standards as outlined in relevant company published manuals\n\n\nRequirements\n\nEnglish Proficiency\n\n\nMinimum Required: Fluent\n\n\nOther Critical Skills\n\nSoftware / Tool Skills\n\n\nExcel - Advanced\nPowerBI - Advanced\n\n\nRequired Education\n\n\nMinimum Required: Ba"
     },
     {
+      "id": "ff7695ca-1e24-4a6d-8461-4cf0a5d70d32",
+      "title": "Senior Analyst, Financial Planning & Analysis",
+      "company": "2U",
+      "location": "",
+      "remote": "unknown",
+      "url": "https://www.careervault.io/remote/2u-28703/finance/senior-analyst-financial-planning-analysis-us-remote-5098319?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Career Vault",
+      "status": "expired",
+      "tier": 1,
+      "fit_score": 92.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 92.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "At 2U, we are all in on purpose. We are motivated by our mission – to eliminate the back row in education – and connected by our shared passion to deliver world-class digital education at scale. As the parent company of edX, the world’s leading online learning platform, 2U powers more than 4,000 online higher education offerings – from free courses to full degrees. Together with more than 230 colleges, universities, and corporate partners, we are helping to unlock human potential.\n\nWhat We’re Looking For:\n\nIt’s an exciting time in 2U’s growth, and our Finance team plays a critical role in the holistic overview of the business. As we continue to grow as an organization, the Finance team is looking for a Senior Financial Analyst with a background in financial reporting and analysis. A perfect candidate would have knowledge of FP&A, and more importantly be proactive in their own self growth while also maintaining relationships with various stakeholders across the company. Our team is a dynamic group of individuals who support the business in the most efficient and effective way possible, but also enjoy connecting with each other through everyday banter and team events. We are looking for a Financial Analyst who is ready to do the same!\n\nResponsibilities Include, But Are Not Limited To:\n• Supporting the finance team by providing financial reports, analysis, forecasts, and other tasks as required\n• Assisting in key month-end activities to provide oversight of the completion and accuracy of the monthly reports by conducting transactional research and preparing monthly financial reporting\n• Reviewing P&L statements and perform variance analysis\n• Assist in the bi-weekly revenue forecasting and annual budgeting process\n• Analyzing financial results to include conclusions and insights on trends and variances\n• Building strong relationships and collaborating with business leaders to become a key stakeholder for the business\n• Maintaining financial models and conducting data m"
+    },
+    {
       "id": "c7f71746-9a1d-4b51-986b-62b3d7d213fa",
       "title": "Especialista em FP&A",
       "company": "Dori",
@@ -73,22 +175,104 @@
       "remote": "unknown",
       "url": "https://www.linkedin.com/jobs/view/4370543656/",
       "source": "linkedin",
-      "status": "analyzing",
+      "status": "applied",
       "tier": 1,
       "fit_score": 92.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {
+        "added_via": "bookmarklet_redirect",
+        "quality_gate": {
+          "score": 100.0,
+          "passed": true,
+          "source": "deterministic",
+          "metrics": {
+            "bullet_count": 33,
+            "keywords_total": 24,
+            "cover_word_count": 162,
+            "keywords_covered": 15,
+            "resume_word_count": 779,
+            "quantified_bullets": 11,
+            "keyword_coverage_ratio": 0.625
+          },
+          "summary": "ATS deterministic score 100.0/100. Coverage 15/24 keywords; bullets=33, quantified=11.",
+          "version": "ats-v1",
+          "warnings": [
+            "LLM ATS audit retornou JSON inválido; usando validação determinística."
+          ],
+          "checklist": {
+            "cover_length": {
+              "ok": true,
+              "detail": "palavras_cover=162",
+              "weight": 5
+            },
+            "bullet_volume": {
+              "ok": true,
+              "detail": "bullets=33",
+              "weight": 10
+            },
+            "resume_length": {
+              "ok": true,
+              "detail": "palavras_curriculo=779",
+              "weight": 5
+            },
+            "no_placeholders": {
+              "ok": true,
+              "detail": "Sem [REDACTED]",
+              "weight": 10
+            },
+            "keyword_coverage": {
+              "ok": true,
+              "detail": "coverage=0.62 (15/24)",
+              "weight": 20
+            },
+            "required_sections": {
+              "ok": true,
+              "detail": "headings=5",
+              "weight": 20
+            },
+            "quantified_bullets": {
+              "ok": true,
+              "detail": "bullets_com_numero=11",
+              "weight": 10
+            },
+            "fit_analysis_complete": {
+              "ok": true,
+              "detail": "Fit com resumo + matches",
+              "weight": 10
+            },
+            "cover_letter_alignment": {
+              "ok": true,
+              "detail": "Empresa citada na cover letter",
+              "weight": 10
+            }
+          },
+          "llm_score": null,
+          "mandatory": {
+            "no_placeholders": true,
+            "required_sections": true,
+            "fit_analysis_complete": true,
+            "cover_letter_alignment": true
+          },
+          "threshold": 70.0,
+          "missing_items": [],
+          "blocking_issues": [],
+          "deterministic_score": 100.0
+        },
+        "quality_gate_checked_at": "2026-02-22T12:17:17.644459+00:00"
+      },
       "probability": 85.0,
       "key_matches": [
-        "Experiência sólida em consolidação de P&L geral e gestão de ciclo orçamentário (Budget/Forecast)",
-        "Domínio avançado de ferramentas de BI (Power BI, Tableau) e Excel, com forte viés de automação",
-        "Formação em Ciências Contábeis (Ibmec) e especialização em Ciência de Dados (FGV)",
-        "Atuação prévia como Business Partner estratégico e reporte direto para Board/Diretoria",
-        "Experiência prática com ERPs de mercado como SAP e Oracle"
+        "Experiência sólida em consolidação de P&L geral e ciclo completo de FP&A",
+        "Domínio avançado de ferramentas de BI (Power BI, Tableau) e Excel",
+        "Background acadêmico robusto em Ciências Contábeis (Ibmec) e Ciência de Dados",
+        "Experiência com ERPs de grande porte (SAP e Oracle)",
+        "Habilidade comprovada em Business Partnering e apresentações executivas",
+        "Inglês avançado com experiência em reportes internacionais"
       ],
       "gaps": [
-        "Falta de experiência explícita no setor de bens de consumo ou indústrias similares à Dori (FMCG)",
-        "Experiência em M&A não detalhada no currículo, embora possua base em modelagem financeira"
+        "Foco recente muito acentuado em FinOps/Cloud, enquanto a vaga foca em indústria (P&L tradicional)",
+        "Experiência em M&A citada na vaga é menos evidente no histórico do candidato"
       ],
       "description": "Sobre a vaga\n\nBuscamos um Especialista em FP&A para atuar como responsável da consolidação do P&L da companhia e pelo papel de business partner entre Finanças e demais áreas (Comercial, Operações, Supply Chain, Marketing), produzindo relatórios gerenciais, forecasts, análises de variação (realizado vs. orçado), e fornecer insights acionáveis para a liderança, sustentando decisões estratégicas e operacionais.\n\n\n\n\nCONTAMOS COM VOCÊ PARA:\n\nConsolidar o P&L mensal da empresa, garantir integridade dos números e reconciliar variações com controladoria/contabilidade; \nConduzir o ciclo orçamentário (budget) e forecasts (rolling forecast), propondo cenários e sensibilidade;\nDesenvolver análises financeiras e modelagens (DRE, BP, Fluxo de Caixa) para iniciativas estratégicas, projetos de investimento e M&A;\nSer o ponto focal financeiro das demais áreas: consolidar inputs, validar premissas, e transformar dados operacionais em drivers financeiros;\nCriar e manter dashboards e reports (Power BI / Excel / ferramentas de CPM), automatizando processos e garantindo qualidade das informações;\nPreparar apresentações e narrativas para diretoria / comitês, destacando riscos, oportunidades e recomendações. \n\n\n\n\nO QUE VOCÊ PRECISA TER PARA FAZER A DIFERENÇA:\n\nFormação superior completa em Administração, Economia, Engenharias, Ciências Contábeis ou áreas correlatas;\nConhecimento ao nível avançado em Excel, Power BI / Tableau e experiência com ERPs;\nNecessária a experiência com a consolidação do P&L geral da empresa;\nInglês ao nível avançado, com habilidades de comunicação oral e escrita.\n\n\n\n\nAcreditamos que a diversidade fortalece nossas relações, impulsiona a inovação e amplia nossa visão de futuro. Valorizamos a inclusão de pessoas com diferentes histórias, vivências, identidades e perspectivas, promovendo um ambiente de trabalho respeitoso, seguro e acolhedor para todas as pessoas. Todas as nossas vagas estão abertas a talentos diversos – incentivamos especialmente a candidatura de pess"
     },
@@ -103,86 +287,108 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 92.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {
+        "added_via": "bookmarklet_redirect",
+        "llm_model": "glm-5",
+        "quality_gate": {
+          "score": 90.2,
+          "passed": true,
+          "source": "hybrid",
+          "metrics": {
+            "bullet_count": 24,
+            "keywords_total": 24,
+            "cover_word_count": 196,
+            "keywords_covered": 3,
+            "resume_word_count": 641,
+            "quantified_bullets": 7,
+            "keyword_coverage_ratio": 0.125
+          },
+          "summary": "O currículo apresenta FIT excelente com a vaga, destacando-se pelo perfil híbrido que une FP&A tradicional com competências técnicas avançadas (Python, SQL, Power BI), alinhado à cultura de inovação do iFood. A cover letter é assertiva e conecta resultados quantitativos às necessidades estratégicas da vaga. Pontos de atenção críticos são datas inconsistentes (futuras) que podem comprometer a credibilidade do documento em sistemas automatizados. ATS deterministic score 87.1/100. Coverage 3/24 keywords; bullets=24, quantified=7.",
+          "version": "ats-v1",
+          "warnings": [
+            "Data futura na experiência mais recente (09/2025 – Atual) pode causar rejeição imediata por ATS ou recrutadores por parecer erro de digitação ou inconsistência temporal",
+            "Certificação FinOps com data de 2026 pode ser interpretada como planejamento futuro em vez de qualificação ativa, reduzindo credibilidade técnica imediata"
+          ],
+          "checklist": {
+            "cover_length": {
+              "ok": true,
+              "detail": "palavras_cover=196",
+              "weight": 5
+            },
+            "bullet_volume": {
+              "ok": true,
+              "detail": "bullets=24",
+              "weight": 10
+            },
+            "resume_length": {
+              "ok": true,
+              "detail": "palavras_curriculo=641",
+              "weight": 5
+            },
+            "no_placeholders": {
+              "ok": true,
+              "detail": "Sem [REDACTED]",
+              "weight": 10
+            },
+            "keyword_coverage": {
+              "ok": false,
+              "detail": "coverage=0.12 (3/24)",
+              "weight": 20
+            },
+            "required_sections": {
+              "ok": true,
+              "detail": "headings=5",
+              "weight": 20
+            },
+            "quantified_bullets": {
+              "ok": true,
+              "detail": "bullets_com_numero=7",
+              "weight": 10
+            },
+            "fit_analysis_complete": {
+              "ok": true,
+              "detail": "Fit com resumo + matches",
+              "weight": 10
+            },
+            "cover_letter_alignment": {
+              "ok": true,
+              "detail": "Empresa citada na cover letter",
+              "weight": 10
+            }
+          },
+          "llm_score": 96.0,
+          "mandatory": {
+            "no_placeholders": true,
+            "required_sections": true,
+            "fit_analysis_complete": true,
+            "cover_letter_alignment": true
+          },
+          "threshold": 70.0,
+          "missing_items": [
+            "Menção explícita a experiência com Marketplace ou ecossistemas de logística/delivery, que seria o 'core' do negócio iFood",
+            "Detalhamento de gestão de equipes ou liderança direta, aspecto a ser validado para nível Sênior em algumas estruturas"
+          ],
+          "blocking_issues": [],
+          "deterministic_score": 87.1
+        },
+        "quality_gate_checked_at": "2026-02-22T12:37:55.738180+00:00"
+      },
       "probability": 92.0,
       "key_matches": [
-        "\n    \"Sólida experiência em FP&A (Budget, Forecast e P&L) em empresas de tecnologia e fintech\",\n    \"Domínio de ferramentas de dados (SQL, Python, BigQuery) essenciais para o volume de dados do iFood\",\n    \"Perfil de Business Partner com interface direta entre Finanças e Engenharia/Negócios\",\n    \"Forte capacidade de automação de processos financeiros e criação de dashboards estratégicos\",\n    \"Formação acadêmica robusta combinando Contabilidade (Ibmec) e Ciência de Dados (FGV)\"\n  "
+        "Experiência sólida em FP&A com gestão completa de Budget, Forecast e P&L, atendendo ao requisito principal da vaga.",
+        "Perfil 'Tech-Savvy' com Python, SQL e Power BI para automação e análises avançadas, alinhado ao perfil tecnológico do iFood.",
+        "Atuação comprovada como Business Partner (Paketá e Vox), traduzindo dados em insights estratégicos para áreas de negócio e liderança.",
+        "Experiência em Fintech (Paketá) e gestão de custos complexos/Cloud, demonstrando versatilidade para atuar nas diversas categorias do iFood.",
+        "Certificação em Ciência de Dados (FGV) e uso de modelos preditivos/ML para projeções financeiras, diferencial forte para uma empresa de dados."
       ],
-      "gaps": [],
+      "gaps": [
+        "Ausência de menção explícita a Inglês fluente no perfil listado, embora a vaga em empresa de tecnologia global provavelmente exija.",
+        "Experiência prévia não é especificamente em 'Marketplace' de delivery, embora a experiência em Fintech e Tech minimize esse risco.",
+        "O nível de senioridade em gestão de pessoas não está explícito (liderança de processos vs liderança de equipe), ponto a validar."
+      ],
       "description": "Sobre a vaga\n\nNosso modo de fazer no time\n\nTransforme sua carreira com o iFood! Somos uma empresa brasileira de tecnologia referência na América Latina. Por meio de soluções inovadoras, conectamos milhares de restaurantes a milhões de consumidores diariamente com uma média de 120 milhões de pedidos mensais. Além do delivery de comida, também somos Mercado, Farmácia e Pet. Temos também o iFood Pago, nossa Fintech, que engloba o iFood Benefícios, o vale alimentação e refeição do iFood e o próprio iFood Pago, o banco do restaurante. Junte-se a nós e faça parte de uma equipe que está sempre à frente com tecnologia de ponta e inovação constante.\n\nEstamos buscando um(a) Analista de FP&A Sênior, que será fundamental na gestão financeira das nossas Categorias (Food,Farma, Mercado, Pet, B&C, outros). Essa pessoa atuará na análise e gestão de linhas estratégicas do P&L, traduzindo dados financeiros em insights claros e histórias convincentes que impulsionam decisões estratégicas e o crescimento do negócio.\n\nModelo de Trabalho: Remoto (com flexibilidade para encontros pontuais presenciais)\n\nSeu Cardápio Diário\n\n\nAjudar nos processos financeiros, como forecasts, budgets e acompanhamento detalhado dos principais indicadores financeiros (KPIs);\nDesenvolver análises financeiras detalhadas (PNL por loja, por cidade, por subcategoria) para identificar drivers de resultado e oportunidades de crescimento e eficiência;\nConstruir e manter fortes relacionamentos com stakeholders das áreas de negócio, influenciando e movimentando agendas estratégicas;\nTrabalhar próximo ao negócio, participando ativamente em novos projetos e entendendo as operações para viabilizar iniciativas de crescimento;\nFocar a atuação em análises que gerem valor e melhorem o resultado do iFood, saindo do ciclo básico de reporte (fechamento, variações versus orçado) para um foco em iniciativas estratégicas;\nApoiar na tomada de decisões estratégicas, sendo essencial para o crescimento sustentável das categorias.\n\n\nIngr"
-    },
-    {
-      "id": "ff7695ca-1e24-4a6d-8461-4cf0a5d70d32",
-      "title": "Senior Analyst, Financial Planning & Analysis",
-      "company": "2U",
-      "location": "",
-      "remote": "unknown",
-      "url": "https://www.careervault.io/remote/2u-28703/finance/senior-analyst-financial-planning-analysis-us-remote-5098319?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Career Vault",
-      "status": "expired",
-      "tier": 1,
-      "fit_score": 92.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 92.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "At 2U, we are all in on purpose. We are motivated by our mission – to eliminate the back row in education – and connected by our shared passion to deliver world-class digital education at scale. As the parent company of edX, the world’s leading online learning platform, 2U powers more than 4,000 online higher education offerings – from free courses to full degrees. Together with more than 230 colleges, universities, and corporate partners, we are helping to unlock human potential.\n\nWhat We’re Looking For:\n\nIt’s an exciting time in 2U’s growth, and our Finance team plays a critical role in the holistic overview of the business. As we continue to grow as an organization, the Finance team is looking for a Senior Financial Analyst with a background in financial reporting and analysis. A perfect candidate would have knowledge of FP&A, and more importantly be proactive in their own self growth while also maintaining relationships with various stakeholders across the company. Our team is a dynamic group of individuals who support the business in the most efficient and effective way possible, but also enjoy connecting with each other through everyday banter and team events. We are looking for a Financial Analyst who is ready to do the same!\n\nResponsibilities Include, But Are Not Limited To:\n• Supporting the finance team by providing financial reports, analysis, forecasts, and other tasks as required\n• Assisting in key month-end activities to provide oversight of the completion and accuracy of the monthly reports by conducting transactional research and preparing monthly financial reporting\n• Reviewing P&L statements and perform variance analysis\n• Assist in the bi-weekly revenue forecasting and annual budgeting process\n• Analyzing financial results to include conclusions and insights on trends and variances\n• Building strong relationships and collaborating with business leaders to become a key stakeholder for the business\n• Maintaining financial models and conducting data m"
-    },
-    {
-      "id": "5c30d79f-ab87-4494-a04b-5a45127a06f0",
-      "title": "FP&A Analyst - Remote",
-      "company": "TE Connectivity",
-      "location": "Middletown Township, NJ, United States",
-      "remote": "onsite",
-      "url": "https://www.glassdoor.com/job-listing/fpa-analyst-remote-te-connectivity-JV_IC1126872_KO0,18_KE19,34.htm?jl=1009990804344&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Glassdoor",
-      "status": "expired",
-      "tier": 1,
-      "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 88.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "TE Connectivity is seeking a Financial Planning & Analysis Analyst supporting the Global Automotive Business Unit.\n\nIn this role, you will partner with Finance and non-Finance functional leaders around the world developing, interpreting, and presenting financial results. Analyses performed will be critical to deliver actionable insights, maintain robust financial models, and ensure accurate reporting that supports organizational goals.\n\nThe role requires strong analytical skills, attention to detail, and the ability to collaborate across multiple functions in a global environment.\n\nJob Requirements\n• Financial Reporting & Consolidation: Prepare detailed reports, financial statements and presentations with insight and commentary. These reports are then presented to senior management and stakeholders to understand the financial implications of results and business decisions.\n• Budgeting and Forecasting: Develop, update, and maintain financial models and comprehensive forecasts. Provide detailed financial budgets and monthly financial forecasts based on historical performance, market trends, and strategic initiatives\n• Operating Expenses Analysis and Control: Monitor and control SG&A expenses, conduct reviews with key business partners, coordinate evaluations of investment and cost-reduction opportunities\n• Month close activities: Prepare, review and coordinate with Financial Shared Service to make month end entries (accrual expenses, reversals); partner with regional finance teams to consolidate and interpret monthly results\n• Business partnership: Provide clear, data-driven insights to senior management for operational and strategic decisions. Work closely with Global Operations and Product Management Finance teams to provide financial insights for data-driven decision making\n• Data Management: Manage data flow between financial systems and tools, drive automation and standardization of reporting and analytics globally\n• TEOA-F and Process Improvement: Evaluating cur"
-    },
-    {
-      "id": "c346ae32-ea1c-4b24-b26f-7bafe7fa5379",
-      "title": "Financial Planning Analyst (Remote) - Part-time",
-      "company": "Rise25",
-      "location": "Chicago, IL, United States",
-      "remote": "onsite",
-      "url": "https://www.snagajob.com/jobs/1170218803?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Snagajob",
-      "status": "rejected_by_recruiter",
-      "tier": 1,
-      "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 88.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Job Details:\n\nWant to help entrepreneurs all over the world build life-changing relationships and inspiring content? Through done-for-you podcast services, we help businesses grow, expand their outreach, and leave a lasting legacy.\n\nJob Description:\n\nWe are looking for a remote, initially part-time financial planning analyst who can create budgets and financial forecasts for a growing multiple 7 figure marketing agency business. You will review our books each month, project growth in revenue and costs, including what we should budget for all of the major categories in the P&L on an annual and rolling basis. You will report to Co-CEO John Corcoran and be responsible for proactively providing executive management with support and advice on hiring, spending and operational challenges as they arise. ​​​​​​\n\n​Your job will be to proactively predict business changes, develop budgets, and help us understand what we are doing right so we can do more of it and also what we are doing wrong so that we can anticipate growth and development issues and accelerate our business. As with any small, high growth business, there are many hats to wear, and another important related function will be to oversee the quality control of our monthly accounting close process which is managed by our Controller. Your help identifying challenges before they slip through, using trend analysis and monthly analytical reviews will enhance your ability to deeply understand the business’s nuts and bolts, strengthening both our forecasting results and our underlying accounting data which forms the basis for those forecasts.\n\nKey Responsibilities:\n• With support from our fractional CFO, develop annual budget processes and apply those processes to develop and recommend annual financial budgets for the company.\n• Similarly develop various recurring monthly, quarterly and annual financial review and forecasting processes including various levels of reporting and tracking and use those processes to develop r"
-    },
-    {
-      "id": "825732b8-6958-4323-9cae-28a4447dac7d",
-      "title": "Financial Planning & Analysis Analyst | Fully Remote US",
-      "company": "Hirevue",
-      "location": "South Jordan, UT, United States",
-      "remote": "onsite",
-      "url": "https://www.linkedin.com/jobs/view/financial-planning-analysis-analyst-fully-remote-us-at-hirevue-4338843129?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "expired",
-      "tier": 1,
-      "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 88.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Hirevue is where hiring happens – transforming the way organizations discover, engage, and hire the best talent. Connecting companies and candidates anytime, anywhere, Hirevue’s end-to-end hiring platform features video interviewing, assessments and conversational AI. The industry leader in science backed, modern hiring solutions powered by ethical AI, Hirevue has hosted more than 70 million video interviews and 200 million chat-based candidate engagements for over 1200 pioneering customers around the globe.\n\nJob Description\n\nOwn the Metrics. Shape the Story. Drive the Business.\n\nAre you a rising finance professional who loves diving into data, building models, and turning insights into impact? Do you thrive in fast-moving environments where you’re trusted to “act like an owner,” solve problems independently, and collaborate across the business? If so, this role might be your next big career move.\n\nWe’re looking for an FP&A Analyst to join our high-impact Finance team and help accelerate our growth as a leading SaaS organization. You’ll work side-by-side with our VP of FP&A and CFO, partnering across the company to drive smarter decisions, sharper forecasts, and stronger performance.\n\nIn this role, you’ll play a key part in shaping our financial engine. You will:\n\n📊 Drive Monthly & Quarterly Business Performance\n• Lead expense-side variance analysis for assigned departments.\n• Partner closely with Accounting and departmental leaders to deliver a crisp, accurate close.\n• Build and enhance expense forecasts that help leaders understand the “why” behind the numbers.\n\n👥 Be the Owner of Headcount Analytics\n• Own headcount actuals and forecasting for specific teams.\n• Partner with HR and business leaders to manage hiring plans and workforce costs.\n• Maintain weekly headcount reconciliation to ensure absolute accuracy.\n\n📈 Elevate SaaS Reporting & Visibility\n• Update and maintain dashboards that track our most critical SaaS metrics (ARR, NRR, CAC, LTV, churn).\n• Provide ins"
     },
     {
       "id": "b6f1e0db-4ebb-4d5b-9129-ebc2a4275980",
@@ -195,8 +401,89 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {
+        "added_via": "bookmarklet_redirect",
+        "quality_gate": {
+          "score": 84.8,
+          "passed": true,
+          "source": "deterministic",
+          "metrics": {
+            "bullet_count": 33,
+            "keywords_total": 24,
+            "cover_word_count": 131,
+            "keywords_covered": 2,
+            "resume_word_count": 785,
+            "quantified_bullets": 11,
+            "keyword_coverage_ratio": 0.083
+          },
+          "summary": "ATS deterministic score 84.8/100. Coverage 2/24 keywords; bullets=33, quantified=11.",
+          "version": "ats-v1",
+          "warnings": [
+            "LLM ATS audit em fallback: api_error: Nenhum comando Codex encontrado no PATH. Tentado: codex, codex.cmd, npx.cmd -y @openai/codex, npx -y"
+          ],
+          "checklist": {
+            "cover_length": {
+              "ok": true,
+              "detail": "palavras_cover=131",
+              "weight": 5
+            },
+            "bullet_volume": {
+              "ok": true,
+              "detail": "bullets=33",
+              "weight": 10
+            },
+            "resume_length": {
+              "ok": true,
+              "detail": "palavras_curriculo=785",
+              "weight": 5
+            },
+            "no_placeholders": {
+              "ok": true,
+              "detail": "Sem [REDACTED]",
+              "weight": 10
+            },
+            "keyword_coverage": {
+              "ok": false,
+              "detail": "coverage=0.08 (2/24)",
+              "weight": 20
+            },
+            "required_sections": {
+              "ok": true,
+              "detail": "headings=5",
+              "weight": 20
+            },
+            "quantified_bullets": {
+              "ok": true,
+              "detail": "bullets_com_numero=11",
+              "weight": 10
+            },
+            "fit_analysis_complete": {
+              "ok": true,
+              "detail": "Fit com resumo + matches",
+              "weight": 10
+            },
+            "cover_letter_alignment": {
+              "ok": true,
+              "detail": "Empresa citada na cover letter",
+              "weight": 10
+            }
+          },
+          "llm_score": null,
+          "mandatory": {
+            "no_placeholders": true,
+            "required_sections": true,
+            "fit_analysis_complete": true,
+            "cover_letter_alignment": true
+          },
+          "threshold": 70.0,
+          "missing_items": [],
+          "blocking_issues": [],
+          "deterministic_score": 84.8
+        },
+        "quality_gate_checked_at": "2026-02-18T22:31:45.636232+00:00"
+      },
       "probability": 85.0,
       "key_matches": [
         "Sólida experiência em FP&A (Budget, Forecast, P&L) e reporte para Board/C-level",
@@ -213,6 +500,63 @@
       "description": "Sobre a vaga\n\nDescrição da vaga\n\nQuer trabalhar na marca de beleza preferida dos brasileiros? No Grupo Boticário, todos os produtos desenvolvidos e todas as histórias contadas tocam o coração e a pele das pessoas. É assim que a marca transforma momentos simples em momentos mágicos há mais de 40 anos. Se você, assim como a marca, acredita que onde tem amor tem beleza, quer transformar esse segmento com autonomia, empreendedorismo e em um ambiente com espaço para inovar, esse é o lugar certo para você!\n\nResponsabilidades e atribuições\n\nGestão da narrativa financeira: Liderar a construção do storytelling de performance do Grupo, conectando variações de mercado, resultados internos e posições estratégicas, com foco no público C-level;\n\nOrquestração de reportes: Coordenar e consolidar as entregas corporativas das demais áreas de FP&A, garantindo padrão de qualidade e coesão;\n\nProvocação estratégica: Elaborar teses de performance que provoquem reflexões e direcionamentos na alta liderança a partir de indicadores e dados financeiros robustos;\n\nDeep-dives de performance: Desenhar análises comparativas transversais entre canais, marcas e categorias, identificando alavancas de rentabilidade e antecipando riscos.\n\nBenchmarking competitivo: Realizar análises e apresentações de peer groups e do mercado, traduzindo o posicionamento financeiro do Grupo em relação aos principais players.\n\nPlanos de resposta: Identificar e estruturar planos de ação sólidos para mitigação de riscos ou aceleração de oportunidades.\n\nRequisitos e qualificações\n\nEnsino superior completo em Administração, Economia, Engenharia ou áreas correlatas;\n\nSólida experiência em Consultoria Estratégica/Financeira, em áreas de M&A ou Relações com Investidores;\n\nCapacidade de transitar e influenciar diferentes níveis hierárquicos, com habilidade ímpar de traduzir conceitos financeiros complexos em direcionamentos claros;\n\nDomínio na estruturação de apresentações com alto rigor lógico, clareza visual e foco em subsidi"
     },
     {
+      "id": "c346ae32-ea1c-4b24-b26f-7bafe7fa5379",
+      "title": "Financial Planning Analyst (Remote) - Part-time",
+      "company": "Rise25",
+      "location": "Chicago, IL, United States",
+      "remote": "onsite",
+      "url": "https://www.snagajob.com/jobs/1170218803?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Snagajob",
+      "status": "rejected_by_recruiter",
+      "tier": 1,
+      "fit_score": 88.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 88.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Job Details:\n\nWant to help entrepreneurs all over the world build life-changing relationships and inspiring content? Through done-for-you podcast services, we help businesses grow, expand their outreach, and leave a lasting legacy.\n\nJob Description:\n\nWe are looking for a remote, initially part-time financial planning analyst who can create budgets and financial forecasts for a growing multiple 7 figure marketing agency business. You will review our books each month, project growth in revenue and costs, including what we should budget for all of the major categories in the P&L on an annual and rolling basis. You will report to Co-CEO John Corcoran and be responsible for proactively providing executive management with support and advice on hiring, spending and operational challenges as they arise. ​​​​​​\n\n​Your job will be to proactively predict business changes, develop budgets, and help us understand what we are doing right so we can do more of it and also what we are doing wrong so that we can anticipate growth and development issues and accelerate our business. As with any small, high growth business, there are many hats to wear, and another important related function will be to oversee the quality control of our monthly accounting close process which is managed by our Controller. Your help identifying challenges before they slip through, using trend analysis and monthly analytical reviews will enhance your ability to deeply understand the business’s nuts and bolts, strengthening both our forecasting results and our underlying accounting data which forms the basis for those forecasts.\n\nKey Responsibilities:\n• With support from our fractional CFO, develop annual budget processes and apply those processes to develop and recommend annual financial budgets for the company.\n• Similarly develop various recurring monthly, quarterly and annual financial review and forecasting processes including various levels of reporting and tracking and use those processes to develop r"
+    },
+    {
+      "id": "5c30d79f-ab87-4494-a04b-5a45127a06f0",
+      "title": "FP&A Analyst - Remote",
+      "company": "TE Connectivity",
+      "location": "Middletown Township, NJ, United States",
+      "remote": "onsite",
+      "url": "https://www.glassdoor.com/job-listing/fpa-analyst-remote-te-connectivity-JV_IC1126872_KO0,18_KE19,34.htm?jl=1009990804344&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Glassdoor",
+      "status": "expired",
+      "tier": 1,
+      "fit_score": 88.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 88.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "TE Connectivity is seeking a Financial Planning & Analysis Analyst supporting the Global Automotive Business Unit.\n\nIn this role, you will partner with Finance and non-Finance functional leaders around the world developing, interpreting, and presenting financial results. Analyses performed will be critical to deliver actionable insights, maintain robust financial models, and ensure accurate reporting that supports organizational goals.\n\nThe role requires strong analytical skills, attention to detail, and the ability to collaborate across multiple functions in a global environment.\n\nJob Requirements\n• Financial Reporting & Consolidation: Prepare detailed reports, financial statements and presentations with insight and commentary. These reports are then presented to senior management and stakeholders to understand the financial implications of results and business decisions.\n• Budgeting and Forecasting: Develop, update, and maintain financial models and comprehensive forecasts. Provide detailed financial budgets and monthly financial forecasts based on historical performance, market trends, and strategic initiatives\n• Operating Expenses Analysis and Control: Monitor and control SG&A expenses, conduct reviews with key business partners, coordinate evaluations of investment and cost-reduction opportunities\n• Month close activities: Prepare, review and coordinate with Financial Shared Service to make month end entries (accrual expenses, reversals); partner with regional finance teams to consolidate and interpret monthly results\n• Business partnership: Provide clear, data-driven insights to senior management for operational and strategic decisions. Work closely with Global Operations and Product Management Finance teams to provide financial insights for data-driven decision making\n• Data Management: Manage data flow between financial systems and tools, drive automation and standardization of reporting and analytics globally\n• TEOA-F and Process Improvement: Evaluating cur"
+    },
+    {
+      "id": "825732b8-6958-4323-9cae-28a4447dac7d",
+      "title": "Financial Planning & Analysis Analyst | Fully Remote US",
+      "company": "Hirevue",
+      "location": "South Jordan, UT, United States",
+      "remote": "onsite",
+      "url": "https://www.linkedin.com/jobs/view/financial-planning-analysis-analyst-fully-remote-us-at-hirevue-4338843129?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "expired",
+      "tier": 1,
+      "fit_score": 88.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 88.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Hirevue is where hiring happens – transforming the way organizations discover, engage, and hire the best talent. Connecting companies and candidates anytime, anywhere, Hirevue’s end-to-end hiring platform features video interviewing, assessments and conversational AI. The industry leader in science backed, modern hiring solutions powered by ethical AI, Hirevue has hosted more than 70 million video interviews and 200 million chat-based candidate engagements for over 1200 pioneering customers around the globe.\n\nJob Description\n\nOwn the Metrics. Shape the Story. Drive the Business.\n\nAre you a rising finance professional who loves diving into data, building models, and turning insights into impact? Do you thrive in fast-moving environments where you’re trusted to “act like an owner,” solve problems independently, and collaborate across the business? If so, this role might be your next big career move.\n\nWe’re looking for an FP&A Analyst to join our high-impact Finance team and help accelerate our growth as a leading SaaS organization. You’ll work side-by-side with our VP of FP&A and CFO, partnering across the company to drive smarter decisions, sharper forecasts, and stronger performance.\n\nIn this role, you’ll play a key part in shaping our financial engine. You will:\n\n📊 Drive Monthly & Quarterly Business Performance\n• Lead expense-side variance analysis for assigned departments.\n• Partner closely with Accounting and departmental leaders to deliver a crisp, accurate close.\n• Build and enhance expense forecasts that help leaders understand the “why” behind the numbers.\n\n👥 Be the Owner of Headcount Analytics\n• Own headcount actuals and forecasting for specific teams.\n• Partner with HR and business leaders to manage hiring plans and workforce costs.\n• Maintain weekly headcount reconciliation to ensure absolute accuracy.\n\n📈 Elevate SaaS Reporting & Visibility\n• Update and maintain dashboards that track our most critical SaaS metrics (ARR, NRR, CAC, LTV, churn).\n• Provide ins"
+    },
+    {
       "id": "cd0ff3d2-fd88-4f72-95c9-df4ebb14f1ce",
       "title": "Analista Financeiro - FP&A Sênior",
       "company": "Asaas",
@@ -223,8 +567,11 @@
       "status": "analyzing",
       "tier": 1,
       "fit_score": 85.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {
+        "added_via": "bookmarklet_redirect"
+      },
       "probability": 76.0,
       "key_matches": [
         "Experiência sólida em FP&A (Budget, Forecast, P&L, análise de variações e fechamento)",
@@ -253,8 +600,9 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 82.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 82.0,
       "key_matches": [
         "\n    \"Mais de 8 anos de experiência em finanças e contabilidade corporativa\",\n    \"Formação sólida em Ciências Contábeis (Ibmec)\",\n    \"Experiência prévia com Oracle ERP (requisito preferencial)\",\n    \"Domínio completo de FP&A, Budgeting e Forecasting\",\n    \"Inglês fluente/bilíngue essencial para vaga nos EUA\",\n    \"Forte capacidade analítica e automação de processos financeiros\"\n  "
@@ -273,8 +621,9 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 78.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 78.0,
       "key_matches": [
         "\n    \"Sólida experiência em FP&A (Budget, Forecast e P&L) em nível sênior\",\n    \"Domínio de ERPs de grande porte (SAP e Oracle), essenciais para consolidação\",\n    \"Fluência em Inglês e Espanhol, fundamental para atuação em Belize e reporte global\",\n    \"Capacidade avançada de automação de processos financeiros com Python e SQL\",\n    \"Experiência prévia no setor de hospitalidade (Pestana), correlato ao core business da ECI\"\n  "
@@ -293,8 +642,9 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 72.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 72.0,
       "key_matches": [],
       "gaps": [],
@@ -311,8 +661,94 @@
       "status": "analyzing",
       "tier": 1,
       "fit_score": 65.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {
+        "added_via": "bookmarklet_redirect",
+        "quality_gate": {
+          "score": 54.5,
+          "passed": false,
+          "source": "hybrid",
+          "metrics": {
+            "bullet_count": 30,
+            "keywords_total": 24,
+            "cover_word_count": 64,
+            "keywords_covered": 0,
+            "resume_word_count": 714,
+            "quantified_bullets": 6,
+            "keyword_coverage_ratio": 0.0
+          },
+          "summary": "ATS deterministic score 65.0/100. Coverage 0/24 keywords; bullets=30, quantified=6.",
+          "version": "ats-v1",
+          "warnings": [],
+          "checklist": {
+            "cover_length": {
+              "ok": false,
+              "detail": "palavras_cover=64",
+              "weight": 5
+            },
+            "bullet_volume": {
+              "ok": true,
+              "detail": "bullets=30",
+              "weight": 10
+            },
+            "resume_length": {
+              "ok": true,
+              "detail": "palavras_curriculo=714",
+              "weight": 5
+            },
+            "no_placeholders": {
+              "ok": true,
+              "detail": "Sem [REDACTED]",
+              "weight": 10
+            },
+            "keyword_coverage": {
+              "ok": false,
+              "detail": "coverage=0.00 (0/24)",
+              "weight": 20
+            },
+            "required_sections": {
+              "ok": true,
+              "detail": "headings=5",
+              "weight": 20
+            },
+            "quantified_bullets": {
+              "ok": true,
+              "detail": "bullets_com_numero=6",
+              "weight": 10
+            },
+            "fit_analysis_complete": {
+              "ok": true,
+              "detail": "Fit com resumo + matches",
+              "weight": 10
+            },
+            "cover_letter_alignment": {
+              "ok": false,
+              "detail": "Empresa citada na cover letter",
+              "weight": 10
+            }
+          },
+          "llm_score": 35.0,
+          "mandatory": {
+            "no_placeholders": false,
+            "required_sections": false,
+            "fit_analysis_complete": true,
+            "cover_letter_alignment": false
+          },
+          "threshold": 70.0,
+          "missing_items": [
+            "Cover letter alinhada à vaga",
+            "Cover letter fora do range recomendado"
+          ],
+          "blocking_issues": [
+            "Seções obrigatórias",
+            "Sem placeholders/redacted",
+            "Cover letter alinhada à vaga"
+          ],
+          "deterministic_score": 65.0
+        },
+        "quality_gate_checked_at": "2026-02-18T22:29:31.927260+00:00"
+      },
       "probability": 55.0,
       "key_matches": [
         "Mais de 8 anos de experiência na área financeira",
@@ -339,8 +775,9 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 58.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 58.0,
       "key_matches": [],
       "gaps": [],
@@ -357,8 +794,9 @@
       "status": "expired",
       "tier": 1,
       "fit_score": 55.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 55.0,
       "key_matches": [],
       "gaps": [],
@@ -375,8 +813,11 @@
       "status": "ready",
       "tier": 1,
       "fit_score": 52.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {
+        "added_via": "bookmarklet_redirect"
+      },
       "probability": 52.0,
       "key_matches": [
         "Base quantitativa forte (Python, SQL, estatística e ML aplicado)",
@@ -406,35 +847,8 @@
       "tier": 1,
       "fit_score": 5.0,
       "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "20abc54c-bfa7-4048-aa1b-73922a41cf84",
-      "title": "Finance Analyst (REMOTE)",
-      "company": "Cisco Systems",
-      "location": "North Carolina, US",
-      "remote": "remote",
-      "url": "https://www.indeed.com/viewjob?jk=fe23c929cadfb225&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "new",
-      "tier": 1,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "c06682dd-391e-4f6c-a6ef-a2226a0bbe36",
-      "title": "Senior Financial Planning Analyst",
-      "company": "DXC Technology",
-      "location": "",
-      "remote": "remote",
-      "url": "https://dailyremote.com/remote-job/senior-financial-planning-analyst-4586798?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "DailyRemote",
-      "status": "new",
-      "tier": 1,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {}
     },
     {
       "id": "38d0a608-5317-44ba-96be-5cbb1a5ce8a2",
@@ -448,21 +862,10 @@
       "tier": 1,
       "fit_score": 0,
       "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "4b91429c-7204-4c98-bf96-b8047bfc7ffd",
-      "title": "Remote FP&A Analyst for Strategic Forecasting",
-      "company": "Acquisition.com",
-      "location": "US",
-      "remote": "remote",
-      "url": "https://www.jobleads.com/us/job/remote-fp-a-analyst-for-strategic-forecasting--united-states--e4a3cd6c6bf5cb47829d189da5054c8b6?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "JobLeads",
-      "status": "new",
-      "tier": 1,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {
+        "posted_at": "8 days ago"
+      }
     },
     {
       "id": "ec015a16-e443-4bcd-9667-19fc1d34932c",
@@ -476,47 +879,90 @@
       "tier": 1,
       "fit_score": 0,
       "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {
+        "benefits": [
+          "paid_time_off",
+          "dental_coverage",
+          "health_insurance"
+        ],
+        "posted_at": "3 days ago"
+      }
     },
     {
-      "id": "36ed4aba-3662-4031-920c-8f1c0b8ce764",
-      "title": "Consultor(a) Cloud FinOps",
-      "company": "Accenture",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=8d69a94a92c8c279&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "expired",
-      "tier": 3,
-      "fit_score": 95.0,
+      "id": "4b91429c-7204-4c98-bf96-b8047bfc7ffd",
+      "title": "Remote FP&A Analyst for Strategic Forecasting",
+      "company": "Acquisition.com",
+      "location": "US",
+      "remote": "remote",
+      "url": "https://www.jobleads.com/us/job/remote-fp-a-analyst-for-strategic-forecasting--united-states--e4a3cd6c6bf5cb47829d189da5054c8b6?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "JobLeads",
+      "status": "new",
+      "tier": 1,
+      "fit_score": 0,
       "has_resume": false,
       "has_cover_letter": false,
-      "probability": 95.0,
-      "key_matches": [
-        "\n    \"Experiência sólida em FinOps e gestão de custos multi-cloud (AWS, GCP, Azure)\",\n    \"Domínio técnico de Python, SQL e ferramentas de BI para automação de processos financeiros\",\n    \"Background híbrido raro: Bacharel em Contabilidade com especialização em Ciência de Dados\",\n    \"Inglês fluente, requisito crítico para a atuação global da Accenture\",\n    \"Experiência prática em governança, tagging e unit economics\"\n  "
-      ],
-      "gaps": [],
-      "description": "Um time que faz parte da mudança  \n\n\n \n  \n   \n    \n     Abraçamos o poder da mudança para criar valor e sucesso compartilhado para nossos clientes, funcionários, acionistas, parceiros e comunidades. Contamos com a maior rede mundial de centros de tecnologia avançada e operações inteligentes.  \n\n\n    \n    \n      \n\n\n    \n    \n     Provocamos a mudança no mercado  \n\n\n    \n    \n     Trabalhamos juntos mundo afora para fazer um mundo de diferenças. A Accenture é uma empresa global de serviços profissionais líder em soluções para digital, nuvem e segurança. Ao combinar experiência incomparável e habilidades especializadas em mais de 40 setores, oferecemos serviços em Estratégia e Consultoria, Tecnologia, Operações, Industry X e a Accenture Song.  \n\n\n    \n    \n      \n\n\n    \n    \n     Ao trabalharmos juntos, a mudança se torna a fonte de progresso mais dinâmica e poderosa que você tem. Somos mais de 738 mil pessoas, presentes em mais de 120 países, engajados em fazer inovação todos os dias e transformar o mundo em um lugar melhor para as pessoas. \n\n\n    \n    \n      \n\n\n    \n    \n     Junte-se a nós - Technology \n\n\n    \n    \n     Reunimos inovação, novas habilidades tecnológicas e conhecimento do setor para ajudar os clientes a inovar em escala, transformar e expandir negócios. Venha trabalhar em uma cultura que incentiva ideias inovadoras a florescer e causar um impacto significativo nos negócios de nossos clientes e em nossas comunidades. Combine o melhor da tecnologia e criatividade humana em programas de transformação de TI e negócios em larga escala para clientes globais usando as tecnologias mais recentes em nuvem, segurança, dados, IA, digital, Industry X, plataformas corporativas e automação inteligente."
+      "metadata": {
+        "posted_at": "5 days ago"
+      }
     },
     {
-      "id": "30ac31b8-2766-4ca1-b170-910e14baf2b9",
-      "title": "Analista FinOps (58001)",
-      "company": "EVT",
-      "location": "State of São Paulo",
+      "id": "c06682dd-391e-4f6c-a6ef-a2226a0bbe36",
+      "title": "Senior Financial Planning Analyst",
+      "company": "DXC Technology",
+      "location": "",
+      "remote": "remote",
+      "url": "https://dailyremote.com/remote-job/senior-financial-planning-analyst-4586798?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "DailyRemote",
+      "status": "new",
+      "tier": 1,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {
+        "posted_at": "9 days ago"
+      }
+    },
+    {
+      "id": "20abc54c-bfa7-4048-aa1b-73922a41cf84",
+      "title": "Finance Analyst (REMOTE)",
+      "company": "Cisco Systems",
+      "location": "North Carolina, US",
+      "remote": "remote",
+      "url": "https://www.indeed.com/viewjob?jk=fe23c929cadfb225&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "new",
+      "tier": 1,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {
+        "benefits": [
+          "paid_time_off",
+          "health_insurance",
+          "dental_coverage"
+        ],
+        "posted_at": "14 days ago"
+      }
+    },
+    {
+      "id": "cc47e067-e90b-4814-8ac2-63eb3397f99b",
+      "title": "Analista Financeiro - Sênior | V4 Ruston & Co.",
+      "company": "V4 Company",
+      "location": "São José dos Campos, State of São Paulo",
       "remote": "onsite",
-      "url": "https://jobs.quickin.io/evtit/jobs/697a4501b5303d00137a1739?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Quickin",
+      "url": "https://br.indeed.com/viewjob?jk=93e2c901699ffbf9&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
       "status": "ready",
       "tier": 3,
       "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 95.0,
-      "key_matches": [
-        "\n    \"Experiência direta com FinOps em ambientes multi-cloud (AWS, GCP, Azure)\",\n    \"Domínio avançado de Power BI para relatórios e dashboards\",\n    \"Sólida base em FP&A e Controladoria combinada com Ciência de Dados\",\n    \"Capacidade de automação de processos financeiros com Python e SQL\",\n    \"Experiência em governança de custos e implementação de tagging\"\n  "
-      ],
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 90.0,
+      "key_matches": [],
       "gaps": [],
-      "description": "Há mais de 25 anos, a EVT é referência em soluções corporativas de TI, promovendo a transformação digital de seus parceiros e clientes. Com uma equipe altamente qualificada, atuamos tanto no desenvolvimento de soluções quanto na alocação de profissionais especializados dentro dos nossos clientes. \nAtendemos grandes empresas dos mais diversos segmentos, sempre com foco em oferecer tecnologia de ponta, contato próximo e resultados que geram valor real para os negócios. 🤝💙\n\n\nNa EVT, vivemos nossos valores no dia a dia: Respeito, Parceria, Eficiência, Inovação e Resultados. É isso que garante entregas de qualidade e relações duradouras com nossos clientes e parceiros. ✨\n\n\nSe você busca um ambiente colaborativo, cheio de desafios que impulsionam sua carreira, venha fazer parte de uma equipe que valoriza o talento e a dedicação de cada profissional! \n\n\nInformações da oportunidade: \n\n\nAtuação: Remota\nPeríodo: 2026\nModelo de trabalho: Prestador de serviço (PJ)\n\n\nResponsabilidades: \n\n\nEstamos em busca de um(a) Analista FinOps para atuar nas atividades de controle e gestão de custos em cloud. Esse(a) profissional será responsável por extrair, analisar e apresentar os custos, apoiando a tomada de decisão. É necessário conhecimento em Power BI para a elaboração de análises e relatórios."
+      "description": "Na V4 Company, acreditamos que crescimento não acontece por acaso, e sim por estratégia. Nosso time é formado por profissionais que desafiam o mercado e entregam resultados de verdade, conectando performance e inovação.\n\nNosso ambiente de trabalho:\n• Transparência total: somos diretos e objetivos.\n• Trabalho em equipe: ninguém cresce sozinho.\n• Autonomia com responsabilidade: tomamos decisões e assumimos a execução.\n\nSe você quer fazer parte de uma equipe que pensa grande e age rápido, essa vaga é para você!\n\nComo Analista Financeiro Sênior, sua missão será liderar análises financeiras com profundidade e precisão, antecipando riscos, identificando oportunidades e guiando o negócio com base em dados confiáveis. Você será uma das peças-chave no planejamento de crescimento da V4.\n\nPrincipais responsabilidades:\n• Realizar análises financeiras profundas de DREs, balanços e KPIs;\n• Desenvolver modelos financeiros robustos para apoiar previsões, investimentos e decisões estratégicas;\n• Monitorar e reportar o desempenho financeiro da empresa em relação a metas e benchmarks;\n• Apresentar resultados de forma clara e impactante para líderes, investidores e stakeholders;\n• Liderar melhorias contínuas de processos e participar de projetos de alto impacto;\n• Conciliar contas bancárias e apoiar a estruturação e análise de Fluxo de Caixa;\n• Ser referência técnica e atuar como mentor para analistas da área.\n\nRequisitos:\n• Graduação completa em Finanças, Contabilidade, Economia ou áreas correlatas;\n• Experiência consolidada em rotinas e análises financeiras;\n• Excel avançado + domínio de Google Sheets;\n• Conhecimento em estruturação de fluxo de caixa (diário e mensal);\n• Perfil analítico, senso crítico e atenção a detalhes;\n• Boa comunicação e habilidade de apresentar dados com clareza;\n• Conhecimento em SAP é um diferencial relevante;\n• Desejável pós-graduação ou MBA na área.\n\nO que oferecemos:\n• Os benefícios serão informados pela recrutadora.\n• Acesso aos cursos da Staage.\n• Onhap"
     },
     {
       "id": "c8b7aa22-ddd5-4ef3-88bf-926b15875d79",
@@ -529,12 +975,55 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 95.0,
       "key_matches": [],
       "gaps": [],
       "description": "Cargo: ANALISTA FINOPS - ID 33530  Responsabilidade: O Analista de FinOps será responsável por gerenciar e otimizar os custos de ambientes em nuvem, com foco principal em AWS. Atuará como elo entre as áreas de tecnologia, finanças e operações, garantindo visibilidade, controle e eficiência no consumo de recursos em nuvem. Seu papel é garantir que a organização utilize seus recursos em nuvem de forma responsável e financeiramente sustentável, suportando a tomada de decisões com base em dados e promovendo a cultura FinOps. ● Monitorar, analisar e reportar o consumo de serviços em nuvem (principalmente AWS), com foco em custo, uso e eficiência; ● Implementar boas práticas de FinOps, alinhando uso da nuvem à estratégia financeira da empresa; ● Criar dashboards, relatórios e alertas sobre gastos e tendências de consumo na nuvem; ● Trabalhar com áreas técnicas para identificar desperdícios e propor medidas de otimização (como instâncias reservadas, right-sizing, desligamento de recursos ociosos, uso de savings plans, etc.); ● Atuar como ponto focal para controles de orçamento, forecast e rateio de custos entre projetos, unidades e departamentos; ● Apoiar na definição e acompanhamento de budgets e cotas por conta ou serviço de nuvem; ● Realizar análises de ROI e Custo Total de Propriedade (TCO) de soluções em nuvem; ● Gerenciar tags de custos e garantir a governança adequada das contas e recursos da AWS; ● Participar de reuniões técnicas e de negócio, traduzindo informações financeiras e técnicas de forma clara e objetiva; ● Apoiar auditorias internas e externas com informações sobre consumo e contratos de cloud; ● Trabalhar em parceria com engenharia de cloud, segurança da informação e áreas de negócio na evolução da maturidade FinOps da organização.   Formação: Desejável Ensino superior completo em Administração, Engenharia, Sistemas de Informação, Ciência da Computação, Contabilidade ou áreas afins; Desejável pós-graduação em Cloud Computing, Finanças, Governança de TI "
+    },
+    {
+      "id": "36ed4aba-3662-4031-920c-8f1c0b8ce764",
+      "title": "Consultor(a) Cloud FinOps",
+      "company": "Accenture",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.indeed.com/viewjob?jk=8d69a94a92c8c279&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "expired",
+      "tier": 3,
+      "fit_score": 95.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 95.0,
+      "key_matches": [
+        "\n    \"Experiência sólida em FinOps e gestão de custos multi-cloud (AWS, GCP, Azure)\",\n    \"Domínio técnico de Python, SQL e ferramentas de BI para automação de processos financeiros\",\n    \"Background híbrido raro: Bacharel em Contabilidade com especialização em Ciência de Dados\",\n    \"Inglês fluente, requisito crítico para a atuação global da Accenture\",\n    \"Experiência prática em governança, tagging e unit economics\"\n  "
+      ],
+      "gaps": [],
+      "description": "Um time que faz parte da mudança  \n\n\n \n  \n   \n    \n     Abraçamos o poder da mudança para criar valor e sucesso compartilhado para nossos clientes, funcionários, acionistas, parceiros e comunidades. Contamos com a maior rede mundial de centros de tecnologia avançada e operações inteligentes.  \n\n\n    \n    \n      \n\n\n    \n    \n     Provocamos a mudança no mercado  \n\n\n    \n    \n     Trabalhamos juntos mundo afora para fazer um mundo de diferenças. A Accenture é uma empresa global de serviços profissionais líder em soluções para digital, nuvem e segurança. Ao combinar experiência incomparável e habilidades especializadas em mais de 40 setores, oferecemos serviços em Estratégia e Consultoria, Tecnologia, Operações, Industry X e a Accenture Song.  \n\n\n    \n    \n      \n\n\n    \n    \n     Ao trabalharmos juntos, a mudança se torna a fonte de progresso mais dinâmica e poderosa que você tem. Somos mais de 738 mil pessoas, presentes em mais de 120 países, engajados em fazer inovação todos os dias e transformar o mundo em um lugar melhor para as pessoas. \n\n\n    \n    \n      \n\n\n    \n    \n     Junte-se a nós - Technology \n\n\n    \n    \n     Reunimos inovação, novas habilidades tecnológicas e conhecimento do setor para ajudar os clientes a inovar em escala, transformar e expandir negócios. Venha trabalhar em uma cultura que incentiva ideias inovadoras a florescer e causar um impacto significativo nos negócios de nossos clientes e em nossas comunidades. Combine o melhor da tecnologia e criatividade humana em programas de transformação de TI e negócios em larga escala para clientes globais usando as tecnologias mais recentes em nuvem, segurança, dados, IA, digital, Industry X, plataformas corporativas e automação inteligente."
+    },
+    {
+      "id": "97c09d98-639f-4742-8e44-a5611f4f42e8",
+      "title": "FinOps Specialist",
+      "company": "Getnet",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.indeed.com/viewjob?jk=a07cb818bf763a18&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "expired",
+      "tier": 3,
+      "fit_score": 95.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 95.0,
+      "key_matches": [
+        "\n    \"Experiência direta em FinOps e gestão de custos multi-cloud (AWS, GCP, Azure)\",\n    \"Domínio técnico de Python e SQL para automação de processos financeiros\",\n    \"Background em Fintech (Paketa), setor idêntico ao da Getnet\",\n    \"Formação híbrida em Contabilidade e Ciência de Dados, ideal para a disciplina de FinOps\",\n    \"Experiência com ERPs de grande porte (SAP e Oracle), comuns em empresas do Grupo Santander\"\n  "
+      ],
+      "gaps": [],
+      "description": "✨ Seu talento impulsiona o nosso futuro\n \n  A Getnet é uma empresa global de tecnologia especializada em soluções de pagamento para o comércio. Fundada no Brasil e presente na América Latina e na Península Ibérica, apoiamos mais de 1,3 milhão de comerciantes com serviços completos — da maquininha ao e-commerce.\n\n\n  Fazemos parte da PagoNxt, a fintech global do Grupo Santander, e atuamos como um hub de adquirência com forte presença em Espanha, Portugal, Brasil, México, Chile, Argentina e Uruguai.\n\n\n  Nossa missão é clara: simplificar os pagamentos com inovação, segurança e escala, ajudando negócios de todos os tamanhos a crescer com agilidade.\n\n\n  Oferecemos uma plataforma unificada que integra hardware, software, prevenção à fraude, adquirência, conciliação e serviços financeiros — tudo em um só ecossistema, para que nossos clientes possam focar no crescimento do seu negócio.\n\n\n  Fazer parte da Getnet é se juntar a uma empresa que combina a inovação de uma fintech com a solidez de um banco global.\n\n\n   Imagine your future. Care for your career. Simplify your journey.\n\n\n  Isso significa que você terá a chance de construir soluções de impacto, crescer com oportunidades reais de desenvolvimento e evoluir em uma cultura que valoriza bem-estar, inclusão e clareza.\n Combinamos flexibilidade, autonomia e colaboração global — para que você possa focar no que importa, se conectar com propósito e ajudar a moldar o futuro.\n\n\n  Aqui, você vai encontrar espaço para crescer, oportunidades reais para liderar e uma cultura onde todas as pessoas pertencem e contribuem.\n\n\n  ✨ Se você quer fazer parte da próxima geração de soluções financeiras, este é o lugar certo.\n\n\n   Já te imagina sendo Nxter?\n\n\n  \n\n\n  Buscamos um Especialista de FinOps analítico e \"mão na massa\" para atuar na gestão e otimização dos nossos custos de nuvem. Você será responsável por garantir que nossos dados de cobrança sejam precisos, que os relatórios cheguem aos times certos e por identificar ativamente onde e"
     },
     {
       "id": "c7f81dbc-2719-47e2-bb0a-13fdd9943472",
@@ -547,12 +1036,53 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 95.0,
       "key_matches": [],
       "gaps": [],
       "description": "Sobre a Tivita\n\nA Tivita nasceu para resolver um problema estrutural: a ineficiência da gestão financeira de R$500 bilhões no setor de saúde. Nossas soluções colocam a gestão de clínicas e consultórios no piloto automático, automatizando tarefas manuais, eliminando processos burocráticos e dando visibilidade de indicadores confiáveis a cada segundo.\n\nIdealizada por fundadores com histórico de sucesso no Gympass/Wellhub e Olist, com mais de R$ 32 milhões captados com FinTech Collective, MAYA Capital e K50 Ventures, estamos preparados para transformar a saúde com um time de gente boa de verdade!\n\nSomos movidos pela arte de transformar o complexo em simples e o impossível em realidade. Por isso, a profundidade técnica em finanças e dados é peça-chave para escalar nossas operações e sustentar decisões estratégicas de alto impacto.\n\nNosso time de finanças\n\nNa Tivita, tratamos finanças como função estratégica e operacional ao mesmo tempo.\n\nO time é responsável por estruturar e manter controles financeiros, análises de desempenho, modelos detalhados e informações que suportam decisões do dia a dia e de longo prazo. Trabalhamos com dados financeiros reais, múltiplas fontes de informação e em grande proximidade com liderança, tecnologia e operações.\n\nQuestionamos processos manuais e pouco escaláveis, buscamos entender causas raiz e desenhamos soluções mais eficientes, seja por meio de automação, melhoria de processos ou melhor estruturação de dados.\n\nSomos um time pequeno, colaborativo e sem ego, que trabalha com alto grau de autonomia e responsabilidade. Cada entrega importa, e qualidade, clareza e consistência são requisitos básicos.\n\nNosso foco é gerar impacto real na operação da Tivita, tornando a área financeira mais organizada, previsível e preparada para escalar junto com o crescimento da empresa.\n\nSe esse tipo de ambiente te energiza, você vai se sentir em casa. 💚\n\nSobre a Posição:\n\nEstamos em busca de um(a) Analista de Finanças com forte perfil técnico e analítico p"
+    },
+    {
+      "id": "30ac31b8-2766-4ca1-b170-910e14baf2b9",
+      "title": "Analista FinOps (58001)",
+      "company": "EVT",
+      "location": "State of São Paulo",
+      "remote": "onsite",
+      "url": "https://jobs.quickin.io/evtit/jobs/697a4501b5303d00137a1739?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Quickin",
+      "status": "applied",
+      "tier": 3,
+      "fit_score": 95.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 95.0,
+      "key_matches": [
+        "\n    \"Experiência direta com FinOps em ambientes multi-cloud (AWS, GCP, Azure)\",\n    \"Domínio avançado de Power BI para relatórios e dashboards\",\n    \"Sólida base em FP&A e Controladoria combinada com Ciência de Dados\",\n    \"Capacidade de automação de processos financeiros com Python e SQL\",\n    \"Experiência em governança de custos e implementação de tagging\"\n  "
+      ],
+      "gaps": [],
+      "description": "Há mais de 25 anos, a EVT é referência em soluções corporativas de TI, promovendo a transformação digital de seus parceiros e clientes. Com uma equipe altamente qualificada, atuamos tanto no desenvolvimento de soluções quanto na alocação de profissionais especializados dentro dos nossos clientes. \nAtendemos grandes empresas dos mais diversos segmentos, sempre com foco em oferecer tecnologia de ponta, contato próximo e resultados que geram valor real para os negócios. 🤝💙\n\n\nNa EVT, vivemos nossos valores no dia a dia: Respeito, Parceria, Eficiência, Inovação e Resultados. É isso que garante entregas de qualidade e relações duradouras com nossos clientes e parceiros. ✨\n\n\nSe você busca um ambiente colaborativo, cheio de desafios que impulsionam sua carreira, venha fazer parte de uma equipe que valoriza o talento e a dedicação de cada profissional! \n\n\nInformações da oportunidade: \n\n\nAtuação: Remota\nPeríodo: 2026\nModelo de trabalho: Prestador de serviço (PJ)\n\n\nResponsabilidades: \n\n\nEstamos em busca de um(a) Analista FinOps para atuar nas atividades de controle e gestão de custos em cloud. Esse(a) profissional será responsável por extrair, analisar e apresentar os custos, apoiando a tomada de decisão. É necessário conhecimento em Power BI para a elaboração de análises e relatórios."
+    },
+    {
+      "id": "96931ca4-836e-43e0-b444-e09a72805cb0",
+      "title": "Analista Dados Financeiros",
+      "company": "Industria Multinacional do Segmento de Alimentos líder de mercado, localizada na Zona Sul de SP/Capital",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://www.catho.com.br/vagas/analista-dados-financeiros/34409662/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Catho",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 95.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 95.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Automatização de Processos de Planejamento Financeiro; Criação e ou melhorias de Relatórios e Dashboards Financeiros; Otimzação de Processos; Extração de dados no SAP , SQL, Excel; Apresentação de resultados entre outras Formação Superior Completa\nExperiência na função acima descrita na área financeira\nSAP\nSQL\nExcel Avançado"
     },
     {
       "id": "ba097542-5f8d-4f49-aff4-7f29c2f68a65",
@@ -565,8 +1095,9 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 95.0,
       "key_matches": [],
       "gaps": [],
@@ -583,104 +1114,13 @@
       "status": "expired",
       "tier": 3,
       "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 95.0,
       "key_matches": [],
       "gaps": [],
       "description": "Nossa missão\n\nSomos a\n\nConta Simples , um sistema de gestão de despesas corporativas que une serviços financeiros e tecnologia.\nNós existimos para\n\ntransformar\n\ne\n\npotencializar\n\na jornada financeira das empresas,\n\notimizando\n• tempo das pessoas.\n\nConfira algumas de nossas conquistas\n\nEstamos entre as\n\n100 fintechs\n\nmais promissoras do mundo segundo a\n\nCB Insights\n\nLinkedIn Top Startups 2023\n\nestamos superando os desafios, gerando interesse e atraindo os melhores talentos\n\nPela\n\nterceira vez\n\nsomos destaque entre as\n\n100 Startups to Watch\n\npela revista PEGN evidenciando nossa inovação, potencial de mercado, negócio e escalabilidade\n\n\n50 Startups que mudam o Brasil\n\n(Exame), refletindo nossa influência no ecossistema de empreendedorismo\n\nSegunda startup brasileira a receber aporte da\n\nY Combinator\n\n\n21 Startups Emerging Giants , pela KPMG\n\nNo início de 2024, recebemos uma nova rodada de\n\ninvestimentos (série B) de 200 milhões de reais.\n\nTodas essas conquistas só foram possíveis por causa do nosso time. Acreditamos no potencial de cada Simpler e, juntos, construímos um ambiente colaborativo, de autonomia e com muito espaço para crescer e se desenvolver.\n• VemSerSimpler!\n/n\n\nO que esperamos de você:\n\nHabilidade analítica:\n\nDomínio de SQL, análise estatística e ferramentas de data visualization (como Superset, Power BI ou similares).\nPadronização e boas práticas\n\n: Seguir os padrões definidos pelo time de engenharia e dados para documentação, versionamento e governança.\nRotina colaborativa:\n\nParticipar dos rituais da área, fóruns estratégicos e dos rituais do time de dados.\nConhecimento em ciência de dados:\n\nNão precisa ser cientista, mas saber dialogar e colaborar com o time técnico é essencial\nAutonomia com responsabilidade:\n\nCapacidade de tocar análises, com senso de prioridade e qualidade.\nVisão de negócio:\n\nConhecimento (ou sede de aprender) sobre as métricas e a operação de uma fintech.\n\nSerá diferencial se você tiver:\n﻿\n\nConhecimento em integração e validação de "
-    },
-    {
-      "id": "96931ca4-836e-43e0-b444-e09a72805cb0",
-      "title": "Analista Dados Financeiros",
-      "company": "Industria Multinacional do Segmento de Alimentos líder de mercado, localizada na Zona Sul de SP/Capital",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://www.catho.com.br/vagas/analista-dados-financeiros/34409662/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Catho",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 95.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Automatização de Processos de Planejamento Financeiro; Criação e ou melhorias de Relatórios e Dashboards Financeiros; Otimzação de Processos; Extração de dados no SAP , SQL, Excel; Apresentação de resultados entre outras Formação Superior Completa\nExperiência na função acima descrita na área financeira\nSAP\nSQL\nExcel Avançado"
-    },
-    {
-      "id": "cc47e067-e90b-4814-8ac2-63eb3397f99b",
-      "title": "Analista Financeiro - Sênior | V4 Ruston & Co.",
-      "company": "V4 Company",
-      "location": "São José dos Campos, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=93e2c901699ffbf9&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 90.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Na V4 Company, acreditamos que crescimento não acontece por acaso, e sim por estratégia. Nosso time é formado por profissionais que desafiam o mercado e entregam resultados de verdade, conectando performance e inovação.\n\nNosso ambiente de trabalho:\n• Transparência total: somos diretos e objetivos.\n• Trabalho em equipe: ninguém cresce sozinho.\n• Autonomia com responsabilidade: tomamos decisões e assumimos a execução.\n\nSe você quer fazer parte de uma equipe que pensa grande e age rápido, essa vaga é para você!\n\nComo Analista Financeiro Sênior, sua missão será liderar análises financeiras com profundidade e precisão, antecipando riscos, identificando oportunidades e guiando o negócio com base em dados confiáveis. Você será uma das peças-chave no planejamento de crescimento da V4.\n\nPrincipais responsabilidades:\n• Realizar análises financeiras profundas de DREs, balanços e KPIs;\n• Desenvolver modelos financeiros robustos para apoiar previsões, investimentos e decisões estratégicas;\n• Monitorar e reportar o desempenho financeiro da empresa em relação a metas e benchmarks;\n• Apresentar resultados de forma clara e impactante para líderes, investidores e stakeholders;\n• Liderar melhorias contínuas de processos e participar de projetos de alto impacto;\n• Conciliar contas bancárias e apoiar a estruturação e análise de Fluxo de Caixa;\n• Ser referência técnica e atuar como mentor para analistas da área.\n\nRequisitos:\n• Graduação completa em Finanças, Contabilidade, Economia ou áreas correlatas;\n• Experiência consolidada em rotinas e análises financeiras;\n• Excel avançado + domínio de Google Sheets;\n• Conhecimento em estruturação de fluxo de caixa (diário e mensal);\n• Perfil analítico, senso crítico e atenção a detalhes;\n• Boa comunicação e habilidade de apresentar dados com clareza;\n• Conhecimento em SAP é um diferencial relevante;\n• Desejável pós-graduação ou MBA na área.\n\nO que oferecemos:\n• Os benefícios serão informados pela recrutadora.\n• Acesso aos cursos da Staage.\n• Onhap"
-    },
-    {
-      "id": "97c09d98-639f-4742-8e44-a5611f4f42e8",
-      "title": "FinOps Specialist",
-      "company": "Getnet",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=a07cb818bf763a18&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "expired",
-      "tier": 3,
-      "fit_score": 95.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 95.0,
-      "key_matches": [
-        "\n    \"Experiência direta em FinOps e gestão de custos multi-cloud (AWS, GCP, Azure)\",\n    \"Domínio técnico de Python e SQL para automação de processos financeiros\",\n    \"Background em Fintech (Paketa), setor idêntico ao da Getnet\",\n    \"Formação híbrida em Contabilidade e Ciência de Dados, ideal para a disciplina de FinOps\",\n    \"Experiência com ERPs de grande porte (SAP e Oracle), comuns em empresas do Grupo Santander\"\n  "
-      ],
-      "gaps": [],
-      "description": "✨ Seu talento impulsiona o nosso futuro\n \n  A Getnet é uma empresa global de tecnologia especializada em soluções de pagamento para o comércio. Fundada no Brasil e presente na América Latina e na Península Ibérica, apoiamos mais de 1,3 milhão de comerciantes com serviços completos — da maquininha ao e-commerce.\n\n\n  Fazemos parte da PagoNxt, a fintech global do Grupo Santander, e atuamos como um hub de adquirência com forte presença em Espanha, Portugal, Brasil, México, Chile, Argentina e Uruguai.\n\n\n  Nossa missão é clara: simplificar os pagamentos com inovação, segurança e escala, ajudando negócios de todos os tamanhos a crescer com agilidade.\n\n\n  Oferecemos uma plataforma unificada que integra hardware, software, prevenção à fraude, adquirência, conciliação e serviços financeiros — tudo em um só ecossistema, para que nossos clientes possam focar no crescimento do seu negócio.\n\n\n  Fazer parte da Getnet é se juntar a uma empresa que combina a inovação de uma fintech com a solidez de um banco global.\n\n\n   Imagine your future. Care for your career. Simplify your journey.\n\n\n  Isso significa que você terá a chance de construir soluções de impacto, crescer com oportunidades reais de desenvolvimento e evoluir em uma cultura que valoriza bem-estar, inclusão e clareza.\n Combinamos flexibilidade, autonomia e colaboração global — para que você possa focar no que importa, se conectar com propósito e ajudar a moldar o futuro.\n\n\n  Aqui, você vai encontrar espaço para crescer, oportunidades reais para liderar e uma cultura onde todas as pessoas pertencem e contribuem.\n\n\n  ✨ Se você quer fazer parte da próxima geração de soluções financeiras, este é o lugar certo.\n\n\n   Já te imagina sendo Nxter?\n\n\n  \n\n\n  Buscamos um Especialista de FinOps analítico e \"mão na massa\" para atuar na gestão e otimização dos nossos custos de nuvem. Você será responsável por garantir que nossos dados de cobrança sejam precisos, que os relatórios cheguem aos times certos e por identificar ativamente onde e"
-    },
-    {
-      "id": "22c340df-e1af-4162-8a49-ebc2e7ce2042",
-      "title": "Analista De Bi (Power Bi)",
-      "company": "Siimp Sistemas",
-      "location": "Americana - Vila Praia Azul, Americana - State of São Paulo (+1 other)",
-      "remote": "onsite",
-      "url": "https://br.talent.com/view?id=d11f2ead992a&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Talent.com",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 92.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 92.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "A SIIMP Sistemas é uma empresa de tecnologia especializada em soluções para logística e transporte. Desenvolvemos sistemas em nuvem que apoiam transportadoras e operadores logísticos na gestão da operação, financeiro e indicadores estratégicos.\n\nEstamos em um momento de crescimento e estruturação de dados, e buscamos um profissional para transformar dados em informação clara, visual e acionável para os clientes.\n\nResponsabilidades Desenvolver e manter dashboards em Power BI (operacional, financeiro e gerencial)\n\nRealizar modelagem de dados (relacionamentos, medidas e boas práticas)\n\nCriar e otimizar medidas em DAX\n\nConectar o Power BI a diferentes fontes de dados (banco de dados, APIs, planilhas, ERPs)\n\nApoiar na definição de KPIs e indicadores de negócio\n\nGarantir performance, clareza visual e confiabilidade das informações\n\nTrabalhar em conjunto com times de suporte, desenvolvimento e implantação\n\nRequisitos Experiência comprovada com Power BI\n\nConhecimento sólido em modelagem de dados\n\nExperiência com DAX\n\nConhecimento em SQL Query\n\nBoa capacidade analítica e entendimento de negócio\n\nOrganização e autonomia para conduzir demandas\n\n➕ Diferenciais (não obrigatórios) Experiência com PostgreSQL\n\nIntegrações via API REST\n\nExperiência com dados financeiros ou operacionais\n\nVivência em empresas de tecnologia, logística ou SaaS"
-    },
-    {
-      "id": "6057e22b-7e04-4c56-84b7-68c4856f23b8",
-      "title": "Analista de FP&A (Planejamento Financeiro e Análise)",
-      "company": "SILIMED - INDUSTRIA DE IMPLANTES LTDA",
-      "location": "Rio de Janeiro, State of Rio de Janeiro",
-      "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/analista-de-fp-a-planejamento-financeiro-e-an%C3%A1lise-at-silimed-ind%C3%BAstria-de-implantes-4365487399?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 92.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 92.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Objetivo da Posição\n\nAtuar em planejamento financeiro, análise de desempenho e geração de insights, apoiando a liderança na tomada de decisão estratégica, garantindo qualidade dos reports gerenciais, acompanhamento orçamentário rigoroso e padronização de análises financeiras.\n\nO(a) Analista Sênior será referência técnica em reports, Excel e apresentações executivas (PowerPoin), com forte interação com áreas de negócio (Logística, Customer Service, Comercial, Operações e Corporativo).\n\nRequisitos Técnicos\n\nObrigatórios\n• Formação superior em Administração, Economia, Contabilidade, Engenharia ou áreas correlatas.\n• Experiência sólida em FPA, Controladoria ou áreas financeiras estratégicas.\n• Excel avançado (será testado).\n• PowerPoint avançado (será testado).\n• Forte conhecimento em reports gerenciais e análises financeiras.\n• Capacidade de estruturar dados, análises e apresentações com clareza.\n\nDesejáveis\n• Power Query/Power BI (desejável);\n• Experiência com ERP (SAP S/4HANA ou similar).\n• Experiência com ferramentas de BI ou automação de reports.\n• Experiência em empresas com ambiente matricial ou operações internacionais.\n• Vivência em projetos de melhoria de processos financeiros.\n\nCompetências Comportamentais\n• Perfil analítico, organizado e crítico.\n• Excelente comunicação e capacidade de síntese.\n• Autonomia, senso de dono e responsabilidade com prazos.\n• Capacidade de questionar, propor melhorias e sustentar argumentos com dados.\n• Boa interação com áreas não financeiras.\n• Maturidade para lidar com ambiente executivo.\n\nAtividades\n\nPlanejamento Orçamento\n\nProcessos de orçamento anual, forecast e revisões periódicas, garantindo consistência entre premissas, números e narrativa. Apoiar a construção de orçamento base zero, análises de variação (real x orçado x forecast) e simulações financeiras. Garantir rastreabilidade das premissas e governança do processo orçamentário.\n\nAnálises Financeiras Performance\n\nElaborar análises de despesas, receitas, margens e OPEX,"
     },
     {
       "id": "95b5e729-cc07-4ab2-89cc-75588991bf58",
@@ -693,14 +1133,53 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 92.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 92.0,
       "key_matches": [
         "\n    \"Experiência sólida em modelagem financeira e Unit Economics (CAC/LTV)\",\n    \"Domínio de ferramentas de BI e visualização (Data Studio, Power BI, Tableau)\",\n    \"Habilidade avançada em automação com Python e SQL para grandes volumes de dados\",\n    \"Background em empresas de tecnologia e fintechs (Paketa, Vox)\",\n    \"Formação acadêmica robusta unindo Contabilidade (Ibmec) e Ciência de Dados (FGV/IBMR)\"\n  "
       ],
       "gaps": [],
       "description": "A Click Cannabis é líder em telemedicina especializada em tratamentos à base de canabidiol na América Latina, em ritmo de crescimento acelerado e alto volume transacional.\n\nBuscamos um(a) Analista de FPA para integrar o coração financeiro da nossa operação. Esse papel é essencial para garantir projeções precisas, análises estratégicas e visibilidade completa da performance, apoiando decisões que impulsionam nosso crescimento.\n\nSe você gosta de desafios, quer estruturar processos financeiros robustos e contribuir para os próximos passos da nossa expansão, essa oportunidade é para você!\n\nO que você vai fazer:\n\nModelagem Análises Financeiras\n• Desenvolver e manter modelos financeiros robustos (cenários, sensitividades, unit economics, PL projetado).\n• Construir projeções mensais, trimestrais e anuais (receita, margem, despesas, fluxo de caixa).\n• Realizar análises para suportar decisões estratégicas (novos produtos, expansão, margens por linha, CAC/LTV etc.).\n\nPlanejamento Performance\n• Participar do ciclo de planejamento financeiro (budget, forecast, revisão de targets).\n• Criar e acompanhar KPIs financeiros e operacionais junto ao CFO.\n• Analisar varações mensais de resultados vs. orçamento (desvios, causas e recomendações).\n\nRelatórios Apresentações\n• Elaborar relatórios e dashboards financeiros (Grafana, Sheets/Excel, Data Studio).\n• Construir apresentações executivas para diretoria e investidores.\n• Criar narrativas financeiras claras, objetivas e orientadas a dados.\n\nProcessos Controles\n• Apoiar estruturação e padronização do processo de FPA.\n• Trabalhar diretamente com contabilidade e time de dados para garantir integridade e consistência dos números.\n• Participar da elaboração de políticas e rotinas financeiras.\n\nO que buscamos\n• Alguém com mentalidade de dono, alta disciplina e que consiga trabalhar de forma estruturada diretamente com o CFO.\n• Capacidade de resolver problemas complexos e propor melhorias contínuas.\n• Conforto em trabalhar com velocidade, ince"
+    },
+    {
+      "id": "6057e22b-7e04-4c56-84b7-68c4856f23b8",
+      "title": "Analista de FP&A (Planejamento Financeiro e Análise)",
+      "company": "SILIMED - INDUSTRIA DE IMPLANTES LTDA",
+      "location": "Rio de Janeiro, State of Rio de Janeiro",
+      "remote": "onsite",
+      "url": "https://br.linkedin.com/jobs/view/analista-de-fp-a-planejamento-financeiro-e-an%C3%A1lise-at-silimed-ind%C3%BAstria-de-implantes-4365487399?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 92.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 92.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Objetivo da Posição\n\nAtuar em planejamento financeiro, análise de desempenho e geração de insights, apoiando a liderança na tomada de decisão estratégica, garantindo qualidade dos reports gerenciais, acompanhamento orçamentário rigoroso e padronização de análises financeiras.\n\nO(a) Analista Sênior será referência técnica em reports, Excel e apresentações executivas (PowerPoin), com forte interação com áreas de negócio (Logística, Customer Service, Comercial, Operações e Corporativo).\n\nRequisitos Técnicos\n\nObrigatórios\n• Formação superior em Administração, Economia, Contabilidade, Engenharia ou áreas correlatas.\n• Experiência sólida em FPA, Controladoria ou áreas financeiras estratégicas.\n• Excel avançado (será testado).\n• PowerPoint avançado (será testado).\n• Forte conhecimento em reports gerenciais e análises financeiras.\n• Capacidade de estruturar dados, análises e apresentações com clareza.\n\nDesejáveis\n• Power Query/Power BI (desejável);\n• Experiência com ERP (SAP S/4HANA ou similar).\n• Experiência com ferramentas de BI ou automação de reports.\n• Experiência em empresas com ambiente matricial ou operações internacionais.\n• Vivência em projetos de melhoria de processos financeiros.\n\nCompetências Comportamentais\n• Perfil analítico, organizado e crítico.\n• Excelente comunicação e capacidade de síntese.\n• Autonomia, senso de dono e responsabilidade com prazos.\n• Capacidade de questionar, propor melhorias e sustentar argumentos com dados.\n• Boa interação com áreas não financeiras.\n• Maturidade para lidar com ambiente executivo.\n\nAtividades\n\nPlanejamento Orçamento\n\nProcessos de orçamento anual, forecast e revisões periódicas, garantindo consistência entre premissas, números e narrativa. Apoiar a construção de orçamento base zero, análises de variação (real x orçado x forecast) e simulações financeiras. Garantir rastreabilidade das premissas e governança do processo orçamentário.\n\nAnálises Financeiras Performance\n\nElaborar análises de despesas, receitas, margens e OPEX,"
+    },
+    {
+      "id": "22c340df-e1af-4162-8a49-ebc2e7ce2042",
+      "title": "Analista De Bi (Power Bi)",
+      "company": "Siimp Sistemas",
+      "location": "Americana - Vila Praia Azul, Americana - State of São Paulo (+1 other)",
+      "remote": "onsite",
+      "url": "https://br.talent.com/view?id=d11f2ead992a&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Talent.com",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 92.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 92.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "A SIIMP Sistemas é uma empresa de tecnologia especializada em soluções para logística e transporte. Desenvolvemos sistemas em nuvem que apoiam transportadoras e operadores logísticos na gestão da operação, financeiro e indicadores estratégicos.\n\nEstamos em um momento de crescimento e estruturação de dados, e buscamos um profissional para transformar dados em informação clara, visual e acionável para os clientes.\n\nResponsabilidades Desenvolver e manter dashboards em Power BI (operacional, financeiro e gerencial)\n\nRealizar modelagem de dados (relacionamentos, medidas e boas práticas)\n\nCriar e otimizar medidas em DAX\n\nConectar o Power BI a diferentes fontes de dados (banco de dados, APIs, planilhas, ERPs)\n\nApoiar na definição de KPIs e indicadores de negócio\n\nGarantir performance, clareza visual e confiabilidade das informações\n\nTrabalhar em conjunto com times de suporte, desenvolvimento e implantação\n\nRequisitos Experiência comprovada com Power BI\n\nConhecimento sólido em modelagem de dados\n\nExperiência com DAX\n\nConhecimento em SQL Query\n\nBoa capacidade analítica e entendimento de negócio\n\nOrganização e autonomia para conduzir demandas\n\n➕ Diferenciais (não obrigatórios) Experiência com PostgreSQL\n\nIntegrações via API REST\n\nExperiência com dados financeiros ou operacionais\n\nVivência em empresas de tecnologia, logística ou SaaS"
     },
     {
       "id": "b7a508e8-e72b-4edf-9e1d-bdb9b162de67",
@@ -713,8 +1192,9 @@
       "status": "withdrawn",
       "tier": 3,
       "fit_score": 91.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 70.0,
       "key_matches": [
         "Experiência forte em FP&A com budget, forecast, P&L, fechamento mensal e análise orçado x realizado",
@@ -732,22 +1212,23 @@
       "description": "Descrição da vaga\n\nSe você tem paixão por inovação e busca trabalhar em um ambiente ágil, colaborativo e desafiador, esta pode ser a sua oportunidade!\n\nPara nosso time de FP&A (Financial Planning & Analysis) estamos em busca de uma pessoa Analista Financeiro Júnior para atuar na frente de Performance & Control. Sua missão será garantir a integridade da nossa visão financeira, apoiando desde a gestão de despesas até a análise das métricas que movem o nosso negócio.\n\nSe interessou pela oportunidade mas não reside em Joinville? Não tem problema, possibilitamos o trabalho remoto/home office.\n\nResponsabilidades e atribuições\n• Materiais de Fechamento: Apoiar a preparação de reportes para o conselho e comitês financeiros, transformando dados complexos em apresentações visuais claras que facilitem a tomada de decisão estratégica.\n• Análise de Orçado x Realizado: Executar o fechamento mensal da visão de performance, comparando os resultados reais com o orçado, identificando desvios e comunicando os principais motivadores para as lideranças financeiras e comerciais.\n• Gestão de Despesas: Acompanhar as rotinas de despesas por Centro de Custo, garantindo a integridade dos lançamentos e auxiliando na identificação de oportunidades de otimização de custos.\n• Métricas Financeiras: Identificar gargalos nos processos financeiros e propor melhorias através de ferramentas de automação e programação (Excel/Metabase/SQL/Python), visando ganhar escala e reduzir erros manuais.\n• Automação de Processos Financeiros: Identificar gargalos operacionais e propor melhorias nos fluxos de dados financeiros, utilizando ferramentas de automação e programação para otimizar o time de Performance & Control.\n• Business Partnering: Atuar como suporte consultivo para outras áreas, auxiliando gestores na compreensão de seus orçamentos e no planejamento de necessidades futuras.\n\nRequisitos e qualificações\n• Base Financeira: Conhecimento sólido em conceitos de finanças corporativas e contabilidade\n• Pacote "
     },
     {
-      "id": "6199b6e1-9ff5-4a21-ab13-d59588a1fec0",
-      "title": "Analista de FP&A Sr | Lubrificantes",
-      "company": "Vibra Energia",
+      "id": "3de45e77-3c96-4e0a-8f08-f7eaf398c518",
+      "title": "Analista de Financeiro - FP&A",
+      "company": "Robert Half",
       "location": "Rio de Janeiro, State of Rio de Janeiro",
       "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/analista-de-fp-a-sr-lubrificantes-at-vibra-4352709179?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
+      "url": "https://www.roberthalf.com/br/pt/vaga/rio-de-janeiro/analista-de-financeiro-fpa/63620-0013364267-brpt?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Robert Half",
       "status": "ready",
       "tier": 3,
       "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 88.0,
       "key_matches": [],
       "gaps": [],
-      "description": "Descrição da vaga\n\nAtuar na consolidação dos resultados financeiros da companhia, suportando o processo de planejamento estratégico e orçamentário, com foco em análise de desempenho, reporte gerencial e suporte à tomada de decisão. O profissional será responsável por garantir a integridade das informações financeiras, alinhadas às metas corporativas e às exigências regulatórias do setor.\n\nResponsabilidades e atribuições\n• Realizar a análise de resultados financeiros da companhia;\n• Consolidar os dados financeiros, garantindo consistência e acuracidade;\n• Identificar e justificar variações entre realizado e orçado;\n• Preparar apresentações financeiras para diretoria e conselho, incluindo DRE, fluxo de caixa, EBITDA e indicadores operacionais;\n• Desenvolver materiais de suporte para reuniões estratégicas e com investidores;\n• Apoiar na elaboração do orçamento anual e revisões (forecast);\n• Interagir com as diversas áreas para coleta de informações e alinhamento de premissas;\n• Desenvolver modelos financeiros e projeções de cenários.\n\nRequisitos e qualificações\n• Formação superior em Administração, Economia, Engenharia, Contabilidade ou áreas correlatas.\n• Experiência em planejamento financeiro, preferencialmente no setor de energia ou combustíveis.\n• Excel avançado e domínio de ferramentas de BI (Power BI, Tableau).\n• Conhecimento em sistemas ERP (SAP, Oracle).\n• Inglês intermediário ou avançado (desejável).\n\nInformações adicionais\n\nE tem mais, confira o nosso pacote de benefícios:\n\n• Plano de Saúde e Odontológico – Bradesco – extensivo a dependentes\n\n• PAE - Auxílio financeiro oferecido no caso de dependentes filhos(as) e/ou enteados(as) com deficiência intelectual\n\n• Convênio Farmácia . Descontos de até 70%\n\n• Previdência Complementar – Plano FlexPrev - variando de 1% a 11%, de acordo com o salário\n\n• Seguro de Vida – seguro para todos os colaboradores a partir da data de admissão, sem participação.\n\n• Extensão das Licenças - Maternidade (total de 180 dias) e Patern"
+      "description": "A EmpresaEmpresa de Grande Porte de Construção Naval (estaleiro) - Rio de Janeiro.Descrição da vagaElaboração de relatórios gerenciais para suporte à tomada de decisão;Elaboração e acompanhamento de orçamentos, Forecasts e análises de DRE;Apoio cotidiano em processos de FP&A: balanço patrimonial, demonstrações financeiras, controle de resultados, fluxo de caixa e apresentações mensais à diretoria local e internacional;Apoio em tomadas de decisão e planejamento financeiro;Preparação, checagem e submissão de documentação para processos licitatórios;Consolidação e análise de informações financeiras administrativas;Comunicação direta com diferentes áreas internas (Jurídico, Administrativo, financeiro, etc.);Suporte direto ao desenvolvimento de negócios em diferentes frentes.Perfil desejado Graduação em Administração, Economia, Ciências Contábeis, Engenharia de Produção ou áreas correlatas;Inglês avançado (reporte para o exterior);Sólida base financeira, habilidades analíticas desenvolvidas, atenção a detalhes e boa organização;Excel avançado;Perfil proativo, colaborativo, com senso de responsabilidade, foco em qualidade e prazos, além de excelente comunicação interpessoal."
     },
     {
       "id": "21572ec7-f80f-4215-90f1-804ba6cf128e",
@@ -760,8 +1241,9 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 88.0,
       "key_matches": [
         "\n    \"Formação sólida em Ciências Contábeis pelo Ibmec, alinhada aos requisitos da vaga\",\n    \"Experiência sênior em FP&A e Controladoria em empresas de grande porte e multinacionais\",\n    \"Domínio de ERPs de mercado (SAP e Oracle), essenciais para a manutenção de ferramentas de consolidação\",\n    \"Capacidade avançada de automação (Python/SQL) para melhoria de processos de fechamento\",\n    \"Fluência em Inglês e Espanhol, fundamental para a comunicação com BUs LATAM\"\n  "
@@ -770,22 +1252,23 @@
       "description": "Responsabilidades O Grupo Smart Fit é muito mais do que a maior rede de academias da América Latina e o maior empregador de profissionais de educação física do mundo. Somos um verdadeiro ecossistema focado em bem-estar e saúde, impactando a vida de milhares de pessoas todos os dias.\n\nEstamos em mais de 16 países, com mais de 2.000 unidades, e temos o prazer de atender mais de 5,2 milhões de alunos. Nossa equipe de 22 mil colaboradores está sempre a mil, trazendo novas ideias e inovações. Desde que abrimos nossa capital em 2021, aceleramos nossa missão de transformar vidas com soluções de fitness e saúde.\n\nTemos várias marcas no nosso portfólio, como Bio Ritmo, Smart Fit, Race Bootcamp, Vidya Studio, Tonus Gym, Aera, Velocity, Kore TotalPass e Nation CT. Além disso, oferecemos produtos digitais como Queima Diária, Smart Fit Nutri e Smart Fit Coach. Estamos sempre procurando novas formas de integrar tecnologia e inovação para ajudar você a ter um estilo de vida mais ativo e saudável. E aí, topa o desafio junto com a gente?\n\nO que nos move todos os dias?\n\nSomos parte da mudança, transformando o cenário e trazendo mais qualidade para a vida de quem tá junto com a gente. Cada gotinha de suor é uma prova do nosso compromisso em inspirar e motivar todo mundo que quer uma vida mais ativa e saudável. A cada dia, começamos nossa jornada com aquecimento total, prontos para alcançar novos objetivos e viver o máximo.\n\nO(a) Analista de FP&A Sênior será responsável por :\n• Mapeamento, padronização e implementação de melhorias nos processos de fechamento entre países;\n• ncorporação e padronização de informações de empresas adquiridas pelo grupo na ferramenta de Consolidação (PBCS);\n• Montagem de materiais de Comitê mensais;\n• Apoio na manutenção da ferramenta de Consolidação;\n\nPapel ativo na comunicação com diferentes BUs e FP&As LATAM\n\nRequisitos\n• Formação em Contabilidade, Administração, Economia, Engenharia ou correlatas;\n• Experiência prévia em FP&A e / ou Controladoria;\n• Exp"
     },
     {
-      "id": "7355ae99-17bf-43ed-98e8-a831a8531f08",
-      "title": "Analista de Planejamento Financeiro Senior - FP&A",
-      "company": "Grupo Avenida",
-      "location": "São Paulo, State of São Paulo",
+      "id": "6199b6e1-9ff5-4a21-ab13-d59588a1fec0",
+      "title": "Analista de FP&A Sr | Lubrificantes",
+      "company": "Vibra Energia",
+      "location": "Rio de Janeiro, State of Rio de Janeiro",
       "remote": "onsite",
-      "url": "https://www.empregos.com.br/vaga/11324603/analista-de-planejamento-financeiro-senior-fpa-em-sao-paulo-sp?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Empregos",
+      "url": "https://br.linkedin.com/jobs/view/analista-de-fp-a-sr-lubrificantes-at-vibra-4352709179?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
       "status": "ready",
       "tier": 3,
       "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 88.0,
       "key_matches": [],
       "gaps": [],
-      "description": "Responsabilidades:Apoiar o processo de fechamento gerencial mensal. Analisar os resultados da organização, identificando e explicando as principais variações entre Actual x Forecast x Budget. Atualizar materiais e análises que compõem o report mensal. Garantir a acurácia das informações e acompanhar detalhadamente o desempenho loja a loja, com foco em indicadores de performance. Atuar na gestão das despesas, realizando o mapeamento de desvios, construção e acompanhamento de planos de ação junto às áreas parceiras. Participar do processo orçamentário, consolidando informações para os exercícios de Budget e Forecast. Realizar análises e acompanhamento de CAPEX. Apoiar na elaboração de apresentações executivas em PowerPoint (Thinkcell). Desenvolver e acompanhar KPIs financeiros e operacionais. Contribuir na implantação do sistema de planejamento orçamentário e na estruturação de relatórios gerenciais de resultado. Requisitos:Ensino superior completo em Administração, Contabilidade, Economia ou áreas correlatas. Experiência na área de Planejamento Financeiro (FP&A). Domínio de Excel e PowerPoint. Vivência em apresentações para diretoria e elaboração de relatórios executivos. Conhecimento em Power BI, Thinkcell, Oracle PBCS e Fluxo de Caixa. LOCAL:Nosso escritório fica localizado no Morumbi-Posição 100% Presencial. HORÁRIO:Segunda à Sexta das 8h às 17h48 BENEFÍCIOS:Cartão AV-Descontos exclusivos nos produtos na loja física. Vale transporte. Assistência médica. VA ou VR. Transfer da estação Morumbi/Brooklin até o escritório. Day off no aniversário. Wellz (Programa corporativo de saúde mental). Creditas (Plataforma de serviços financeiros). Plataforma de aprendizagem. Convênio com o Sesc. Parcerias educacionais. Parcerias com restaurantes, salões de cabelereiro e lojas próximas ao escritório"
+      "description": "Descrição da vaga\n\nAtuar na consolidação dos resultados financeiros da companhia, suportando o processo de planejamento estratégico e orçamentário, com foco em análise de desempenho, reporte gerencial e suporte à tomada de decisão. O profissional será responsável por garantir a integridade das informações financeiras, alinhadas às metas corporativas e às exigências regulatórias do setor.\n\nResponsabilidades e atribuições\n• Realizar a análise de resultados financeiros da companhia;\n• Consolidar os dados financeiros, garantindo consistência e acuracidade;\n• Identificar e justificar variações entre realizado e orçado;\n• Preparar apresentações financeiras para diretoria e conselho, incluindo DRE, fluxo de caixa, EBITDA e indicadores operacionais;\n• Desenvolver materiais de suporte para reuniões estratégicas e com investidores;\n• Apoiar na elaboração do orçamento anual e revisões (forecast);\n• Interagir com as diversas áreas para coleta de informações e alinhamento de premissas;\n• Desenvolver modelos financeiros e projeções de cenários.\n\nRequisitos e qualificações\n• Formação superior em Administração, Economia, Engenharia, Contabilidade ou áreas correlatas.\n• Experiência em planejamento financeiro, preferencialmente no setor de energia ou combustíveis.\n• Excel avançado e domínio de ferramentas de BI (Power BI, Tableau).\n• Conhecimento em sistemas ERP (SAP, Oracle).\n• Inglês intermediário ou avançado (desejável).\n\nInformações adicionais\n\nE tem mais, confira o nosso pacote de benefícios:\n\n• Plano de Saúde e Odontológico – Bradesco – extensivo a dependentes\n\n• PAE - Auxílio financeiro oferecido no caso de dependentes filhos(as) e/ou enteados(as) com deficiência intelectual\n\n• Convênio Farmácia . Descontos de até 70%\n\n• Previdência Complementar – Plano FlexPrev - variando de 1% a 11%, de acordo com o salário\n\n• Seguro de Vida – seguro para todos os colaboradores a partir da data de admissão, sem participação.\n\n• Extensão das Licenças - Maternidade (total de 180 dias) e Patern"
     },
     {
       "id": "3df1d031-59d8-4d37-9b80-5c7ba74048fd",
@@ -798,50 +1281,32 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 88.0,
       "key_matches": [],
       "gaps": [],
       "description": "Analista Financeiro Sênior para Planejamento e Análise Financeira (FP&A)\n\nDescubra uma jornada empolgante no universo das Criptomoedas e Blockchain! Você é apaixonado(a) por tecnologia e estratégias financeiras, e busca novos desafios? Temos uma oportunidade única para você! Estamos à procura de profissionais com sólida experiência técnica e excelente capacidade estratégica financeira para atuar de forma eficaz com diversos departamentos de nossa empresa inovadora.\n\nO que buscamos\n\nUm profissional para analisar recursos financeiros, desempenhar um papel estratégico na tomada de decisões e garantir a saúde financeira da organização a longo prazo, participar ativamente dos processos de planejamento financeiro, elaboração do orçamento anual (budget) e previsões de cenários (forecast), garantindo a consistência e integridade das informações.\n\nRequisitos Técnicos:\n\n● Inglês fluente (obrigatório) para interação com stakeholders internacionais;\n\n● Forte atuação no mercado financeiro, investimentos ou mercado de capitais;\n\n● Sólidos conhecimentos em planejamento financeiro, orçamento e controle;\n\n● Experiência anterior ou exposição relevante a cripto ativos, ativos digitais, blockchain ou fintechs;\n\n● Perfil estratégico, analítico e com capacidade de execução; Responsabilidades:\n\n● Monitorar continuamente o desempenho financeiro, incluindo vendas, despesas, lucro e fluxo de caixa (KPIs).\n\n● Realizar análises detalhadas das variações (real x.orçado/previsto) e explicar os desvios, identificando tendências e oportunidades de otimização.\n\n● Consolidar dados financeiros e preparar relatórios gerenciais e apresentações para a liderança e equipes globais, transformando dados brutos em insights valiosos para a tomada de decisão.\n\n● Apoiar processos de captação de recursos, M&A e parcerias estratégicas;\n\n● Avaliar riscos financeiros, incluindo exposição a mercado financeiro e cripto ativos;\n\n● Garantir conformidade regulatória, fiscal e de governança corporativa;\n\n● Estruturar e de"
     },
     {
-      "id": "3de45e77-3c96-4e0a-8f08-f7eaf398c518",
-      "title": "Analista de Financeiro - FP&A",
-      "company": "Robert Half",
-      "location": "Rio de Janeiro, State of Rio de Janeiro",
+      "id": "7355ae99-17bf-43ed-98e8-a831a8531f08",
+      "title": "Analista de Planejamento Financeiro Senior - FP&A",
+      "company": "Grupo Avenida",
+      "location": "São Paulo, State of São Paulo",
       "remote": "onsite",
-      "url": "https://www.roberthalf.com/br/pt/vaga/rio-de-janeiro/analista-de-financeiro-fpa/63620-0013364267-brpt?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Robert Half",
+      "url": "https://www.empregos.com.br/vaga/11324603/analista-de-planejamento-financeiro-senior-fpa-em-sao-paulo-sp?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Empregos",
       "status": "ready",
       "tier": 3,
       "fit_score": 88.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 88.0,
       "key_matches": [],
       "gaps": [],
-      "description": "A EmpresaEmpresa de Grande Porte de Construção Naval (estaleiro) - Rio de Janeiro.Descrição da vagaElaboração de relatórios gerenciais para suporte à tomada de decisão;Elaboração e acompanhamento de orçamentos, Forecasts e análises de DRE;Apoio cotidiano em processos de FP&A: balanço patrimonial, demonstrações financeiras, controle de resultados, fluxo de caixa e apresentações mensais à diretoria local e internacional;Apoio em tomadas de decisão e planejamento financeiro;Preparação, checagem e submissão de documentação para processos licitatórios;Consolidação e análise de informações financeiras administrativas;Comunicação direta com diferentes áreas internas (Jurídico, Administrativo, financeiro, etc.);Suporte direto ao desenvolvimento de negócios em diferentes frentes.Perfil desejado Graduação em Administração, Economia, Ciências Contábeis, Engenharia de Produção ou áreas correlatas;Inglês avançado (reporte para o exterior);Sólida base financeira, habilidades analíticas desenvolvidas, atenção a detalhes e boa organização;Excel avançado;Perfil proativo, colaborativo, com senso de responsabilidade, foco em qualidade e prazos, além de excelente comunicação interpessoal."
-    },
-    {
-      "id": "9c50c3db-ad11-4fd3-9739-35213ce0e9b5",
-      "title": "Gerente de PMO & FinOps",
-      "company": "TOTVS",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://atracaodetalentos.totvs.app/vempratotvs/8240/gerente-de-pmo-finops?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Atracaodetalentos.totvs.app",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 85.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 85.0,
-      "key_matches": [
-        "\n    \"Especialista em FinOps com vivência prática em AWS, GCP e Azure\",\n    \"Forte background em FP&A, Controladoria e Modelagem Financeira\",\n    \"Domínio técnico avançado em Python, SQL e ferramentas de BI para automação\",\n    \"Experiência na ponte estratégica entre Engenharia e Finanças\",\n    \"Formação sólida em Contabilidade e Ciência de Dados\"\n  "
-      ],
-      "gaps": [],
-      "description": "Excelência Operacional e SustentaçãoBuscamos um(a) Gerente de PMO & FinOps para liderar a governança de portfólio, a excelência na execução estratégica e a sustentabilidade financeira dos produtos e projetos da organização. Esta posição é responsável por garantir previsibilidade, eficiência operacional e tomada de decisão baseada em dados, conectando estratégia, execução e controle financeiro.O papel combina PMO moderno, gestão de portfólio, FinOps e sustentação operacional, com forte atuação transversal junto a Tecnologia, Produto, Financeiro e Negócio."
+      "description": "Responsabilidades:Apoiar o processo de fechamento gerencial mensal. Analisar os resultados da organização, identificando e explicando as principais variações entre Actual x Forecast x Budget. Atualizar materiais e análises que compõem o report mensal. Garantir a acurácia das informações e acompanhar detalhadamente o desempenho loja a loja, com foco em indicadores de performance. Atuar na gestão das despesas, realizando o mapeamento de desvios, construção e acompanhamento de planos de ação junto às áreas parceiras. Participar do processo orçamentário, consolidando informações para os exercícios de Budget e Forecast. Realizar análises e acompanhamento de CAPEX. Apoiar na elaboração de apresentações executivas em PowerPoint (Thinkcell). Desenvolver e acompanhar KPIs financeiros e operacionais. Contribuir na implantação do sistema de planejamento orçamentário e na estruturação de relatórios gerenciais de resultado. Requisitos:Ensino superior completo em Administração, Contabilidade, Economia ou áreas correlatas. Experiência na área de Planejamento Financeiro (FP&A). Domínio de Excel e PowerPoint. Vivência em apresentações para diretoria e elaboração de relatórios executivos. Conhecimento em Power BI, Thinkcell, Oracle PBCS e Fluxo de Caixa. LOCAL:Nosso escritório fica localizado no Morumbi-Posição 100% Presencial. HORÁRIO:Segunda à Sexta das 8h às 17h48 BENEFÍCIOS:Cartão AV-Descontos exclusivos nos produtos na loja física. Vale transporte. Assistência médica. VA ou VR. Transfer da estação Morumbi/Brooklin até o escritório. Day off no aniversário. Wellz (Programa corporativo de saúde mental). Creditas (Plataforma de serviços financeiros). Plataforma de aprendizagem. Convênio com o Sesc. Parcerias educacionais. Parcerias com restaurantes, salões de cabelereiro e lojas próximas ao escritório"
     },
     {
       "id": "6deb7621-fe70-4ae2-a601-7e8ec7a282f5",
@@ -854,12 +1319,34 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 85.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 85.0,
       "key_matches": [],
       "gaps": [],
       "description": "Será que você é o ingrediente que falta por aqui? Estamos em busca de uma pessoa apaixonada por finanças, para integrar o nosso time de Planejamento Financeiro. Na Pif Paf Alimentos, você vai fazer parte de um time diverso, dinâmico e criativo. Trabalhamos com muita colaboração e troca de experiências entre todas as áreas no comum desejo de tornar a vida das pessoas do Brasil e do mundo mais saborosa. Se identificou? Então venha fazer parte da nossa receita de sucesso: #VemSerPifPaf! 🎯Responsabilidades e atribuiçõesOlha só como você vai contribuir com o time de Planejamento Financeiro: ✅Atuando com orçamento e planejamento financeiro, participando da estruturação, dominando o ciclo orçamentário e interagindo com áreas operacionais;✅ Contatando constantemente as áreas visando identificar, reduzir ou eliminar desvios e ineficiências financeiras, além de manter os líderes da empresa informados sobre potenciais ameaças ou oportunidades;✅Consolidando bases de dados e montando análises Gerenciais, analisando minunciosamente os principais desvios dos indicadores de performance, realizando a gestão de verba dos Centros de Custos;✅Elaborando DREs e justificando as variações contra planejado e mês anterior, acompanhando metas/indicadores de performance em busca de melhorias,✅Realizando reuniões de acompanhamento/monitoramento, suportes às áreas estratégicas e montando apresentações bem elaboradas em termos de conteúdo e visualização.Requisitos e qualificaçõesPara mandar bem, você precisa apresentar:👉🏼 Graduação Completa em Contabilidade, Administração, Matemática ou áreas afins;👉 Desejável - Pós-Graduação na área Financeira, Matemática ou Estatística;👉🏿 Domínio do Pacote Office intermediário, com foco em Excel; 👉🏼 Conhecimento em SAP - diferencial;👉 Vivência com estruturação de projeções com base em premissas sólidas - diferencial;👉 Conhecimento nas áreas de Finanças e/ou Performance;👉🏿 Vivência no agro, setor alimentício ou em indústria – diferencial; 👉🏼 Disponibilidade para"
+    },
+    {
+      "id": "9c50c3db-ad11-4fd3-9739-35213ce0e9b5",
+      "title": "Gerente de PMO & FinOps",
+      "company": "TOTVS",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://atracaodetalentos.totvs.app/vempratotvs/8240/gerente-de-pmo-finops?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Atracaodetalentos.totvs.app",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 85.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 85.0,
+      "key_matches": [
+        "\n    \"Especialista em FinOps com vivência prática em AWS, GCP e Azure\",\n    \"Forte background em FP&A, Controladoria e Modelagem Financeira\",\n    \"Domínio técnico avançado em Python, SQL e ferramentas de BI para automação\",\n    \"Experiência na ponte estratégica entre Engenharia e Finanças\",\n    \"Formação sólida em Contabilidade e Ciência de Dados\"\n  "
+      ],
+      "gaps": [],
+      "description": "Excelência Operacional e SustentaçãoBuscamos um(a) Gerente de PMO & FinOps para liderar a governança de portfólio, a excelência na execução estratégica e a sustentabilidade financeira dos produtos e projetos da organização. Esta posição é responsável por garantir previsibilidade, eficiência operacional e tomada de decisão baseada em dados, conectando estratégia, execução e controle financeiro.O papel combina PMO moderno, gestão de portfólio, FinOps e sustentação operacional, com forte atuação transversal junto a Tecnologia, Produto, Financeiro e Negócio."
     },
     {
       "id": "40e0aeb0-f733-4ff2-8f9c-f7a3da8ceb5b",
@@ -872,32 +1359,15 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 85.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 85.0,
       "key_matches": [
         "\n    \"Sólida experiência em gestão de P&L e modelagem financeira\",\n    \"Domínio técnico em manipulação de dados (Python, SQL, ETL)\",\n    \"Background em Fintech e setor financeiro\",\n    \"Experiência comprovada em automação de processos e redução de trabalho manual\",\n    \"Forte perfil analítico unindo finanças e tecnologia\"\n  "
       ],
       "gaps": [],
       "description": "Estamos em busca de um profissional com forte habilidade em dados e analytics que também possua um perfil voltado para negócios.\n\nA pessoa será responsável por transformar análises em ações práticas capazes de resolver problemas ou gerar novas oportunidades atuando em conjunto com as demais áreas de um dos nossos clientes do setor Financeiro.\n\nResponsabilidades e Atribuições :\n\nGestão do Produto : Gerenciar o ciclo de vida do produto desde a criação oferta e precificação até as estratégias de crescimento e evolução contínua da proposta de valor.\n\nRealizar a gestão do P&L com foco na maximização dos resultados financeiros e no crescimento sustentável do portfólio de produtos.\n\nRequirements\n• Domínio em linguagens de programação e manipulação de dados em SAS e Databricks;\n• Capacidade analítica com habilidade para realizar diagnósticos profundos e precisos a partir dos dados;\n• Experiência em análises de P&L construção de modelos financeiros e business cases;\n• Capacidade de atuar de forma colaborativa para engajamento dos times multidisciplinares.\n\nBenefits\n\nPor que fazer parte da Sioux\n\nVale refeição e / ou alimentação : Você pode escolher o que for melhor para você.\n\nAssistência médica e odontológica : É importante se cuidar e estar bem.\n\nVale transporte : A escolha de como você se move é sua.\n\nSeguro de vida : A sua segurança também é a nossa.\n\nAuxílio a cursos certificações e eventos : Nos importamos com o seu desenvolvimento!\n• Mimo no dia do aniversário;\n\nAuxílio home-office : Para você investir no seu office enquanto está de home.\n\nE-learning : Nossos colaboradores possuem acesso à uma trilha de conhecimento para fazerem os cursos de maneira gratuita!\n• Auxílio creche : Um apoio para cuidar do seu pequeno;\n\nPrograma de indicação - Nos ajude a encontrar talentos para o nosso time e ainda ganhe um bônus.\n\nJornada de trabalho em modelo híbrido (3x presencial 2x home-office)\n\nAchou interessante Então inscreva-se e venha transformar os nossos projetos com muita ino"
-    },
-    {
-      "id": "0b51240f-36e0-4c8e-a244-4e677b9aa3ac",
-      "title": "Analista de Contas a Receber Sênior - (Dados, Automação e Seguros)",
-      "company": "Porto",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/analista-de-contas-a-receber-s%C3%AAnior-dados-automa%C3%A7%C3%A3o-e-seguros-at-porto-4369278770?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 78.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 78.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Descrição da vaga\n\nResponsável por garantir a eficiência, acurácia e escalabilidade dos processos de contas a receber, atuando de forma estratégica na análise de indicadores, automação de rotinas e integração com áreas internas e parceiros externos. Com forte orientação a dados, automação de processos e melhoria contínua, além de experiência no mercado de seguros.\n\nResponsabilidades e atribuições\n• Gerenciar e executar processos de Contas a Receber com alto volume e complexidade, especialmente relacionados a prêmios, comissões, endossos e cancelamentos de seguros;\n• Analisar dados financeiros e operacionais, criando relatórios, dashboards e indicadores (KPIs) para acompanhamento de performance;\n• Liderar iniciativas de automação de processos, reduzindo atividades manuais e riscos operacionais (ex.: conciliações, baixa de recebimentos, integrações bancárias);\n• Atuar com bases de dados, garantindo qualidade, consistência e rastreabilidade das informações financeiras;\n• Conduzir conciliações financeiras entre sistemas internos, seguradoras, corretores, bancos e adquirentes;\n• Identificar oportunidades de melhoria contínua, propondo novos fluxos, controles e soluções tecnológicas;\n• Trabalhar em parceria com áreas como Financeiro, TI, Produto, Operações e Compliance;\n• Apoiar auditorias internas e externas, garantindo aderência a normas e políticas internas;\n• Ser referência técnica para o time, apoiando na padronização de processos e boas práticas.\n\nRequisitos e qualificações\n• Experiência sólida em Contas a Receber em nível Sênior;\n• Vivência comprovada no mercado de seguros (seguradora, corretora, MGA, insurtech ou áreas correlatas);\n• Forte domínio de análise de dados financeiros;\n• Experiência com automação de processos (RPA, scripts, macros, integrações sistêmicas ou ferramentas low-code/no-code);\n• Excel/Google Sheets avançado (Power Query, tabelas dinâmicas, fórmulas complexas);\n• Conhecimento em ERPs financeiros e sistemas de gestão (ex.: SAP, Totvs, Oracle, o"
     },
     {
       "id": "7104bdd8-a294-4a0c-ade0-26d0283d7b18",
@@ -910,12 +1380,32 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 78.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 78.0,
       "key_matches": [],
       "gaps": [],
       "description": "Estamos buscando um(a) Líder de Finanças e Operações (FinOps)\n\nResumo : Estamos em busca de um(a) Líder de Finanças e Operações para atuar em uma Scale-up de tecnologia em forte expansão global . A empresa possui o Brasil como centro de excelência, mas opera com receitas e pagamentos globalmente (América do Norte, LATAM e Europa). Essa é uma excelente oportunidade para quem deseja fazer parte de um momento de construção e estruturação de processos financeiros internacionais, reportando diretamente aos fundadores.\n\nPrincipais responsabilidades :\n\nAtuar na Tesouraria Global, controlando o fluxo de caixa multimoeda (BRL, USD, MXN, EUR) e conciliações bancárias complexas;\n\nAtuar como ponto focal na gestão de contabilidade e compliance em 4 países, coordenando escritórios externos para garantir o closing mensal e consolidação de dados;\n\nEstruturar a área financeira, transformando processos manuais em fluxos organizados e implementando controles e políticas internas;\n\nGerir operações Intercompany (Brasil como Centro de Custo vs. Entidades de Faturamento global), cuidando de invoices internacionais e contratos de câmbio;\n\nProfissionalizar o contas a pagar e receber em escala global;\n\nPreparar o terreno para a futura migração e implementação de um ERP global.\n\nRequisitos obrigatórios :\n\nExperiência sólida e generalista em rotinas financeiras (Tesouraria, Contas a Pagar / Receber e Controladoria);\n\nInglês Avançado ou Fluente (indispensável para leitura de contratos e interação com bancos e contadores internacionais);\n\nPerfil \"Builder\" e Hands-on : profissional que executa a operação (mão na massa) enquanto desenha a estratégia e os processos;\n\nVivência com operações multimoeda, câmbio, invoices internacionais e fluxo de caixa em moeda estrangeira;\n\nExperiência prévia em Startups, Scale-ups ou empresas de tecnologia com faturamento no exterior;\n\nCapacidade de atuar com autonomia e reportar diretamente aos C-Levels;\n\nDiferencial : Conhecimento em Espanhol e noções de Transfer "
+    },
+    {
+      "id": "0b51240f-36e0-4c8e-a244-4e677b9aa3ac",
+      "title": "Analista de Contas a Receber Sênior - (Dados, Automação e Seguros)",
+      "company": "Porto",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.linkedin.com/jobs/view/analista-de-contas-a-receber-s%C3%AAnior-dados-automa%C3%A7%C3%A3o-e-seguros-at-porto-4369278770?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 78.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 78.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Descrição da vaga\n\nResponsável por garantir a eficiência, acurácia e escalabilidade dos processos de contas a receber, atuando de forma estratégica na análise de indicadores, automação de rotinas e integração com áreas internas e parceiros externos. Com forte orientação a dados, automação de processos e melhoria contínua, além de experiência no mercado de seguros.\n\nResponsabilidades e atribuições\n• Gerenciar e executar processos de Contas a Receber com alto volume e complexidade, especialmente relacionados a prêmios, comissões, endossos e cancelamentos de seguros;\n• Analisar dados financeiros e operacionais, criando relatórios, dashboards e indicadores (KPIs) para acompanhamento de performance;\n• Liderar iniciativas de automação de processos, reduzindo atividades manuais e riscos operacionais (ex.: conciliações, baixa de recebimentos, integrações bancárias);\n• Atuar com bases de dados, garantindo qualidade, consistência e rastreabilidade das informações financeiras;\n• Conduzir conciliações financeiras entre sistemas internos, seguradoras, corretores, bancos e adquirentes;\n• Identificar oportunidades de melhoria contínua, propondo novos fluxos, controles e soluções tecnológicas;\n• Trabalhar em parceria com áreas como Financeiro, TI, Produto, Operações e Compliance;\n• Apoiar auditorias internas e externas, garantindo aderência a normas e políticas internas;\n• Ser referência técnica para o time, apoiando na padronização de processos e boas práticas.\n\nRequisitos e qualificações\n• Experiência sólida em Contas a Receber em nível Sênior;\n• Vivência comprovada no mercado de seguros (seguradora, corretora, MGA, insurtech ou áreas correlatas);\n• Forte domínio de análise de dados financeiros;\n• Experiência com automação de processos (RPA, scripts, macros, integrações sistêmicas ou ferramentas low-code/no-code);\n• Excel/Google Sheets avançado (Power Query, tabelas dinâmicas, fórmulas complexas);\n• Conhecimento em ERPs financeiros e sistemas de gestão (ex.: SAP, Totvs, Oracle, o"
     },
     {
       "id": "2ebcae72-6f6b-467d-a45a-1066666017b8",
@@ -928,8 +1418,9 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 72.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 72.0,
       "key_matches": [],
       "gaps": [],
@@ -946,8 +1437,9 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 72.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 72.0,
       "key_matches": [
         "Sólida experiência em FinOps e gestão de custos em nuvem (AWS, GCP, Azure)",
@@ -976,32 +1468,13 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 68.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 68.0,
       "key_matches": [],
       "gaps": [],
       "description": "Local de trabalho: Campinas/SP\nModelo de trabalho: 100% presencial\nSegmento: Educação – Pós-graduação em Medicina Veterinária\n\nSOBRE A EBRAMEV\n\nSomos uma escola de pós-graduação referência nacional na Medicina Veterinária, com mais de 10 anos de história e em ampla expansão. Buscamos um(a) Analista Financeiro(a) Pleno com perfil analítico, proativo e com forte domínio técnico para apoiar nossa liderança nas tomadas de decisão estratégicas.\n\nPRINCIPAIS RESPONSABILIDADES\n• Realizar a conciliação diária das contas bancárias vinculadas à empresa.\n• Apoiar a área de tesouraria: contas a pagar, contas a receber e cobrança.\n• Acompanhar toda a cadeia de faturamento (prévias, portal financeiro, emissão de NFs, input de dados e cobrança).\n• Consolidar e analisar dados financeiros (orçamentos, DRE, DRA, balanço patrimonial, fluxo de caixa).\n• Elaborar relatórios financeiros e gerenciais (forecast, projeções, fechamentos mensais) para apoiar a diretoria.\n• Preparar apresentações e documentos financeiros para reuniões estratégicas.\n• Fornecer alternativas e recomendações para redução de custos e melhoria de performance financeira.\n• Enviar relatórios e documentos pertinentes ao fechamento contábil e financeiro (extratos, contratos de antecipação, etc.).\n• Analisar, auditar e acompanhar o processo de reembolso de despesas e viagens.\n• Preencher e enviar formulários institucionais, como os questionários do IBGE.\n• Atuar no relacionamento com professores e coordenadores para controle e cobrança de pagamentos, entrega de documentos e alinhamentos financeiros.\n• Manter comunicação ativa com prestadores de serviço e fornecedores para alinhamento de vencimentos, pendências e organização do contas a pagar.\n• Conduzir cobranças internas de forma ética e assertiva, alinhando-se com diferentes áreas da empresa.\n\nREQUISITOS OBRIGATÓRIOS\n• Ensino superior completo em Administração, Contabilidade, Economia ou áreas correlatas.\n• Excel avançado.\n• Experiencia comprovada de no mínimo 3 anos, c"
-    },
-    {
-      "id": "6dfdb509-426d-4938-979f-38dceea3d119",
-      "title": "ANALISTA DE PLANEJAMENTO E ANALISE FINANCEIRA - Jardim Tabajara (Restaurante Jangada)",
-      "company": "Jobbol",
-      "location": "Mogi Guaçu, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=b51624963e61e88b&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 65.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 65.0,
-      "key_matches": [
-        "\n    \"Sólida experiência em FP&A, Budget e Forecast\",\n    \"Domínio avançado de Power BI e Dashboards para suporte à decisão\",\n    \"Formação acadêmica robusta em Ciências Contábeis (Ibmec)\",\n    \"Experiência prévia no setor de hospitalidade (Pestana Hotel Group), relevante para o ramo de restaurantes\"\n  "
-      ],
-      "gaps": [],
-      "description": "Restaurante de frutos do mar busca profissional Analista de Planejamento e Analise Financeira em Mogi Guaçu (Jardim Tabajara).\n\nO Restaurante Jangada oferece uma experiência gastronômica única com pratos da culinária brasileira. Com um ambiente acolhedor, é o lugar ideal para refeições em família e encontros com amigos.\n\nResponsabilidades:\n\nConduzir processos de Budget e Forecast, incluindo elaboração, consolidação e revisões periódicas. Realizar análises de DRE gerencial e variações entre realizado, orçado e previsto. Realizar análises por unidade, centro de custo e produto, com foco em rentabilidade e desempenho financeiro. Desenvolver projeções financeiras e estudos de viabilidade econômica para investimentos e expansão. Criar e manter relatórios e dashboards com indicadores do negócio. Apoiar gestores na leitura dos resultados, definição de planos de ação e tomada de decisão. Monitorar custos, despesas e margens, propondo melhorias e ganhos de eficiência.\n\nAtuações anteriores em Analista Financeiro, Consultor de Planejamento Financeiro, Especialista em Análise de Dados Financeiros ou Gerente de Planejamento Financeiro podem indicar afinidade com algumas das atividades desta posição.\nEnsino superior completo Necessário experiência\nRemuneração e Benefícios:\n• Salário: Faixa salarial será informada na entrevista.\n• Benefícios informados na etapa de entrevista.\n\nInformações adicionais:\n• #VagaUrgente\n• Contrato: Efetivo - Presencial.\n• Período: Tempo integral\n• Jornada: A combinar."
     },
     {
       "id": "0bd61335-bc05-4f6e-8ed8-c9f29eab9bfc",
@@ -1014,30 +1487,13 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 65.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 65.0,
       "key_matches": [],
       "gaps": [],
       "description": "Vaga: Analista de Dados Financeiro & Logística (Consultoria)\nSegunda a sexta-feira horário comercial\nConsultoria especializada em gestão financeira e logística busca Analista de Dados para atuar na coleta, organização, análise e apresentação estruturada de dados aos clientes, apoiando decisões estratégicas e melhoria de resultados.\n\nObjetivo da função\nTransformar dados financeiros e logísticos em informações claras, organizadas e estratégicas, entregando análises e apresentações que apoiem decisões gerenciais dos clientes da consultoria.\n\nPrincipais responsabilidades\nRealizar entrada, conferência e organização de notas fiscais em sistema.\nOperar o Conta Azul, garantindo consistência e confiabilidade dos dados.\nConferir fretes, contratos logísticos e custos operacionais.\nElaborar relatórios de contas a pagar, fluxo financeiro e controles gerenciais.\nAnalisar dados financeiros e logísticos, identificando desvios, oportunidades e padrões.\nCriar apresentações estruturadas (PowerPoint, Google Slides ou similares) com os dados analisados, traduzindo números em informações claras para o cliente.\nApoiar reuniões de apresentação de resultados e diagnósticos da consultoria.\nTrabalhar de forma integrada com consultores e áreas financeira e logística.\nCompetências técnicas\nExperiência em rotinas financeiras e administrativas.\nDomínio do sistema Conta Azul.\nConhecimento em entrada e conferência de notas fiscais.\nCapacidade de análise de custos logísticos, frete e contratos.\nExcel intermediário a avançado (análise, relatórios, gráficos).\nHabilidade para organizar dados e construir apresentações executivas.\nFormação em Administração, Ciências Contábeis ou áreas correlatas (completa ou em andamento).\nCompetências comportamentais\nOrganização e atenção a detalhes.\nPensamento analítico e visão crítica.\nClareza na comunicação de informações técnicas.\nCapacidade de traduzir números em mensagens compreensíveis para clientes.\nAgilidade, responsabilidade e foco em prazos.\nPerfil colaborati"
-    },
-    {
-      "id": "ee11e653-7662-476e-9d82-16286014b6ee",
-      "title": "Analista Dados - Sinistralidade/saúde",
-      "company": "Allcare Gestora de Saúde",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.whatjobs.com/analista-financeiro-jobs?id=387648341&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "WhatJobs",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 65.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 65.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Somos uma gestora de saúde especializada no desenvolvimento, distribuição e gestão de serviços e produtos de saúde em todo o país.\n\nPor aqui o **Respeito e valorização de pessoas**, **Foco no Cliente**, **Melhoria Contínua** e **Ética e integridade**são os nossos valores inegociáveis, deu match com eles?! Então vem fazer parte do nosso time!\n\nBuscamos por um talento para atuar como **Analista Dados**que tenha expertise em coletar, organizar e interpretar dados de **saúde** e **sinistralidade**para apoiar as áreas clientes em tomadas de decisões.\n• *Responsabilidades e atribuições**\nComo **Analista Dados**suas principais responsabilidades serão:\n\n- Coleta de dados, desenvolver análises e fazer manutenção de dashboards com dados de várias áreas de negócio;\n- Criação de analises através de dashboards e relatórios consistentes para apoiar as decisões das áreas de negócio;\n- Zelar pela arquitetura do DW e pela governança dos processos e projetos;\n- Zelar pela segurança, confiabilidade, e acurácia dos dados;\n- Gerar valor através dos dados, contribuindo para o crescimento da área de dados, e aceleração no processo de cultura Data Driven na organização;\n- Propor soluções e ter habilidade de comunicar insights e recomendações aos stakeholders de forma clara e concisa.\n• *Requisitos e qualificações** Requisitos Necessários**:\n\n- Ensino superior completo;\n- Necessário experiência anterior na área da Saúde com indicadores de sinistralidade.\n- Conhecimento avançado na ferramenta de Business Intelligence (Power BI), Power Query e DAX.\n- Conhecimento em processos de ETL e ferramentas de integração, tratamento de dados, orquestração, como Pentaho, Apache Hop.\n- Conhecimento avançado em manipulação, coleta e armazenamento de dados com SQL.\n- Pacote Office (Excel avançado).\n- Desenvolvimento de visualizações, dashboards e relatórios, adotando melhores práticas de storytelling.\n- Capacidade em resolver processos manuais, adotando práticas e técnicas de fluxos automáticos.\n- Perfil an"
     },
     {
       "id": "4726ed32-ffec-412e-ae40-ee2c4b9453b6",
@@ -1050,12 +1506,53 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 65.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 65.0,
       "key_matches": [],
       "gaps": [],
       "description": "JOB DESCRIPTION\n\nToda vez que olhar para o céu para sonhar, nós estaremos lá. #OCéuÉAzul\n\nJá pensou em continuar decolando sua carreira na Melhor Companhia Aérea do Mundo?\n\nRESPONSIBILITIES AND ASSIGNMENTS\n\nResponsabilidade e Atribuições\n• Projetar, implementar e gerenciar soluções de infraestrutura cloud (AWS / Azure / OCI);\n• Planejar e executar atualizações das soluções em cloud;\n• Garantir a segurança, escalabilidade e alta disponibilidade dos ambientes;\n• Monitorar e otimizar serviços, realizando ajustes e otimizações para melhorar a eficiência e a performance;\n• Planejar e executar migrações de aplicações entre diferentes provedores;\n• Fornece o suporte contínuo como nível 3 para equipe de operações;\n• Treinar e capacitar equipes internas sobre as melhores práticas e ferramentas para gerenciamento dos ambientes;\n• Elaborar e manter atualizadas as documentações;\n• Avaliar, estudar e efetuar testes de novas soluções e produtos visando inovação;\n• Implementar e evoluir a prática de FinOps em ambientes cloud (AWS, Azure, GCP ou multicloud).\n\nREQUIREMENTS AND QUALIFICATIONS\n• Superior Completo em cursos de TI ou áreas correlatas;\n• Experiência em Provisionamento de Recursos em Nuvem (AWS / Azure / OCI)\n• Experiência em K8S e Docker\n• Experiência em Ferramentas de Infraestrutura como Código (Ansible / Terraform)\n• Experiência em Observabilidade (Grafana / Datadog)\n• Experiência em Ferramentas de Versionamento (GIT)\n• Experiência em GITOps (ArgoCD)\n• Experiência em DB (MONGODB)\n• Experiência em Ferramenta de CI / CD (GitHub Actions, CodePipeline)\n• Experiência em Infraestrutura Clássica On-premisse (Servidores Windows e Linux / Vmware)\n• Experiência em Segurança e Qualidade (Sonarqube e ORCA)\n• Experiência em FINOPs\n• Experiência ferramentas de observabilidade como DataDog e Grafana para monitoramento e análise de sistemas;\n• Experiência em metodologias ágeis em projetos de TI\n\nDesejável :\n• Certificações em Cloud Azure e / ou AWS e / ou OCI;\n• Contribuições em proje"
+    },
+    {
+      "id": "ee11e653-7662-476e-9d82-16286014b6ee",
+      "title": "Analista Dados - Sinistralidade/saúde",
+      "company": "Allcare Gestora de Saúde",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.whatjobs.com/analista-financeiro-jobs?id=387648341&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "WhatJobs",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 65.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 65.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Somos uma gestora de saúde especializada no desenvolvimento, distribuição e gestão de serviços e produtos de saúde em todo o país.\n\nPor aqui o **Respeito e valorização de pessoas**, **Foco no Cliente**, **Melhoria Contínua** e **Ética e integridade**são os nossos valores inegociáveis, deu match com eles?! Então vem fazer parte do nosso time!\n\nBuscamos por um talento para atuar como **Analista Dados**que tenha expertise em coletar, organizar e interpretar dados de **saúde** e **sinistralidade**para apoiar as áreas clientes em tomadas de decisões.\n• *Responsabilidades e atribuições**\nComo **Analista Dados**suas principais responsabilidades serão:\n\n- Coleta de dados, desenvolver análises e fazer manutenção de dashboards com dados de várias áreas de negócio;\n- Criação de analises através de dashboards e relatórios consistentes para apoiar as decisões das áreas de negócio;\n- Zelar pela arquitetura do DW e pela governança dos processos e projetos;\n- Zelar pela segurança, confiabilidade, e acurácia dos dados;\n- Gerar valor através dos dados, contribuindo para o crescimento da área de dados, e aceleração no processo de cultura Data Driven na organização;\n- Propor soluções e ter habilidade de comunicar insights e recomendações aos stakeholders de forma clara e concisa.\n• *Requisitos e qualificações** Requisitos Necessários**:\n\n- Ensino superior completo;\n- Necessário experiência anterior na área da Saúde com indicadores de sinistralidade.\n- Conhecimento avançado na ferramenta de Business Intelligence (Power BI), Power Query e DAX.\n- Conhecimento em processos de ETL e ferramentas de integração, tratamento de dados, orquestração, como Pentaho, Apache Hop.\n- Conhecimento avançado em manipulação, coleta e armazenamento de dados com SQL.\n- Pacote Office (Excel avançado).\n- Desenvolvimento de visualizações, dashboards e relatórios, adotando melhores práticas de storytelling.\n- Capacidade em resolver processos manuais, adotando práticas e técnicas de fluxos automáticos.\n- Perfil an"
+    },
+    {
+      "id": "6dfdb509-426d-4938-979f-38dceea3d119",
+      "title": "ANALISTA DE PLANEJAMENTO E ANALISE FINANCEIRA - Jardim Tabajara (Restaurante Jangada)",
+      "company": "Jobbol",
+      "location": "Mogi Guaçu, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.indeed.com/viewjob?jk=b51624963e61e88b&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 65.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 65.0,
+      "key_matches": [
+        "\n    \"Sólida experiência em FP&A, Budget e Forecast\",\n    \"Domínio avançado de Power BI e Dashboards para suporte à decisão\",\n    \"Formação acadêmica robusta em Ciências Contábeis (Ibmec)\",\n    \"Experiência prévia no setor de hospitalidade (Pestana Hotel Group), relevante para o ramo de restaurantes\"\n  "
+      ],
+      "gaps": [],
+      "description": "Restaurante de frutos do mar busca profissional Analista de Planejamento e Analise Financeira em Mogi Guaçu (Jardim Tabajara).\n\nO Restaurante Jangada oferece uma experiência gastronômica única com pratos da culinária brasileira. Com um ambiente acolhedor, é o lugar ideal para refeições em família e encontros com amigos.\n\nResponsabilidades:\n\nConduzir processos de Budget e Forecast, incluindo elaboração, consolidação e revisões periódicas. Realizar análises de DRE gerencial e variações entre realizado, orçado e previsto. Realizar análises por unidade, centro de custo e produto, com foco em rentabilidade e desempenho financeiro. Desenvolver projeções financeiras e estudos de viabilidade econômica para investimentos e expansão. Criar e manter relatórios e dashboards com indicadores do negócio. Apoiar gestores na leitura dos resultados, definição de planos de ação e tomada de decisão. Monitorar custos, despesas e margens, propondo melhorias e ganhos de eficiência.\n\nAtuações anteriores em Analista Financeiro, Consultor de Planejamento Financeiro, Especialista em Análise de Dados Financeiros ou Gerente de Planejamento Financeiro podem indicar afinidade com algumas das atividades desta posição.\nEnsino superior completo Necessário experiência\nRemuneração e Benefícios:\n• Salário: Faixa salarial será informada na entrevista.\n• Benefícios informados na etapa de entrevista.\n\nInformações adicionais:\n• #VagaUrgente\n• Contrato: Efetivo - Presencial.\n• Período: Tempo integral\n• Jornada: A combinar."
     },
     {
       "id": "282ec402-3cac-4912-9627-a2beb408b96d",
@@ -1068,8 +1565,9 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 60.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 60.0,
       "key_matches": [
         "\n    \"Formação sólida em Ciências Contábeis pelo Ibmec\",\n    \"Domínio avançado de Excel e sistemas ERP (SAP e Oracle)\",\n    \"Experiência em FP&A, Budget e Forecast\",\n    \"Capacidade técnica para elaboração de relatórios financeiros e indicadores de desempenho\"\n  "
@@ -1088,8 +1586,9 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 60.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 60.0,
       "key_matches": [],
       "gaps": [],
@@ -1106,8 +1605,9 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 55.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 55.0,
       "key_matches": [],
       "gaps": [],
@@ -1124,66 +1624,13 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 55.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 55.0,
       "key_matches": [],
       "gaps": [],
       "description": "Oportunidade para Analista de Chamados Financeiro\n\nEstamos em busca de um profissional dedicado e analítico para se juntar à nossa equipe como Analista de Chamados Financeiro.\nEste é um papel fundamental que exige uma combinação de habilidades técnicas e de resolução de problemas.\nSe você tem uma paixão por análise de dados financeiros e gosta de trabalhar em um ambiente dinâmico, esta pode ser a oportunidade perfeita para você.\n\nComo Analista de Chamados Financeiro, você será responsável por coletar e organizar dados financeiros relevantes de várias fontes.\nSua tarefa principal será realizar análises exploratórias de dados para identificar tendências, padrões e áreas de melhoria.\nVocê trabalhará em estreita colaboração com diferentes departamentos para garantir que as informações financeiras estejam precisas e atualizadas.\n\nAlém de suas habilidades analíticas, você deve demonstrar uma forte capacidade de comunicação, tanto escrita quanto oral, para relatar descobertas e fornecer suporte técnico quando necessário.\nA precisão e a atenção aos detalhes são fundamentais para este cargo, pois você será o ponto de contato para questões financeiras complexas.\n\nPara se candidatar a esta posição, é essencial que você tenha uma formação sólida em contabilidade, economia ou áreas relacionadas.\nExperiência prévia em análise de dados financeiros é um diferencial significativo.\nSe você é um pensador analítico e tem um forte desejo de contribuir para a tomada de decisões financeiras baseadas em dados, esta oportunidade é para você.\n\nEscolaridade Mínima: Ensino Superior"
-    },
-    {
-      "id": "100133fe-20c6-4f9b-b229-a28cfaaa52d9",
-      "title": "Analista Financeiro(a) Júnior Vaga afirmativa também para o público PCD",
-      "company": "MANPOWER",
-      "location": "Campinas, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://www.catho.com.br/vagas/analista-financeiroa-junior-vaga-afirmativa-tambem-para-o-publico-pcd/35272493/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Catho",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 45.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 45.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Responsabilidades e atribuições\nEsta vaga também é destinada a Pessoas com Deficiência (PCD). Valorizamos a diversidade e incentivamos a candidatura de profissionais de todos os perfis. - Rotina de contas a pagar e contas a receber; - Elaboração e análise de fluxo de caixa; - Análise de crédito de clientes e manutenção de cadastro para suporte à tomada de decisão; - Acompanhamento de projeções e comparação com o realizado; - Identificação de oportunidades de redução de custos e despesas; - Identificação de oportunidades de investimento e de fontes de financiamento; - Relacionamento com bancos e corretoras de câmbio. No ManpowerGroup, a sua carreira tem um novo rumo! Se você está em busca de crescimento, desafios e um ambiente que valoriza o seu potencial, venha fazer parte do nosso time. Aqui, cada talento é reconhecido e valorizado. Candidate-se agora e transforme seu futuro com a gente !\nRequisitos e qualificações\nEnsino superior completo ou cursando em Administração, Finanças ou áreas correlatas - Experiência nos processos de contas a pagar e/ou contas a receber - Conhecimento em sistemas como TOTVS, SAP ou sistemas bancários - Inglês intermediário (desejável) Financeiro ContasAPagarEReceber FluxoDeCaixa AnáliseDeCrédito GestãoFinanceira VagasManpower"
-    },
-    {
-      "id": "c136a3a0-f919-463a-9d0f-411c67e316b5",
-      "title": "Analista Financeiro",
-      "company": "PONTO FORTE",
-      "location": "Santo André, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/analista-financeiro-junior-pleno-at-cozinhas-itatiaia-4369273430?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "rejected",
-      "tier": 3,
-      "fit_score": 45.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 45.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Área e especialização profissional: Contábil, Finanças, Economia - Finanças\nNível hierárquico: Analista\nLugar de trabalho: Santo André, SP\nRegime de contratação de tipo Efetivo – CLT\nJornada Período Integral\n?? Vaga aberta | Analista Financeiro\n ?? Local: Santo André – SP | 100% presencial\n ?? Horário: Segunda a quinta das 07h às 17h | Sexta até 16h\n?? Principais atividades:\n • Controle do fluxo de caixa;\n • Conciliações bancárias;\n • Análise de contratos;\n • Controle de contas a pagar e a receber;\n • Emissão de notas fiscais;\n • Elaboração de relatórios financeiros;\n • Previsão de faturamento e recebimentos;\n • Apoio à diretoria na tomada de decisões financeiras.\n?? Requisitos:\n • Experiência prévia na área financeira;\n • Conhecimento em ferramentas de gestão financeira;\n • Boa capacidade analítica;\n • Formação em Administração, Contabilidade, Economia ou áreas correlatas (desejável).\n?? Benefícios:\n ?? Vale-transporte ou estacionamento gratuito\n ?? Vale-refeição: R$ 31,80/dia\n ?? Café da manhã: R$ 10,81/dia\n ?? Convênio médico e odontológico (empresa custeia 50%)\n ?? Seguro de vida | Seconci | TotalPass\n?? Parcerias com faculdades (Cruzeiro do Sul)\n?? Interessados:\n Envie seu currículo com pretensão salarial para curriculo@pontofortesa.com.br\n Assunto: Analista Financeiro – Santo André"
-    },
-    {
-      "id": "bbc2f14a-36a4-43c8-b5f2-73fbfa16caba",
-      "title": "Analista Financeiro Pleno Preenchida - MG",
-      "company": "RH-INC",
-      "location": "Pouso Alegre, State of Minas Gerais",
-      "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/analista-financeiro-pleno-preenchida-mg-at-rh-inc-4361865704?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "ready",
-      "tier": 3,
-      "fit_score": 45.0,
-      "has_resume": false,
-      "has_cover_letter": false,
-      "probability": 45.0,
-      "key_matches": [],
-      "gaps": [],
-      "description": "Salário:4. 453,83 Horário:ADM Requisitos:Graduação em Administração Empresas, Ciências Contábeis e ou áreas afins. Experiência:2 anos. Monitoramento e relatórios de fluxo de caixa – Garantir a eficiência do fluxo de caixa. Fornecer a diretoria informações financeiras rápidas e precisas. Estar atualizado com o Mercado Financeiro angariando melhores taxas para controle e aplicações de recursos financeiros da empresa. Gestão de Contratos – Assegurar o controle de Empresas Contratadas e Subcontratadas , com informação eficaz e acertiva no controle de saldo de fornecedores. Limite de Crédito Garantir o controle e Análise do Limite de Crédito de todos os clientes da ACG. Garatir o Controle do Contas a Receber – Análise do AGE por Cliente. Elaborar Relatórios Financeiros para atendimento a Auditoria. Elaborar Relatórios Financeiros com gastos do Projeto x Budget.\n\nFormação Acadêmica\n\nNão informado\n\nSalário\n\nA combinar\n\nCargo\n\nAnalista financeiro\n\nEmpresa\n\nUnião rh extrema\n\nLocação de mão-de-obra temporária\n\nRamo\n\nRecursos Humanos/ Recrutamento e seleção\n\n(CJ)"
     },
     {
       "id": "311612b1-cae1-4d59-82c6-a33a6ba541be",
@@ -1196,14 +1643,72 @@
       "status": "ready",
       "tier": 3,
       "fit_score": 45.0,
-      "has_resume": false,
-      "has_cover_letter": false,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
       "probability": 45.0,
       "key_matches": [
         "\n    \"Domínio de ERP (SAP/Oracle)\",\n    \"Formação em Ciências Contábeis (Ibmec)\",\n    \"Inglês Fluente (acima do solicitado)\",\n    \"Forte capacidade analítica e vivência em multinacionais\"\n  "
       ],
       "gaps": [],
       "description": "A Randstad é líder global em soluções para recursos humanos. Somos a parceira do talento. Ajudamos você a encontrar o trabalho certo, garantindo funções significativas para desenvolver competências relevantes que ajudem no desenvolvimento de sua carreira.\nEstamos contratando um(a)  Analista Financeiro Junior  para uma indústria Multinacional do setor de energia.\n Vaga Temporária por 6 meses com possibilidade de Efetivação\n Benefícios:  Vale Transporte  + Restaurante no Local + Convênio Médico Amil + Seguro de Vida.\n Horário de trabalho : Segunda a Sexta das 08h às 17h com 1h de intervalo| Presencial\n Local : Guarulhos - SP\n Se interessou pela vaga? Confira os requisitos:\nPacote Office (Word, Excel, powerPoint) -  (intermediário)\nConhecimento em impostos;\nDesejável Inglês (intermediário)\nVivência com sistemas ERP\nDiferencial conhecimento em SAP HANA\nSoft Skills: Comprometimento; Responsábilidade; Senso analítico.\n\n Formação : Superior completo ou Cursando em Administração de empresas, Gestão Financeira, Ciências Contábeis ou áreas afins.\n Em seu dia a dia, suas principais atribuições serão:\nExtrair, receber e realizar conferências e autorização de faturamento;\nCriar requisições de compras;\nAcompanhar o pagamento dos relatórios de serviços, controlando a coleta até a correta contabilização da nota, acompanhando todas as etapas do processo, incluindo a  confirmação de serviço e entrega de materiais;\nEmissões de nota fiscal;\nRealização de registros de notas - MIGO\nCadastros de materiais;\nSuporte ao analista Sr. nas conciliações e corretas apropriações dos lançamentos e taxas;\nAtualizar planilha de controle da área."
+    },
+    {
+      "id": "bbc2f14a-36a4-43c8-b5f2-73fbfa16caba",
+      "title": "Analista Financeiro Pleno Preenchida - MG",
+      "company": "RH-INC",
+      "location": "Pouso Alegre, State of Minas Gerais",
+      "remote": "onsite",
+      "url": "https://br.linkedin.com/jobs/view/analista-financeiro-pleno-preenchida-mg-at-rh-inc-4361865704?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 45.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 45.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Salário:4. 453,83 Horário:ADM Requisitos:Graduação em Administração Empresas, Ciências Contábeis e ou áreas afins. Experiência:2 anos. Monitoramento e relatórios de fluxo de caixa – Garantir a eficiência do fluxo de caixa. Fornecer a diretoria informações financeiras rápidas e precisas. Estar atualizado com o Mercado Financeiro angariando melhores taxas para controle e aplicações de recursos financeiros da empresa. Gestão de Contratos – Assegurar o controle de Empresas Contratadas e Subcontratadas , com informação eficaz e acertiva no controle de saldo de fornecedores. Limite de Crédito Garantir o controle e Análise do Limite de Crédito de todos os clientes da ACG. Garatir o Controle do Contas a Receber – Análise do AGE por Cliente. Elaborar Relatórios Financeiros para atendimento a Auditoria. Elaborar Relatórios Financeiros com gastos do Projeto x Budget.\n\nFormação Acadêmica\n\nNão informado\n\nSalário\n\nA combinar\n\nCargo\n\nAnalista financeiro\n\nEmpresa\n\nUnião rh extrema\n\nLocação de mão-de-obra temporária\n\nRamo\n\nRecursos Humanos/ Recrutamento e seleção\n\n(CJ)"
+    },
+    {
+      "id": "c136a3a0-f919-463a-9d0f-411c67e316b5",
+      "title": "Analista Financeiro",
+      "company": "PONTO FORTE",
+      "location": "Santo André, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.linkedin.com/jobs/view/analista-financeiro-junior-pleno-at-cozinhas-itatiaia-4369273430?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "rejected",
+      "tier": 3,
+      "fit_score": 45.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 45.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Área e especialização profissional: Contábil, Finanças, Economia - Finanças\nNível hierárquico: Analista\nLugar de trabalho: Santo André, SP\nRegime de contratação de tipo Efetivo – CLT\nJornada Período Integral\n?? Vaga aberta | Analista Financeiro\n ?? Local: Santo André – SP | 100% presencial\n ?? Horário: Segunda a quinta das 07h às 17h | Sexta até 16h\n?? Principais atividades:\n • Controle do fluxo de caixa;\n • Conciliações bancárias;\n • Análise de contratos;\n • Controle de contas a pagar e a receber;\n • Emissão de notas fiscais;\n • Elaboração de relatórios financeiros;\n • Previsão de faturamento e recebimentos;\n • Apoio à diretoria na tomada de decisões financeiras.\n?? Requisitos:\n • Experiência prévia na área financeira;\n • Conhecimento em ferramentas de gestão financeira;\n • Boa capacidade analítica;\n • Formação em Administração, Contabilidade, Economia ou áreas correlatas (desejável).\n?? Benefícios:\n ?? Vale-transporte ou estacionamento gratuito\n ?? Vale-refeição: R$ 31,80/dia\n ?? Café da manhã: R$ 10,81/dia\n ?? Convênio médico e odontológico (empresa custeia 50%)\n ?? Seguro de vida | Seconci | TotalPass\n?? Parcerias com faculdades (Cruzeiro do Sul)\n?? Interessados:\n Envie seu currículo com pretensão salarial para curriculo@pontofortesa.com.br\n Assunto: Analista Financeiro – Santo André"
+    },
+    {
+      "id": "100133fe-20c6-4f9b-b229-a28cfaaa52d9",
+      "title": "Analista Financeiro(a) Júnior Vaga afirmativa também para o público PCD",
+      "company": "MANPOWER",
+      "location": "Campinas, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://www.catho.com.br/vagas/analista-financeiroa-junior-vaga-afirmativa-tambem-para-o-publico-pcd/35272493/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Catho",
+      "status": "ready",
+      "tier": 3,
+      "fit_score": 45.0,
+      "has_resume": true,
+      "has_cover_letter": true,
+      "metadata": {},
+      "probability": 45.0,
+      "key_matches": [],
+      "gaps": [],
+      "description": "Responsabilidades e atribuições\nEsta vaga também é destinada a Pessoas com Deficiência (PCD). Valorizamos a diversidade e incentivamos a candidatura de profissionais de todos os perfis. - Rotina de contas a pagar e contas a receber; - Elaboração e análise de fluxo de caixa; - Análise de crédito de clientes e manutenção de cadastro para suporte à tomada de decisão; - Acompanhamento de projeções e comparação com o realizado; - Identificação de oportunidades de redução de custos e despesas; - Identificação de oportunidades de investimento e de fontes de financiamento; - Relacionamento com bancos e corretoras de câmbio. No ManpowerGroup, a sua carreira tem um novo rumo! Se você está em busca de crescimento, desafios e um ambiente que valoriza o seu potencial, venha fazer parte do nosso time. Aqui, cada talento é reconhecido e valorizado. Candidate-se agora e transforme seu futuro com a gente !\nRequisitos e qualificações\nEnsino superior completo ou cursando em Administração, Finanças ou áreas correlatas - Experiência nos processos de contas a pagar e/ou contas a receber - Conhecimento em sistemas como TOTVS, SAP ou sistemas bancários - Inglês intermediário (desejável) Financeiro ContasAPagarEReceber FluxoDeCaixa AnáliseDeCrédito GestãoFinanceira VagasManpower"
     },
     {
       "id": "aceece4e-1fa5-4353-89f4-30006478e2cc",
@@ -1217,7 +1722,8 @@
       "tier": 3,
       "fit_score": 35.0,
       "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {}
     },
     {
       "id": "e7cf3a65-0752-41a6-9dfa-95dd88a99ae6",
@@ -1231,7 +1737,8 @@
       "tier": 3,
       "fit_score": 35.0,
       "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {}
     },
     {
       "id": "40ea0345-e46b-4383-94eb-a5a1f943f275",
@@ -1245,161 +1752,8 @@
       "tier": 3,
       "fit_score": 30.0,
       "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "7d62cb9c-de00-4a3e-a8af-f89953ad80ce",
-      "title": "Analista FP&A III - Formatação de Franquias",
-      "company": "Grupo Boticário",
-      "location": "Brazil (+1 other)",
-      "remote": "onsite",
-      "url": "https://jobgether.com/offer/698f0b63da7696de2f50ac90-analista-fp-a-iii---formatacao-de-franquias?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Jobgether",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "f194b3d1-6307-43f3-a9ab-6552f5be39cc",
-      "title": "Analista Financeiro Junior/Pleno",
-      "company": "Itatiaia",
-      "location": "Paulinia, Paulínia - State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/analista-financeiro-junior-pleno-at-cozinhas-itatiaia-4369260596?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "74c4270a-19e5-4046-ae84-cd5276c4c370",
-      "title": "Analista Financeiro - Júnior | V4 Cassola Lacerda Suto & Co.",
-      "company": "V4 Company",
-      "location": "Franca, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=8fc3b1e374cd94f8&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "closed",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "e4e9951c-9154-485f-91f4-ee2db8373823",
-      "title": "ANALISTA FINANCEIRO ADMINISTRATIVO PLENO",
-      "company": "Life´n Tech | People Innovation",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=2ae02453dd80e0e2&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "c7e1c7e0-0ab2-4197-b5bd-b4d57d8301c6",
-      "title": "Analista Financeiro Jr. (PJ)",
-      "company": "confidential",
-      "location": "Sorocaba, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://www.catho.com.br/vagas/analista-financeiro-jr-pj/35342485/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Catho",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "ae959cef-7791-42d3-ae17-56ebe05403d0",
-      "title": "Analista Financeiro #1031",
-      "company": "RHF São Paulo",
-      "location": "Caieiras, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=5c98f6ad21e26257&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "e294162e-44ad-4bb2-bd38-59243cb7010f",
-      "title": "Analista Financeiro",
-      "company": "Robert Half",
-      "location": "São Paulo, State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.indeed.com/viewjob?jk=63f8359d97d1bf54&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "indeed",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "5a08ebc6-68b7-4543-b76f-b28d05fe9d07",
-      "title": "Senior FinOps Engineer, SRE",
-      "company": "Hostelworld",
-      "location": "Campinas, State of São Paulo (+1 other)",
-      "remote": "onsite",
-      "url": "https://br.talent.com/view?id=d66f53e8cc1d&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Talent.com",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "2567531a-e69a-43c4-8f92-142d8a1bf856",
-      "title": "Analista de dados financeiros e de custos",
-      "company": "Grupo Interway",
-      "location": "Queimados, State of Rio de Janeiro (+4 others)",
-      "remote": "onsite",
-      "url": "https://br.jobrapido.com/jobpreview/2114854293973499904?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "Jobrapido.com",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "96a15828-17a8-4b5d-8259-1d729ebca216",
-      "title": "ANALISTA DE DADOS SR",
-      "company": "JSL",
-      "location": "Mogi das Cruzes - Brás Cubas, Mogi das Cruzes - State of São Paulo",
-      "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/analista-de-dados-sr-at-jsl-s-a-4363187673?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
-    },
-    {
-      "id": "68212513-e108-4e43-8cca-87ce84505ed4",
-      "title": "CAS | Analista de Dados PL/SR - Foco em Concessão de Crédito e Garantias",
-      "company": "Sicredi",
-      "location": "Porto Alegre, State of Rio Grande do Sul",
-      "remote": "onsite",
-      "url": "https://br.linkedin.com/jobs/view/cas-analista-de-neg%C3%B3cios-s%C3%AAnior-garantias-de-cr%C3%A9dito-at-sicredi-4358487310?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "source": "linkedin",
-      "status": "new",
-      "tier": 3,
-      "fit_score": 0,
-      "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {}
     },
     {
       "id": "5d4ed747-4205-48e1-b004-e6c172d6020e",
@@ -1413,7 +1767,158 @@
       "tier": 3,
       "fit_score": 0,
       "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "68212513-e108-4e43-8cca-87ce84505ed4",
+      "title": "CAS | Analista de Dados PL/SR - Foco em Concessão de Crédito e Garantias",
+      "company": "Sicredi",
+      "location": "Porto Alegre, State of Rio Grande do Sul",
+      "remote": "onsite",
+      "url": "https://br.linkedin.com/jobs/view/cas-analista-de-neg%C3%B3cios-s%C3%AAnior-garantias-de-cr%C3%A9dito-at-sicredi-4358487310?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "96a15828-17a8-4b5d-8259-1d729ebca216",
+      "title": "ANALISTA DE DADOS SR",
+      "company": "JSL",
+      "location": "Mogi das Cruzes - Brás Cubas, Mogi das Cruzes - State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.linkedin.com/jobs/view/analista-de-dados-sr-at-jsl-s-a-4363187673?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "2567531a-e69a-43c4-8f92-142d8a1bf856",
+      "title": "Analista de dados financeiros e de custos",
+      "company": "Grupo Interway",
+      "location": "Queimados, State of Rio de Janeiro (+4 others)",
+      "remote": "onsite",
+      "url": "https://br.jobrapido.com/jobpreview/2114854293973499904?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Jobrapido.com",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "5a08ebc6-68b7-4543-b76f-b28d05fe9d07",
+      "title": "Senior FinOps Engineer, SRE",
+      "company": "Hostelworld",
+      "location": "Campinas, State of São Paulo (+1 other)",
+      "remote": "onsite",
+      "url": "https://br.talent.com/view?id=d66f53e8cc1d&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Talent.com",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "f194b3d1-6307-43f3-a9ab-6552f5be39cc",
+      "title": "Analista Financeiro Junior/Pleno",
+      "company": "Itatiaia",
+      "location": "Paulinia, Paulínia - State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.linkedin.com/jobs/view/analista-financeiro-junior-pleno-at-cozinhas-itatiaia-4369260596?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "linkedin",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "74c4270a-19e5-4046-ae84-cd5276c4c370",
+      "title": "Analista Financeiro - Júnior | V4 Cassola Lacerda Suto & Co.",
+      "company": "V4 Company",
+      "location": "Franca, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.indeed.com/viewjob?jk=8fc3b1e374cd94f8&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "closed",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "e4e9951c-9154-485f-91f4-ee2db8373823",
+      "title": "ANALISTA FINANCEIRO ADMINISTRATIVO PLENO",
+      "company": "Life´n Tech | People Innovation",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.indeed.com/viewjob?jk=2ae02453dd80e0e2&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "c7e1c7e0-0ab2-4197-b5bd-b4d57d8301c6",
+      "title": "Analista Financeiro Jr. (PJ)",
+      "company": "confidential",
+      "location": "Sorocaba, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://www.catho.com.br/vagas/analista-financeiro-jr-pj/35342485/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Catho",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "ae959cef-7791-42d3-ae17-56ebe05403d0",
+      "title": "Analista Financeiro #1031",
+      "company": "RHF São Paulo",
+      "location": "Caieiras, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.indeed.com/viewjob?jk=5c98f6ad21e26257&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "e294162e-44ad-4bb2-bd38-59243cb7010f",
+      "title": "Analista Financeiro",
+      "company": "Robert Half",
+      "location": "São Paulo, State of São Paulo",
+      "remote": "onsite",
+      "url": "https://br.indeed.com/viewjob?jk=63f8359d97d1bf54&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "indeed",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
     },
     {
       "id": "7d066b90-ab26-4069-8816-60611e892a38",
@@ -1427,7 +1932,23 @@
       "tier": 3,
       "fit_score": 0,
       "has_resume": false,
-      "has_cover_letter": false
+      "has_cover_letter": false,
+      "metadata": {}
+    },
+    {
+      "id": "7d62cb9c-de00-4a3e-a8af-f89953ad80ce",
+      "title": "Analista FP&A III - Formatação de Franquias",
+      "company": "Grupo Boticário",
+      "location": "Brazil (+1 other)",
+      "remote": "onsite",
+      "url": "https://jobgether.com/offer/698f0b63da7696de2f50ac90-analista-fp-a-iii---formatacao-de-franquias?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "source": "Jobgether",
+      "status": "new",
+      "tier": 3,
+      "fit_score": 0,
+      "has_resume": false,
+      "has_cover_letter": false,
+      "metadata": {}
     }
   ]
 }
