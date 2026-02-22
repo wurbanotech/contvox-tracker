@@ -699,7 +699,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.22-WF07</span>
+                    <span class="site-version" id="siteVersion">v2026.02.22-WF08</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -1883,6 +1883,12 @@
             source.onmessage = function(e) {
                 try {
                     const data = JSON.parse(e.data);
+
+                    // Handle queue wait event
+                    if (data.status === 'queued') {
+                        showToast(`\u23f3 Aguardando fila (${data.wait_seconds || '?'}s)...`, true);
+                    }
+
                     updatePipelineUI(jobId, data);
 
                     if (data.status === 'complete') {
@@ -1965,6 +1971,14 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             });
+            if (res.status === 429) {
+                const data = await res.json();
+                const retryAfter = data.retry_after || 120;
+                showToast(`\u23f3 Fila ocupada. Tente novamente em ${retryAfter}s.`, false);
+                job.status = oldStatus;
+                refreshView();
+                return;
+            }
             const data = await res.json();
             if (!data.ok) throw new Error(data.error || 'Erro desconhecido');
             showToast(`Analise concluida! Fit: ${data.fit_score || '?'}/100`);
