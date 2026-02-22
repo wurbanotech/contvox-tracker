@@ -699,7 +699,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.18-WF05</span>
+                    <span class="site-version" id="siteVersion">v2026.02.22-WF06</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -2031,9 +2031,9 @@
     function getLlmLabel(model) {
         if (!model) return '';
         const map = {
-            'glm-5': 'GLM-5', 'glm-4.7-flash': 'GLM-4.7',
-            'glm-4.7': 'GLM-4.7', 'codex-cli-fallback': 'GPT Codex',
-            'gemini-3-flash-preview': 'Gemini', 'gpt-5.2-codex': 'GPT-5.2',
+            'glm-5': 'GLM 5.0', 'glm-4.7-flash': 'GLM 4.7',
+            'glm-4.7': 'GLM 4.7', 'codex-cli-fallback': 'OpenAi',
+            'gemini-3-flash-preview': 'Gemini 3 flash', 'gpt-5.2-codex': 'OpenAi',
             'deterministic': 'Determ.',
         };
         return map[model] || model;
