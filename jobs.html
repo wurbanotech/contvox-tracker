@@ -688,6 +688,105 @@
             .job-card { padding: 14px; }
             .fit-columns { grid-template-columns: 1fr; }
         }
+
+        /* Job Assistant Chat Panel */
+        .assistant-panel {
+            margin-top: 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+        }
+        .assistant-quick-chips {
+            display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+        }
+        .assistant-chip {
+            padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg-secondary);
+            color: var(--text-muted); transition: all .15s;
+        }
+        .assistant-chip:hover { border-color: var(--accent); color: var(--text); background: var(--accent-dim); }
+        .assistant-input-row {
+            display: flex; gap: 8px; align-items: flex-end;
+        }
+        .assistant-input-row textarea {
+            flex: 1; background: var(--bg-secondary); border: 1px solid var(--border);
+            border-radius: 8px; padding: 10px 12px; color: var(--text); font-size: 13px;
+            font-family: 'Inter', sans-serif; resize: vertical; min-height: 44px; max-height: 150px;
+            line-height: 1.5;
+        }
+        .assistant-input-row textarea:focus { outline: none; border-color: var(--accent); }
+        .assistant-input-row textarea::placeholder { color: var(--text-dim); }
+        .assistant-send-btn {
+            padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 700;
+            cursor: pointer; border: 1px solid var(--accent); background: var(--accent);
+            color: #fff; transition: all .15s; white-space: nowrap;
+        }
+        .assistant-send-btn:hover { filter: brightness(1.15); }
+        .assistant-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .assistant-img-btn {
+            padding: 10px; border-radius: 8px; cursor: pointer;
+            border: 1px solid var(--border); background: var(--bg-secondary);
+            color: var(--text-muted); font-size: 16px; transition: all .15s;
+        }
+        .assistant-img-btn:hover { border-color: var(--accent); color: var(--text); }
+        .assistant-img-preview {
+            display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0;
+        }
+        .assistant-img-thumb {
+            position: relative; width: 60px; height: 60px; border-radius: 6px;
+            overflow: hidden; border: 1px solid var(--border);
+        }
+        .assistant-img-thumb img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .assistant-img-remove {
+            position: absolute; top: -4px; right: -4px; width: 18px; height: 18px;
+            border-radius: 50%; background: var(--danger); color: #fff; border: none;
+            font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .assistant-response {
+            margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 14px; font-size: 13px; line-height: 1.7;
+            color: #e2e8f0; white-space: pre-wrap; word-wrap: break-word;
+            max-height: 50vh; overflow-y: auto;
+        }
+        .assistant-response .model-badge {
+            display: inline-block; font-size: 10px; color: var(--accent);
+            background: var(--accent-dim); padding: 2px 8px; border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        .assistant-loading {
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-muted); font-size: 12px; margin-top: 12px;
+        }
+        .assistant-loading .dot-pulse {
+            display: inline-flex; gap: 4px;
+        }
+        .assistant-loading .dot-pulse span {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+            animation: dotPulse 1.2s infinite;
+        }
+        .assistant-loading .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+        .assistant-loading .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotPulse {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1); }
+        }
+        .assistant-history {
+            margin-top: 12px; display: flex; flex-direction: column; gap: 10px;
+        }
+        .assistant-history-item {
+            border-left: 2px solid var(--accent-dim); padding-left: 10px;
+        }
+        .assistant-history-q {
+            font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 4px;
+        }
+        .assistant-history-a {
+            font-size: 12px; color: var(--text-muted); line-height: 1.5;
+            white-space: pre-wrap; word-wrap: break-word;
+            max-height: 120px; overflow-y: auto;
+        }
     </style>
 </head>
 <body>
@@ -699,7 +798,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.22-WF08</span>
+                    <span class="site-version" id="siteVersion">v2026.02.22-JA09</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -2172,13 +2271,24 @@
             ${j.description ? `
                 <div class="tabs">
                     <button class="active" onclick="switchTab(this,'tab-desc')">Descrição</button>
+                    <button onclick="switchTab(this,'tab-assistant')">🤖 Assistente</button>
                 </div>
                 <div class="tab-content active" id="tab-desc">
                     <pre>${escapeHtml(j.description || '').substring(0, 3000)}</pre>
-                </div>` : ''}
+                </div>
+                <div class="tab-content" id="tab-assistant">
+                    ${renderAssistantPanel(j)}
+                </div>` : `
+                <div class="tabs">
+                    <button class="active" onclick="switchTab(this,'tab-assistant')">🤖 Assistente</button>
+                </div>
+                <div class="tab-content active" id="tab-assistant">
+                    ${renderAssistantPanel(j)}
+                </div>`}
         `;
         document.getElementById('detailOverlay').classList.add('show');
         document.body.style.overflow = 'hidden';
+        initAssistantPanel(j.id);
     }
 
     function closeDetail() {
@@ -2197,6 +2307,218 @@
         const d = document.createElement('div');
         d.textContent = text;
         return d.innerHTML;
+    }
+
+    // ── Job Assistant Panel ──
+    const assistantImages = [];  // {dataUrl, base64}
+    let assistantJobId = null;
+
+    function renderAssistantPanel(job) {
+        return `
+            <div class="assistant-panel">
+                <div class="assistant-quick-chips">
+                    <button class="assistant-chip" onclick="askQuick('salary')">💰 Pretensão Salarial</button>
+                    <button class="assistant-chip" onclick="askQuick('remote_preference')">🏠 Remoto / Híbrido</button>
+                    <button class="assistant-chip" onclick="askQuick('tool_knowledge')">🔧 Ferramentas</button>
+                    <button class="assistant-chip" onclick="askQuick('form_help')">📝 Ajuda com Formulário</button>
+                </div>
+                <div class="assistant-img-preview" id="assistantImgPreview"></div>
+                <div class="assistant-input-row">
+                    <button class="assistant-img-btn" onclick="triggerImageUpload()" title="Anexar imagem (print do formulário)">📎</button>
+                    <textarea id="assistantInput" placeholder="Pergunte algo sobre esta vaga... (cole imagens com Ctrl+V)" rows="1"
+                        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAssistantQuestion();}"></textarea>
+                    <button class="assistant-send-btn" id="assistantSendBtn" onclick="sendAssistantQuestion()">Enviar</button>
+                </div>
+                <input type="file" id="assistantFileInput" accept="image/*" multiple style="display:none" onchange="handleImageFiles(this.files)">
+                <div id="assistantLoading" class="assistant-loading" style="display:none">
+                    <div class="dot-pulse"><span></span><span></span><span></span></div>
+                    <span>Consultando assistente...</span>
+                </div>
+                <div id="assistantResponse" style="display:none"></div>
+                <div class="assistant-history" id="assistantHistory"></div>
+            </div>`;
+    }
+
+    function initAssistantPanel(jobId) {
+        assistantJobId = jobId;
+        assistantImages.length = 0;
+        // Restore history from sessionStorage
+        const history = getAssistantHistory(jobId);
+        renderAssistantHistory(history);
+        // Enable paste on textarea
+        setTimeout(() => {
+            const input = document.getElementById('assistantInput');
+            if (input) {
+                input.addEventListener('paste', handlePasteImage);
+                input.addEventListener('input', autoResizeTextarea);
+            }
+        }, 100);
+    }
+
+    function triggerImageUpload() {
+        document.getElementById('assistantFileInput')?.click();
+    }
+
+    function handleImageFiles(files) {
+        for (const file of files) {
+            if (!file.type.startsWith('image/')) continue;
+            if (assistantImages.length >= 5) { showToast('Máximo 5 imagens', true); break; }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                assistantImages.push({ dataUrl: e.target.result, base64: e.target.result });
+                renderImagePreviews();
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function handlePasteImage(e) {
+        const items = e.clipboardData?.items;
+        if (!items) return;
+        for (const item of items) {
+            if (item.type.startsWith('image/')) {
+                e.preventDefault();
+                if (assistantImages.length >= 5) { showToast('Máximo 5 imagens', true); return; }
+                const blob = item.getAsFile();
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    assistantImages.push({ dataUrl: ev.target.result, base64: ev.target.result });
+                    renderImagePreviews();
+                };
+                reader.readAsDataURL(blob);
+                return;
+            }
+        }
+    }
+
+    function renderImagePreviews() {
+        const container = document.getElementById('assistantImgPreview');
+        if (!container) return;
+        container.innerHTML = assistantImages.map((img, i) =>
+            `<div class="assistant-img-thumb">
+                <img src="${img.dataUrl}" alt="img ${i+1}">
+                <button class="assistant-img-remove" onclick="removeAssistantImage(${i})">×</button>
+            </div>`
+        ).join('');
+    }
+
+    function removeAssistantImage(index) {
+        assistantImages.splice(index, 1);
+        renderImagePreviews();
+    }
+
+    function autoResizeTextarea(e) {
+        e.target.style.height = 'auto';
+        e.target.style.height = Math.min(e.target.scrollHeight, 150) + 'px';
+    }
+
+    async function askQuick(quickType) {
+        const defaultQuestions = {
+            salary: 'Como devo responder sobre pretensão salarial para esta vaga?',
+            remote_preference: 'Como posicionar minha preferência de remoto/híbrido/presencial?',
+            tool_knowledge: 'Quais ferramentas são pedidas e como demonstrar meu conhecimento nelas?',
+            form_help: 'Me ajude a preencher o formulário de aplicação (veja as imagens).',
+        };
+        const input = document.getElementById('assistantInput');
+        if (input && !input.value.trim()) {
+            input.value = defaultQuestions[quickType] || '';
+        }
+        await sendAssistantQuestion(quickType);
+    }
+
+    async function sendAssistantQuestion(quickType) {
+        const input = document.getElementById('assistantInput');
+        const question = input?.value?.trim();
+        if (!question && !quickType) return;
+
+        const sendBtn = document.getElementById('assistantSendBtn');
+        const loading = document.getElementById('assistantLoading');
+        const responseDiv = document.getElementById('assistantResponse');
+
+        // Disable UI
+        if (sendBtn) sendBtn.disabled = true;
+        if (loading) loading.style.display = 'flex';
+        if (responseDiv) responseDiv.style.display = 'none';
+
+        const payload = {
+            question: question || `[${quickType}]`,
+            images: assistantImages.map(img => img.base64),
+        };
+        if (quickType) payload.quick_type = quickType;
+
+        try {
+            const res = await fetch(`${JOB_API}/job/${assistantJobId}/ask`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+
+            if (data.ok) {
+                const modelLabel = data.model || 'LLM';
+                const cachedBadge = data.cached ? ' (cache)' : '';
+                const fallbackBadge = data.fallback ? ' (fallback)' : '';
+                if (responseDiv) {
+                    responseDiv.style.display = 'block';
+                    responseDiv.innerHTML = `
+                        <div class="assistant-response">
+                            <span class="model-badge">🤖 ${modelLabel}${cachedBadge}${fallbackBadge} · ${data.latency_ms || 0}ms</span>
+                            <div>${formatAssistantResponse(data.answer)}</div>
+                        </div>`;
+                }
+                // Save to history
+                saveAssistantHistory(assistantJobId, question || `[${quickType}]`, data.answer, data.model);
+                renderAssistantHistory(getAssistantHistory(assistantJobId));
+                // Clear input and images
+                if (input) { input.value = ''; input.style.height = 'auto'; }
+                assistantImages.length = 0;
+                renderImagePreviews();
+            } else {
+                showToast(data.error || 'Erro ao consultar assistente', true);
+            }
+        } catch (err) {
+            showToast('Erro de conexão com o assistente: ' + err.message, true);
+        } finally {
+            if (sendBtn) sendBtn.disabled = false;
+            if (loading) loading.style.display = 'none';
+        }
+    }
+
+    function formatAssistantResponse(text) {
+        // Markdown-light: bold, italic, line breaks
+        return escapeHtml(text)
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
+    }
+
+    function getAssistantHistory(jobId) {
+        try {
+            const key = `nebula_assistant_${jobId}`;
+            return JSON.parse(sessionStorage.getItem(key) || '[]');
+        } catch { return []; }
+    }
+
+    function saveAssistantHistory(jobId, question, answer, model) {
+        try {
+            const key = `nebula_assistant_${jobId}`;
+            const history = getAssistantHistory(jobId);
+            history.unshift({ q: question, a: answer, model, ts: Date.now() });
+            if (history.length > 20) history.length = 20;
+            sessionStorage.setItem(key, JSON.stringify(history));
+        } catch { /* sessionStorage full or disabled */ }
+    }
+
+    function renderAssistantHistory(history) {
+        const container = document.getElementById('assistantHistory');
+        if (!container || !history.length) return;
+        container.innerHTML = '<div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;margin-bottom:6px">Histórico desta sessão</div>' +
+            history.map(h =>
+                `<div class="assistant-history-item">
+                    <div class="assistant-history-q">💬 ${escapeHtml(h.q)}</div>
+                    <div class="assistant-history-a">${escapeHtml(h.a).substring(0, 500)}${h.a.length > 500 ? '...' : ''}</div>
+                </div>`
+            ).join('');
     }
 
     function filterByStatus(status) {
