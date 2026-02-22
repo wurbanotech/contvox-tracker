@@ -798,7 +798,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.22-JA10</span>
+                    <span class="site-version" id="siteVersion">v2026.02.22-JA11</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -1994,8 +1994,11 @@
                         source.close();
                         stopPipelineTimer(jobId);
                         activeProcessing[jobId].active = false;
+                        const isSkipped = data.summary?.status === 'skipped';
                         const isBlocked = data.summary?.status === 'quality_blocked';
-                        if (isBlocked) {
+                        if (isSkipped) {
+                            activeProcessing[jobId].pipelineBlocked = true;
+                        } else if (isBlocked) {
                             activeProcessing[jobId].pipelineBlocked = true;
                         } else {
                             activeProcessing[jobId].pipelineComplete = true;
@@ -2004,7 +2007,9 @@
                         activeProcessing[jobId].detailOpen = true;
                         const fitScore = data.summary?.fit_score || '?';
                         const totalSec = data.summary?.total_elapsed_ms ? (data.summary.total_elapsed_ms / 1000).toFixed(1) : '?';
-                        if (isBlocked) {
+                        if (isSkipped) {
+                            showToast(`Fit ${fitScore}/100 — abaixo do mínimo. Vaga expirada.`, false);
+                        } else if (isBlocked) {
                             showToast(`Quality Gate bloqueou. Fit: ${fitScore}/100 em ${totalSec}s`, false);
                         } else {
                             showToast(`Pipeline concluído! Fit: ${fitScore}/100 em ${totalSec}s`);
@@ -2023,9 +2028,9 @@
                     }
 
                     if (data.status === 'error') {
-                        // Step-level errors are logged but don't close the stream
-                        // Only close on fatal errors (no step) outside normal flow
-                        if (data.step == null) {
+                        // Fatal errors (step 0 or null) close the stream
+                        // Step-level errors are logged in the pipeline UI
+                        if (!data.step) {
                             source.close();
                             stopPipelineTimer(jobId);
                             activeProcessing[jobId].active = false;
