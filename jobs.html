@@ -690,6 +690,66 @@
         }
 
         /* Job Assistant Chat Panel */
+
+        /* Observability Status Bar */
+        .obs-bar {
+            position: sticky; top: 53px; z-index: 99;
+            background: var(--bg-card); border-bottom: 1px solid var(--border);
+            transition: max-height 0.35s ease, opacity 0.25s ease;
+            overflow: hidden;
+        }
+        .obs-bar.collapsed .obs-widgets { max-height: 0; padding: 0 16px; opacity: 0; }
+        .obs-bar.collapsed .obs-collapsed-row { display: flex; }
+        .obs-bar .obs-collapsed-row { display: none; }
+        .obs-collapsed-row {
+            align-items: center; justify-content: space-between;
+            padding: 6px 16px; max-width: 960px; margin: 0 auto;
+        }
+        .obs-collapsed-left { display: flex; align-items: center; gap: 10px; }
+        .obs-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .obs-dot.green { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+        .obs-dot.yellow { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
+        .obs-dot.red { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+        .obs-dot.gray { background: #6b7280; }
+        .obs-collapsed-label { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+        .obs-toggle {
+            background: none; border: 1px solid var(--border); color: var(--text-dim);
+            font-size: 10px; padding: 3px 8px; border-radius: 6px; cursor: pointer;
+            transition: all .15s; font-weight: 700;
+        }
+        .obs-toggle:hover { border-color: var(--accent); color: var(--text); }
+        .obs-widgets {
+            max-height: 80px; opacity: 1;
+            transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+            padding: 8px 16px; max-width: 960px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;
+        }
+        .obs-widget {
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
+        }
+        .obs-widget-value {
+            font-size: 12px; font-weight: 700; color: var(--text);
+            display: flex; align-items: center; gap: 4px; white-space: nowrap;
+        }
+        .obs-widget-label {
+            font-size: 9px; color: var(--text-dim); text-transform: uppercase;
+            letter-spacing: 0.4px; font-weight: 600;
+        }
+        .obs-budget-bar {
+            width: 100%; height: 3px; background: var(--bg-secondary);
+            border-radius: 2px; overflow: hidden; margin-top: 2px;
+        }
+        .obs-budget-fill {
+            height: 100%; border-radius: 2px; transition: width 0.6s ease;
+        }
+        @media (max-width: 700px) {
+            .obs-widgets { grid-template-columns: repeat(4, 1fr); max-height: 120px; }
+        }
+        @media (max-width: 450px) {
+            .obs-widgets { grid-template-columns: repeat(3, 1fr); max-height: 160px; }
+        }
+
+        /* Job Assistant Chat Panel */
         .assistant-panel {
             margin-top: 12px;
             background: var(--bg);
@@ -798,10 +858,55 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.22-AP01</span>
+                    <span class="site-version" id="siteVersion">v2026.02.23-OB01</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Observability Status Bar -->
+    <div class="obs-bar" id="obsBar">
+        <div class="obs-collapsed-row">
+            <div class="obs-collapsed-left">
+                <div class="obs-dot gray" id="obsCollapsedDot"></div>
+                <span class="obs-collapsed-label" id="obsCollapsedLabel">Sistema</span>
+            </div>
+            <button class="obs-toggle" onclick="toggleObsBar()">▼ Expandir</button>
+        </div>
+        <div class="obs-widgets" id="obsWidgets">
+            <div class="obs-widget" id="obsHealth">
+                <div class="obs-widget-value"><div class="obs-dot gray" id="obsHealthDot"></div> <span id="obsHealthText">...</span></div>
+                <div class="obs-widget-label">Sistema</div>
+            </div>
+            <div class="obs-widget" id="obsUptime">
+                <div class="obs-widget-value" id="obsUptimeText">...</div>
+                <div class="obs-widget-label">Uptime</div>
+            </div>
+            <div class="obs-widget" id="obsLlm">
+                <div class="obs-widget-value" id="obsLlmText">...</div>
+                <div class="obs-widget-label">LLM Ativo</div>
+            </div>
+            <div class="obs-widget" id="obsCost">
+                <div class="obs-widget-value" id="obsCostText">...</div>
+                <div class="obs-widget-label">Custo Hoje</div>
+                <div class="obs-budget-bar"><div class="obs-budget-fill" id="obsBudgetFill" style="width:0%;background:#22c55e"></div></div>
+            </div>
+            <div class="obs-widget" id="obsCache">
+                <div class="obs-widget-value" id="obsCacheText">...</div>
+                <div class="obs-widget-label">Cache</div>
+            </div>
+            <div class="obs-widget" id="obsErrors">
+                <div class="obs-widget-value" id="obsErrorsText">...</div>
+                <div class="obs-widget-label">Erros 7d</div>
+            </div>
+            <div class="obs-widget" id="obsQueue">
+                <div class="obs-widget-value" id="obsQueueText">...</div>
+                <div class="obs-widget-label">Fila</div>
+            </div>
+        </div>
+        <div style="text-align:center;padding:0 0 4px">
+            <button class="obs-toggle" onclick="toggleObsBar()" id="obsExpandedToggle">▲ Recolher</button>
         </div>
     </div>
 
@@ -2579,6 +2684,111 @@
     loadJobs();
     // Auto-refresh every 60s
     setInterval(loadJobs, 60000);
+
+    // ── Observability Status Bar ──
+    function toggleObsBar() {
+        const bar = document.getElementById('obsBar');
+        bar.classList.toggle('collapsed');
+        const isCollapsed = bar.classList.contains('collapsed');
+        try { localStorage.setItem('obsBarCollapsed', isCollapsed ? '1' : '0'); } catch {}
+    }
+
+    function initObsBar() {
+        try {
+            if (localStorage.getItem('obsBarCollapsed') === '1') {
+                document.getElementById('obsBar').classList.add('collapsed');
+            }
+        } catch {}
+    }
+
+    function renderObsData(data) {
+        // System health
+        const sys = data.system || {};
+        const healthDot = document.getElementById('obsHealthDot');
+        const healthText = document.getElementById('obsHealthText');
+        const collapsedDot = document.getElementById('obsCollapsedDot');
+        const collapsedLabel = document.getElementById('obsCollapsedLabel');
+        const dotClass = sys.status === 'ok' ? 'green' : sys.status === 'degraded' ? 'yellow' : 'red';
+        const statusLabel = sys.status === 'ok' ? 'Online' : sys.status === 'degraded' ? 'Degraded' : 'Offline';
+        healthDot.className = 'obs-dot ' + dotClass;
+        healthText.textContent = statusLabel;
+        collapsedDot.className = 'obs-dot ' + dotClass;
+        collapsedLabel.textContent = statusLabel;
+
+        // Uptime
+        document.getElementById('obsUptimeText').textContent = '↑ ' + (sys.uptime || '?');
+
+        // LLM
+        const llm = data.llm || {};
+        const llmModels = { 'glm-5': 'GLM-5', 'glm-4.7-flash': 'GLM Flash', 'gemini-3-flash-preview': 'Gemini 3', 'gpt-5.2-codex': 'Codex' };
+        const modelLabel = llmModels[llm.active_model] || llm.active_model || '—';
+        document.getElementById('obsLlmText').innerHTML = '🤖 ' + modelLabel;
+
+        // Costs + budget
+        const costs = data.costs || {};
+        const dailyUsed = costs.daily_used || 0;
+        const dailyLimit = costs.daily_limit || 0.66;
+        const monthlyUsed = costs.monthly_used || 0;
+        const monthlyLimit = costs.monthly_limit || 20;
+        document.getElementById('obsCostText').textContent = '$' + dailyUsed.toFixed(2) + ' / $' + dailyLimit.toFixed(2);
+        const budgetPct = dailyLimit > 0 ? Math.min((dailyUsed / dailyLimit) * 100, 100) : 0;
+        const budgetFill = document.getElementById('obsBudgetFill');
+        budgetFill.style.width = budgetPct + '%';
+        budgetFill.style.background = budgetPct > 90 ? '#ef4444' : budgetPct > 70 ? '#f59e0b' : '#22c55e';
+
+        // Cache
+        const cache = data.cache || {};
+        const hitRate = cache.hit_rate_pct || 0;
+        const cacheColor = hitRate > 30 ? '#22c55e' : hitRate > 10 ? '#f59e0b' : '#ef4444';
+        document.getElementById('obsCacheText').innerHTML = '<span style="color:' + cacheColor + '">' + hitRate.toFixed(0) + '%</span>';
+
+        // Errors
+        const errors = data.errors || {};
+        const errCount = errors.count_7d || 0;
+        const errColor = errCount === 0 ? '#22c55e' : errCount <= 5 ? '#f59e0b' : '#ef4444';
+        document.getElementById('obsErrorsText').innerHTML = '<span style="color:' + errColor + '">' + errCount + '</span>';
+
+        // Queue
+        const q = data.queue || {};
+        const qPending = q.pending || 0;
+        const qProcessing = q.processing;
+        document.getElementById('obsQueueText').textContent = qProcessing ? '⚙️ Processando' : qPending > 0 ? qPending + ' pendente' + (qPending > 1 ? 's' : '') : 'Idle';
+
+        // Collapsed summary
+        const parts = [statusLabel];
+        if (llm.active_model) parts.push(modelLabel);
+        parts.push('$' + dailyUsed.toFixed(2));
+        if (errCount > 0) parts.push(errCount + ' erros');
+        collapsedLabel.textContent = parts.join(' · ');
+    }
+
+    function renderObsOffline() {
+        document.getElementById('obsHealthDot').className = 'obs-dot red';
+        document.getElementById('obsHealthText').textContent = 'Offline';
+        document.getElementById('obsCollapsedDot').className = 'obs-dot red';
+        document.getElementById('obsCollapsedLabel').textContent = 'API Offline';
+        document.getElementById('obsUptimeText').textContent = '—';
+        document.getElementById('obsLlmText').textContent = '—';
+        document.getElementById('obsCostText').textContent = '—';
+        document.getElementById('obsCacheText').textContent = '—';
+        document.getElementById('obsErrorsText').textContent = '—';
+        document.getElementById('obsQueueText').textContent = '—';
+    }
+
+    async function fetchObservability() {
+        try {
+            const res = await fetch(JOB_API + '/observability', { signal: AbortSignal.timeout(8000) });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const data = await res.json();
+            renderObsData(data);
+        } catch {
+            renderObsOffline();
+        }
+    }
+
+    initObsBar();
+    fetchObservability();
+    setInterval(fetchObservability, 60000);
 
     // Close overlay on ESC or click outside
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
