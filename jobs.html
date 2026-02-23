@@ -860,7 +860,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.23-OB02</span>
+                    <span class="site-version" id="siteVersion">v2026.02.23-OB03</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -985,8 +985,18 @@
         expired:      { emoji: '', color: '#9ca3af', label: 'Expirada' },
     };
 
-    const FUNNEL_ORDER = ['new','analyzing','ready','applied','phone_screen','interview','tech_interview','manager_interview','final_round','offer','accepted','rejected','rejected_by_me','rejected_by_recruiter','closed','withdrawn','expired'];
-    const DISMISSED_STATUSES = new Set(['rejected','rejected_by_me','rejected_by_recruiter','closed','withdrawn','expired']);
+    const FUNNEL_ORDER = ['new','analyzing','ready','applied','interview','tech_interview','manager_interview','rejected','rejected_by_me','expired'];
+    const DISMISSED_STATUSES = new Set(['rejected','rejected_by_me','expired']);
+    const STATUS_REMAP = {
+        phone_screen: 'interview',
+        final_round: 'manager_interview',
+        offer: 'applied',
+        accepted: 'applied',
+        rejected_by_recruiter: 'rejected',
+        closed: 'expired',
+        withdrawn: 'rejected_by_me',
+    };
+    const HIDDEN_STATUSES = new Set(Object.keys(STATUS_REMAP));
 
     // ── Visa / US-only detection ──
     const VISA_PATTERNS = [
@@ -1750,6 +1760,8 @@
                         : (!parsedFit ? rawFitAnalysis : ''),
                 };
             });
+            // Remap removed statuses to their target
+            allJobs.forEach(j => { if (STATUS_REMAP[j.status]) j.status = STATUS_REMAP[j.status]; });
             allJobsUnfiltered = [...allJobs];
             if (hideVisaJobs) allJobs = allJobs.filter(j => !needsVisa(j));
             updateVisaToggleUI();
@@ -2235,7 +2247,7 @@
             <div class="stat-card"><div class="number accent">${stats.applied}</div><div class="label">Aplicadas</div></div>
             <div class="stat-card"><div class="number warning">${stats.interviews}</div><div class="label">Entrevistas</div></div>
             <div class="stat-card"><div class="number">${stats.avg_fit}%</div><div class="label">Fit Médio</div></div>
-            <div class="stat-card"><div class="number green">${stats.offers}</div><div class="label">Ofertas</div></div>
+            <div class="stat-card"><div class="number" style="color:var(--text-dim)">${stats.dismissed}</div><div class="label">Descartadas</div></div>
         `;
     }
 
@@ -2286,7 +2298,7 @@
             const tier = j.tier || 0;
             const tierClass = tier ? `tier-${tier}` : '';
             const tierLabel = {1:'⭐ T1',2:'👍 T2',3:'📋 T3'}[tier] || '';
-            const dimmed = ['rejected','rejected_by_me','rejected_by_recruiter','closed','expired','withdrawn'].includes(j.status) ? 'dimmed' : '';
+            const dimmed = DISMISSED_STATUSES.has(j.status) ? 'dimmed' : '';
             const docsActions = renderDocButtons(j);
 
             const actions = (j.status === 'new' || j.status === 'analyzing') ? `
@@ -2386,7 +2398,7 @@
             <div class="status-selector">
                 <label>Alterar Status</label>
                 <div class="status-grid">
-                    ${Object.entries(STATUS_CONFIG).map(([k, v]) =>
+                    ${Object.entries(STATUS_CONFIG).filter(([k]) => !HIDDEN_STATUSES.has(k)).map(([k, v]) =>
                         `<button class="${j.status===k?'current':''}" onclick="changeStatus('${j.id}','${k}')">${v.label}</button>`
                     ).join('')}
                 </div>
@@ -2678,7 +2690,7 @@
             if (j.fit_score) fitScores.push(j.fit_score);
             if (j.probability) probs.push(j.probability);
         });
-        const interviewStatuses = ['interview','phone_screen','tech_interview','manager_interview','final_round'];
+        const interviewStatuses = ['interview','tech_interview','manager_interview'];
         return {
             total: jobs.length,
             by_status: byStatus,
@@ -2686,7 +2698,7 @@
             ready: byStatus.ready || 0,
             applied: byStatus.applied || 0,
             interviews: interviewStatuses.reduce((sum,s) => sum + (byStatus[s]||0), 0),
-            offers: (byStatus.offer||0) + (byStatus.accepted||0),
+            dismissed: (byStatus.rejected||0) + (byStatus.rejected_by_me||0) + (byStatus.expired||0),
         };
     }
 
