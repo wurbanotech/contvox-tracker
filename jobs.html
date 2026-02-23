@@ -87,18 +87,19 @@
 
         /* Funnel */
         .funnel {
-            display: flex; gap: 8px; margin: 20px 0; flex-wrap: wrap;
+            display: flex; gap: 6px; margin: 20px 0; flex-wrap: wrap;
             overflow-x: auto; padding-bottom: 4px;
         }
         .funnel-step {
-            flex: 1; min-width: 80px; background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-sm); padding: 12px 8px; text-align: center;
+            flex: 1; min-width: 62px; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 10px 4px; text-align: center;
             cursor: pointer; transition: all .2s;
         }
+        .funnel-step.funnel-dismissed { opacity: 0.6; }
         .funnel-step:hover { border-color: var(--accent); }
         .funnel-step.active { border-color: var(--accent); box-shadow: 0 0 16px rgba(129,140,248,0.15); }
-        .funnel-step .count { font-size: 24px; font-weight: 800; }
-        .funnel-step .name { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+        .funnel-step .count { font-size: 20px; font-weight: 800; }
+        .funnel-step .name { font-size: 9px; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
 
         /* Filters */
         .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
@@ -119,7 +120,8 @@
             border-radius: var(--radius); padding: 20px; transition: all 0.2s; cursor: pointer;
         }
         .job-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-        .job-card.dimmed { opacity: 0.4; }
+        .job-card.dimmed { opacity: 0.55; }
+        .job-card.dimmed:hover { opacity: 0.8; }
 
         .job-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
         .job-title { font-size: 16px; font-weight: 700; color: #f1f5f9; }
@@ -858,7 +860,7 @@
                     <a href="index.html">Centro de Comando</a>
                     <a href="jobs.html" class="active">Vagas</a>
                     <a href="bookmarklet.html">Bookmarklet</a>
-                    <span class="site-version" id="siteVersion">v2026.02.23-OB01</span>
+                    <span class="site-version" id="siteVersion">v2026.02.23-OB02</span>
                     <span class="update-time" id="updateTime"></span>
                 </div>
             </div>
@@ -917,8 +919,11 @@
         <!-- Funnel -->
         <div class="funnel" id="funnel"></div>
 
-        <!-- Tier Filter -->
-        <div class="filter-bar" id="tierFilter"></div>
+        <!-- Tier Filter + Visa Toggle -->
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+            <div class="filter-bar" id="tierFilter" style="margin-bottom:0;flex:1"></div>
+            <button id="visaToggle" onclick="toggleVisaFilter()" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s">🛂 Mostrar vagas US</button>
+        </div>
 
         <!-- Platform Filter -->
         <div class="filter-section" id="platformSection" style="margin-bottom:16px">
@@ -980,7 +985,8 @@
         expired:      { emoji: '', color: '#9ca3af', label: 'Expirada' },
     };
 
-    const FUNNEL_ORDER = ['new','analyzing','ready','applied','interview','tech_interview','manager_interview','offer','accepted','rejected'];
+    const FUNNEL_ORDER = ['new','analyzing','ready','applied','phone_screen','interview','tech_interview','manager_interview','final_round','offer','accepted','rejected','rejected_by_me','rejected_by_recruiter','closed','withdrawn','expired'];
+    const DISMISSED_STATUSES = new Set(['rejected','rejected_by_me','rejected_by_recruiter','closed','withdrawn','expired']);
 
     // ── Visa / US-only detection ──
     const VISA_PATTERNS = [
@@ -1047,11 +1053,13 @@
     }
 
     let allJobs = [];
+    let allJobsUnfiltered = []; // before visa filter
     let currentFilter = 'all';
     let currentTier = 'all';
     let selectedPlatforms = new Set(); // empty = all
     let platformExpanded = false;
     let fitDiagnosisExpanded = true;
+    let hideVisaJobs = localStorage.getItem('hideVisaJobs') !== 'false'; // default: hide
     let userProfile = { full_name: '', email: '', phone: '', linkedin: '' };
 
     async function loadUserProfile() {
@@ -1742,7 +1750,9 @@
                         : (!parsedFit ? rawFitAnalysis : ''),
                 };
             });
-            allJobs = allJobs.filter(j => !needsVisa(j));
+            allJobsUnfiltered = [...allJobs];
+            if (hideVisaJobs) allJobs = allJobs.filter(j => !needsVisa(j));
+            updateVisaToggleUI();
             document.getElementById('updateTime').textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`;
             refreshView();
         } catch (e) {
@@ -2236,7 +2246,8 @@
             const cfg = STATUS_CONFIG[s] || {};
             const count = byStatus[s] || 0;
             const active = currentFilter === s ? 'active' : '';
-            return `<div class="funnel-step ${active}" onclick="filterByStatus('${s}')" style="border-bottom: 3px solid ${cfg.color}">
+            const dismissed = DISMISSED_STATUSES.has(s) ? 'funnel-dismissed' : '';
+            return `<div class="funnel-step ${active} ${dismissed}" onclick="filterByStatus('${s}')" style="border-bottom: 3px solid ${cfg.color}">
                 <div class="count" style="color:${cfg.color}">${count}</div>
                 <div class="name">${cfg.label || s}</div>
             </div>`;
@@ -2677,6 +2688,30 @@
             interviews: interviewStatuses.reduce((sum,s) => sum + (byStatus[s]||0), 0),
             offers: (byStatus.offer||0) + (byStatus.accepted||0),
         };
+    }
+
+    function toggleVisaFilter() {
+        hideVisaJobs = !hideVisaJobs;
+        localStorage.setItem('hideVisaJobs', hideVisaJobs);
+        // Re-apply filter from unfiltered set
+        allJobs = hideVisaJobs ? allJobsUnfiltered.filter(j => !needsVisa(j)) : [...allJobsUnfiltered];
+        updateVisaToggleUI();
+        refreshView();
+    }
+
+    function updateVisaToggleUI() {
+        const btn = document.getElementById('visaToggle');
+        if (!btn) return;
+        const visaCount = allJobsUnfiltered.filter(j => needsVisa(j)).length;
+        if (hideVisaJobs) {
+            btn.textContent = `🛂 Mostrar vagas US (${visaCount})`;
+            btn.style.borderColor = 'var(--border)';
+            btn.style.color = 'var(--text-muted)';
+        } else {
+            btn.textContent = `🛂 Esconder vagas US (${visaCount})`;
+            btn.style.borderColor = 'var(--accent)';
+            btn.style.color = 'var(--accent)';
+        }
     }
 
     // Load user profile (contact info for PDFs) then jobs
